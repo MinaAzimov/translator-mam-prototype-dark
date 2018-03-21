@@ -1,0 +1,14 @@
+.card--id-project2 {
+
+	display: none;
+
+	&--show {
+
+    display: block !important;
+
+	}
+}
+
+.hidden {
+	display: none;
+}

@@ -1,0 +1,89 @@
+
+
+
+.list-item {
+	position: relative;
+	box-sizing: border-box;
+	min-width: 0;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	border: 1px solid $color-border-grey;
+	background: #FAFAFA;
+	border-radius: 2px;
+	transition: .3s ease-out;
+	flex-grow: 1;
+	min-height: 80px;
+
+	&--draggable {
+		padding-left: 36px;
+	}
+
+	strong {
+		font-weight: 400;
+	}
+}
+
+.list-item__inner {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	min-height: 80px;
+	height: auto;
+}
+
+.list-item__img {
+	width: 50px;
+	height: 50px;
+  min-width: 50px;
+	border-radius: 50%;
+	background: transparent;
+	margin-left: 13px;
+	overflow: hidden;
+	img {
+		width: inherit;
+		height: auto;
+	}
+}
+
+.list-item__text {
+	padding: 20px;
+	width: 100%;
+}
+
+.list-item__line1 {
+	@include font-dashboard-text;
+	text-transform: capitalize;
+	margin-bottom: 10px;
+}
+
+.list-item__line2 {
+	@include font-dashboard-time;
+	text-transform: capitalize;
+}
+
+.list-item__desc {
+	@include font-dashboard-text;
+	font-weight: 300;
+	margin-bottom: 10px;
+	font-size: 13px;
+	position: relative;
+	background: $color-white;
+	padding: 22px 10px 10px;
+	border-radius: 2px;
+	border: 1px solid #eee;
+
+	&:before {
+		position: absolute;
+		content: 'MEMO';
+		font-weight: 600;
+		font-size: 8px;
+		top: 0;
+		left: 0;
+		background: $color-orange;
+		color: #fff;
+		padding: 4px;
+		border-top-left-radius: 2px;
+	}
+}

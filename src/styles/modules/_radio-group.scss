@@ -1,0 +1,81 @@
+$bg: #fff;
+$font-color: #999;
+$border-color: #ddd;
+
+.iradio {
+  padding: 0;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid $border-color;
+  display: inline-block;
+  input {
+    display:none;
+  }
+
+  input[type='radio'] + label,
+  input[type='checkbox'] + label {
+    display: block;
+    float: left;
+    margin: 0;
+    clear: none;
+    /* Left padding makes room for image */
+    padding: .6em 1em 0;
+    line-height: 1;
+    height: 35px;
+    margin: 0;
+    /* Make look clickable because they are */
+    cursor: pointer;
+    /*background: url(off.png) left center no-repeat;*/
+    background: $bg;
+    //border-right: 1px solid darken($bg, 20);
+    color: $font-color;
+    font-weight: 300;
+    box-shadow: inset -1px 0 0 $border-color;
+    transition: .3s ease-out;
+  }
+  div {
+    display: inline-block;
+    &:last-child label {
+      box-shadow: none;
+    }
+  }
+  /*
+   Change from unchecked to checked graphic
+   */
+  input[type='radio']:checked + label,
+  input[type='checkbox']:checked + label {
+    background: $color-orange;
+    color: #fff;
+    font-weight: 300;
+  }
+
+  input[type='radio'] + label:hover,
+  input[type='checkbox'] + label:hover {
+    color: $bg;
+    background: #ccc;
+  }
+}
+
+.settings-container {
+  display: flex;
+
+  @media screen and (max-width: $bp-small) {
+    display: block;
+  }
+
+  > * {
+    width: 50%;
+
+    @media screen and (max-width: $bp-small) {
+      width: 100%;
+    }
+  }
+
+  .card-section:first-child {
+    border-right: 1px solid #eee;
+
+    @media screen and (max-width: $bp-small) {
+      border-right: none;
+    }
+  }
+}

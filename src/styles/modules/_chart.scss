@@ -1,0 +1,23 @@
+
+
+.bar-chart {
+
+
+	path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: #188EBE;
+	}
+
+	.axis path,
+	.axis line {
+	    fill: none;
+	    stroke: grey;
+	    stroke-width: 1;
+	    shape-rendering: crispEdges;
+	}
+
+
+
+
+}

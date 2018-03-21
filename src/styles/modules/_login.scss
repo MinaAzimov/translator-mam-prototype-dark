@@ -1,0 +1,134 @@
+@import "../mixins";
+
+.login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+
+.login-form {
+	padding: 30px;
+	width: 100%;
+	max-width: 300px;
+	text-align: center;
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
+	border-radius: 2px;
+	position: relative;
+	display: block;
+	height: auto;
+	background-color: $color-white;
+
+	@media screen and (min-width: $bp-xlarge) {
+		max-width: 400px;
+	}
+
+	select, label, button {
+		display: block;
+	}
+
+	select {
+		margin-bottom: 20px;
+		width: 100%;
+		min-height: 32px;
+		padding: 7px 0px;
+		background-color: transparent;
+		border: none;
+		border-bottom: 1px solid #dddddd;
+		overflow-wrap: break-word;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		cursor: pointer;
+		position: relative;
+		outline: none;
+	}
+
+	button {
+		@include button-blue-pill;
+		margin-top: 20px;
+	}
+
+	.profile-img {
+		max-width: 160px;
+		width: 100%;
+		height: auto;
+		border-radius: 50%;
+		margin: 0px auto;
+
+		@media screen and (min-width: $bp-xlarge) {
+			max-width: 260px;
+		}
+	}
+
+	.selectbox__field label {
+		text-align: left;
+	}
+
+	.selectbox__placeholder-box {
+		border: none;
+		background: transparent;
+		padding: 5px 0 0 5px;
+	}
+}
+
+.login-img__wrapper {
+	min-height: 160px;
+	position: relative;
+  width: 160px;
+  margin: 0px auto;
+}
+
+.login-img__img {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	&-enter {
+		transform-origin: 0% 50%;
+		opacity: 0;
+		transform: translateX(-20px) scale(0.5);
+	}
+
+	&-enter-active {
+		transition: transform 0.3s, opacity 0.3s;
+		opacity: 1;
+		transform: translateX(0px) scale(1);
+	}
+
+	&-leave {
+		transform-origin: 100% 50%;
+		opacity: 1;
+		transform: translateX(0px) scale(1);
+	}
+
+	&-leave-active {
+		transition: transform 0.3s, opacity 0.3s;
+		opacity: 0;
+		transform: translateX(20px) scale(0.5);
+	}
+}
+
+.login-img__profile {
+	width: 160px;
+	height: 160px;
+	overflow: hidden;
+	border-radius: 50%;
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}
+
+
+
+.login-label {
+	padding: 20px 0;
+	font-weight: 300;
+	text-transform: capitalize;
+
+	@media screen and (min-width: $bp-xlarge) {
+		font-size: 20px;
+	}
+}

@@ -1,0 +1,113 @@
+
+.prompt.modal {
+  z-index: 9999;
+}
+.licensing-popup__title {
+  font-size: 22px;
+}
+.licensing-popup__info {
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.dark-prompt {
+
+  .task-creator {
+    .field-wrapper {
+      animation: scale-in 0.3s ease-out 0.1s;
+      animation-fill-mode: backwards;
+
+      &:nth-child(2) {
+        animation: scale-in 0.3s ease-out 0.2s;
+        animation-fill-mode: backwards;
+      }
+
+      &:nth-child(3) {
+        animation: scale-in 0.3s ease-out 0.3s;
+        animation-fill-mode: backwards;
+      }
+
+      &:nth-child(4) {
+        animation: scale-in 0.3s ease-out 0.4s;
+        animation-fill-mode: backwards;
+      }
+    }
+  }
+
+  .modal-content {
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+  }
+
+  .licensing-popup__title {
+    color: $color-white;
+    font-size: 32px;
+    font-weight: 300;
+    animation: scale-in 0.3s ease-out;
+  }
+
+  .switch-wrapper {
+    animation: scale-in 0.3s ease-out 0.2s;
+    animation-fill-mode: backwards;
+  }
+
+  .field-wrapper {
+    .switch-wrapper {
+      animation: scale-in 0.3s ease-out 0.1s;
+      animation-fill-mode: backwards;
+    }
+  }
+
+  .switch label {
+    color: rgba($color-white, 0.7);
+    font-size: 14px;
+  }
+
+  .switch-toggle {
+    background: transparent;
+  }
+
+  .selectbox__down-icon {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .selectbox__input, .field-text__input {
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  .selectbox_state_not-empty {
+    font-weight: 400;
+  }
+
+  .selectbox__placeholder, .field-text__input, .icon-info {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .icon-info:hover {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .field__help-text {
+    color: #2a2a2d;
+    background: $color-white;
+
+    &:after {
+      border-color: transparent $color-white transparent transparent;
+    }
+  }
+}
+
+.dark-prompt, .filters {
+  .selectbox__list-item--selected {
+    background-color: transparent !important;
+    color: black !important;
+
+    &:hover {
+      background: #eeeeee !important;
+    }
+  }
+}

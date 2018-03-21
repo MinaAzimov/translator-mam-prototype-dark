@@ -1,0 +1,15 @@
+
+.header {
+	position: absolute;
+	top: 0;
+	left: 220px;
+	height: $header-height;
+	right: 0px;
+	padding: 30px;
+	border-bottom: 1px solid #DDD;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: $color-white;
+}
+

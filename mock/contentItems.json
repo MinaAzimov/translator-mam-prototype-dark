@@ -1,0 +1,657 @@
+{
+  "contentItems": [
+    {
+      "title": "US News & Analysis",
+      "id": 1,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/02/2017",
+      "status": "Published"
+
+    },
+    {
+      "title": "US Homepage",
+      "id": 2,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/07/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Economy",
+      "id": 3,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/08/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Finance",
+      "id": 4,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/15/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Health Care",
+      "id": 5,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "status": "Unpublished"
+    },
+    {
+      "title": "Real Estate",
+      "id": 6,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "status": "Draft"
+    },
+    {
+      "title": "Wealth",
+      "id": 7,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/02/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Autos",
+      "id": 8,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/02/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Earnings",
+      "id": 9,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/14/2016",
+      "status": "Published"
+    },
+    {
+      "title": "Energy",
+      "id": 10,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "04/02/2016",
+      "status": "Published"
+    },
+    {
+      "title": "Life",
+      "id": 11,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "status": "Draft"
+    },
+    {
+      "title": "Media",
+      "id": 12,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "status": "Unpublished"
+    },
+    {
+      "title": "Politics",
+      "id": 13,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/23/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Retail",
+      "id": 14,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/28/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Trading Nation",
+      "id": 15,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/18/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Technology",
+      "id": 16,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/19/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Market",
+      "id": 17,
+      "type": "franchise",
+      "subtitle": "Section",
+      "img": "assets/img/content/franchise.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/16/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Donald Trump",
+      "id": 18,
+      "type": "person",
+      "subtitle": "Person",
+      "img": "assets/img/content/donald-trump.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/29/2017",
+      "status": "Published",
+      "tagName": "Donald Trump"
+    },
+    {
+      "title": "Hillary Clinton",
+      "id": 19,
+      "type": "person",
+      "subtitle": "Person",
+      "img": "assets/img/content/hillary-clinton.jpg",
+      "url": "http://google.com",
+      "publishDate": "12/28/2016",
+      "status": "Published",
+      "tagName": "Hillary Clinton"
+    },
+    {
+      "title": "Apple Inc US",
+      "id": 20,
+      "type": "company",
+      "subtitle": "APPL | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "tagName": "Apple",
+      "status": "Draft"
+    },
+    {
+      "title": "Apple Inc CH",
+      "id": 21,
+      "type": "company",
+      "subtitle": "APPL-CH | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/21/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Apple Inc CO",
+      "id": 22,
+      "type": "company",
+      "subtitle": "APPL-CO | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/16/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Facebook US",
+      "id": 23,
+      "type": "company",
+      "subtitle": "FB | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "tagName": "Facebook",
+      "publishDate": "01/15/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Amazon.com Inc US",
+      "id": 24,
+      "type": "company",
+      "subtitle": "AMZN | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "tagName": "Amazon",
+      "status": "Unpublished"
+    },
+    {
+      "title": "Amazon.com Inc DE",
+      "id": 25,
+      "type": "company",
+      "subtitle": "AMZ-DE | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "status": "Unpublished"
+    },
+    {
+      "title": "Alphabet Class C US",
+      "id": 26,
+      "type": "company",
+      "subtitle": "GOOG | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/19/2017",
+      "status": "Published",
+      "tagName": "Google"
+    },
+    {
+      "title": "Alphabet Class A US",
+      "id": 27,
+      "type": "company",
+      "subtitle": "GOOGL | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "status": "Published",
+      "tagName": "Alphabet"
+    },
+    {
+      "title": "Netflix Inc US",
+      "id": 28,
+      "type": "company",
+      "subtitle": "NFLX | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/29/2017",
+      "status": "Published",
+      "tagName": "Netflix"
+    },
+    {
+      "title": "Netflix Inc BR",
+      "id": 29,
+      "type": "company",
+      "subtitle": "NFLX11BF-BR | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "status": "Draft"
+    },
+    {
+      "title": "Goldman Sachs Group Inc US",
+      "id": 30,
+      "type": "company",
+      "subtitle": "GS | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "status": "Unpublished",
+      "tagName": "Goldman Sachs"
+    },
+    {
+      "title": "Home Depot Inc US",
+      "id": 31,
+      "type": "company",
+      "subtitle": "HD | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/20/2017",
+      "status": "Published"
+    },
+    {
+      "title": "WTI Crude (Dec'16)",
+      "id": 32,
+      "type": "security",
+      "subtitle": "@CL.1:New York Mercantile Exchange | Security",
+      "img": "assets/img/content/security.jpg",
+      "url": "http://google.com",
+      "status": "Unpublished"
+    },
+    {
+      "title": "Russell 2000 Index",
+      "id": 33,
+      "type": "security",
+      "subtitle": ".RUT :Exchange | Security",
+      "img": "assets/img/content/security.jpg",
+      "url": "http://google.com",
+      "status": "Draft"
+    },
+    {
+      "title": "Starbucks Corp US",
+      "id": 34,
+      "type": "company",
+      "subtitle": "SBUX | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/15/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Paul Ryan",
+      "id": 35,
+      "type": "person",
+      "subtitle": "Person",
+      "img": "assets/img/content/person.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/15/2017",
+      "status": "Published"
+    },
+    {
+      "title": "General Electric Co US",
+      "id": 36,
+      "type": "company",
+      "subtitle": "GE | Company",
+      "img": "assets/img/content/company.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/25/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Jeffrey Immelt",
+      "id": 37,
+      "type": "person",
+      "subtitle": "Person",
+      "img": "assets/img/content/person.jpg",
+      "url": "http://google.com",
+      "status": "Unpublished"
+    },
+    {
+      "title": "China",
+      "id": 38,
+      "type": "place",
+      "subtitle": "Place",
+      "img": "assets/img/content/place.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/18/2017",
+      "status": "Published"
+    },
+    {
+      "title": "European Union",
+      "id": 39,
+      "type": "place",
+      "subtitle": "Place",
+      "img": "assets/img/content/place.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/12/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Middle East",
+      "id": 40,
+      "type": "place",
+      "subtitle": "Place",
+      "img": "assets/img/content/place.jpg",
+      "url": "http://google.com",
+      "publishDate": "01/22/2017",
+      "status": "Published"
+    },
+    {
+      "title": "Ricky Rodriquez",
+      "id": 41,
+      "type": "user",
+      "subtitle": "Photo Editor | Author",
+      "img": "assets/img/avatar/ricky-rodriquez.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Stephanie Horton",
+      "id": 42,
+      "type": "user",
+      "subtitle": "Hot Seat Editor | Author",
+      "img": "assets/img/avatar/stephanie-horton.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Kerry Hunter",
+      "id": 43,
+      "type": "user",
+      "subtitle": "News Associate | Author",
+      "img": "assets/img/avatar/kerry-hunter.png",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Bill Owen",
+      "id": 44,
+      "type": "user",
+      "subtitle": "Copy Editor | Author",
+      "img": "assets/img/avatar/bill-owen.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Shaun Martinez",
+      "id": 45,
+      "type": "user",
+      "subtitle": "Hot Seat Editor | Author",
+      "img": "assets/img/avatar/shaun-martinez.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Lester Stephens",
+      "id": 46,
+      "type": "user",
+      "subtitle": "Reporter | Author",
+      "img": "assets/img/avatar/lester-stephens.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Lucia Wang",
+      "id": 47,
+      "type": "user",
+      "subtitle": "Copy Editor | Author",
+      "img": "assets/img/avatar/lucia-wang.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Seth Holt",
+      "id": 48,
+      "type": "user",
+      "subtitle": "Video Producer | Author",
+      "img": "assets/img/avatar/seth-holt.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Taylor Robertson",
+      "id": 49,
+      "type": "user",
+      "subtitle": "Video Editor | Author",
+      "img": "assets/img/avatar/taylor-robertson.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Courtney Fletcher",
+      "id": 50,
+      "type": "user",
+      "subtitle": "Photo Editor | Author",
+      "img": "assets/img/avatar/courtney-fletcher.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Allen Jones",
+      "id": 51,
+      "type": "user",
+      "subtitle": "Site Producer| Author",
+      "img": "assets/img/avatar/allen-jones.png",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Natalie Vaughn",
+      "id": 52,
+      "type": "user",
+      "subtitle": "Social Producer| Author",
+      "img": "assets/img/avatar/natalie-vaughn.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Markets Redesign Template",
+      "id": 53,
+      "type": "template",
+      "subtitle": "Template",
+      "img": "assets/img/content/template.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Make It Video Show Lander",
+      "id": 54,
+      "type": "template",
+      "subtitle": "Template",
+      "img": "assets/img/content/template.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "NG Video Gallery Page Template",
+      "id": 55,
+      "type": "template",
+      "subtitle": "Template",
+      "img": "assets/img/content/template.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Make It Show Detail Template",
+      "id": 56,
+      "type": "template",
+      "subtitle": "Template",
+      "img": "assets/img/content/template.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Video Show Detail Template",
+      "id": 57,
+      "type": "template",
+      "subtitle": "Template",
+      "img": "assets/img/content/template.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Video Show Lander Template",
+      "id": 58,
+      "type": "template",
+      "subtitle": "Template",
+      "img": "assets/img/content/template.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "homepage responsive template",
+      "id": 59,
+      "type": "template",
+      "subtitle": "Template",
+      "img": "assets/img/content/template.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Watchlist 360 Template",
+      "id": 60,
+      "type": "template",
+      "subtitle": "Template",
+      "img": "assets/img/content/template.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "markets redesign skin",
+      "id": 61,
+      "type": "skin",
+      "subtitle": "Skin",
+      "img": "assets/img/content/skin.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Make It Skin",
+      "id": 62,
+      "type": "skin",
+      "subtitle": "Skin",
+      "img": "assets/img/content/skin.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "cnbc nav skin",
+      "id": 63,
+      "type": "skin",
+      "subtitle": "Skin",
+      "img": "assets/img/content/skin.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Make It Episode Page Custom Styles Skin",
+      "id": 64,
+      "type": "skin",
+      "subtitle": "Skin",
+      "img": "assets/img/content/skin.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "DELUXE page styles skin",
+      "id": 65,
+      "type": "skin",
+      "subtitle": "Skin",
+      "img": "assets/img/content/skin.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Remove Page Head skin",
+      "id": 66,
+      "type": "skin",
+      "subtitle": "Skin",
+      "img": "assets/img/content/skin.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Hide schedule for Intl TV",
+      "id": 67,
+      "type": "skin",
+      "subtitle": "Skin",
+      "img": "assets/img/content/skin.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Friendly 404 Skin",
+      "id": 68,
+      "type": "skin",
+      "subtitle": "Skin",
+      "img": "assets/img/content/skin.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "Money.com",
+      "id": 69,
+      "type": "source",
+      "subtitle": "Source",
+      "img": "assets/img/content/source.jpg",
+      "url": "http://google.com"
+    },
+    {
+      "title": "CNBC US Source",
+      "id": 70,
+      "type": "source",
+      "subtitle": "Source",
+      "img": "assets/img/content/source.jpg",
+      "url": "http://google.com"
+    },
+    {
+       "title": "CNBC Europe Source",
+      "id": 71,
+      "type": "source",
+      "subtitle": "Source",
+      "img": "assets/img/content/source.jpg",
+      "url": "http://google.com"
+    },
+    {
+       "title": "CNBC Asia Source",
+      "id": 72,
+      "type": "source",
+      "subtitle": "Source",
+      "img": "assets/img/content/source.jpg",
+      "url": "http://google.com"
+    }
+  ]
+}

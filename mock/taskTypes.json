@@ -1,0 +1,19 @@
+{
+	"taskTypes": [
+		{
+			"id": 0,
+			"title": "Write a Breaking News",
+			"description": "Write breaking news"
+		},
+		{
+			"id": 1,
+			"title": "Insert a Photo",
+			"description": "Insert a photo"
+		},
+		{
+			"id": 2,
+			"title": "Copy Edit the Breaking News",
+			"description": "Copy edit the breaking news"
+		}		
+	]
+}

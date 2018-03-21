@@ -1,0 +1,61 @@
+{
+	"users": [
+		{
+			"name": "Folake Ayiloge",
+			"id": 3,
+			"avatarImgPath": "/img/avatar/lucia-wang.jpg",
+			"role": "USER_ROLE_PA",
+			"colorProfile": "4"
+		},
+		{
+			"name": "Matthew Eylenberg",
+			"id": 1,
+			"avatarImgPath": "/img/avatar/shaun-martinez.jpg",
+			"role": "USER_ROLE_MAM",
+			"colorProfile": "2"
+		},
+		{
+			"name": "Charlotte Lewis",
+			"id": 2,
+			"avatarImgPath": "/img/avatar/lucia-wang.jpg",
+			"role": "USER_ROLE_MPM",
+			"colorProfile": "3"
+		},
+		{
+
+			"name": "Reed Flocks",
+			"id": 4,
+			"avatarImgPath": "/img/avatar/shaun-martinez.jpg",
+			"role": "USER_ROLE_MMC",
+			"colorProfile": "5"
+		},
+		{
+			"name": "Mia Butera",
+			"id": 5,
+			"avatarImgPath": "/img/avatar/lucia-wang.jpg",
+			"role": "USER_ROLE_PA_2",
+			"colorProfile": "6"
+		},
+		{
+			"name": "Danielle Maynard",
+			"id": 6,
+			"avatarImgPath": "/img/avatar/lucia-wang.jpg",
+			"role": "USER_ROLE_DOPP",
+			"colorProfile": "7"
+		},
+		{
+			"name": "Luke Marron",
+			"id": 7,
+			"avatarImgPath": "/img/avatar/shaun-martinez.jpg",
+			"role": "USER_ROLE_PPC",
+			"colorProfile": "8"
+		},
+		{
+			"name": "Jenny Kim",
+			"id": 8,
+			"avatarImgPath": "/img/avatar/lucia-wang.jpg",
+			"role": "USER_ROLE_PA_1",
+			"colorProfile": "7"
+		}
+	]
+}

@@ -1,0 +1,40 @@
+/* Hack to implemented showing and hiding of roles using css classes */
+
+.card--id-association,
+.card--id-configuration,
+.card--id-team {
+	.user-role--USER_ROLE_VIDEOPRODUCER &,
+	.user-role--USER_ROLE_PHOTODESK &,
+	.user-role--USER_ROLE_SOCIAL & {
+		display: none;
+	}
+}
+
+.card--id-settings {
+	.user-role--USER_ROLE_VIDEOPRODUCER &,
+	.user-role--USER_ROLE_PHOTODESK &,
+	.user-role--USER_ROLE_SOCIAL &,
+	.user-role--USER_ROLE_COPYEDITOR & {
+		display: none;
+	}
+}
+
+.card--id-tasks,
+.card--id-configuration {
+	.user-role--USER_ROLE_MVP & {
+		display: none;
+	}
+}
+
+
+$roles: USER_ROLE_HOTSEAT USER_ROLE_REPORTER USER_ROLE_NEWSASSOCIATE USER_ROLE_COPYEDITOR USER_ROLE_EDITOR USER_ROLE_VIDEOPRODUCER USER_ROLE_PHOTODESK USER_ROLE_SITEPRODUCER USER_ROLE_SOCIAL;
+
+
+@each $i in $roles {
+	.show-to-#{$i} {
+		display: none;
+		.user-role--#{$i} & {
+			display: block;
+		}
+	}	
+}

@@ -1,0 +1,145 @@
+{
+     "tasks": [
+          {
+              "assignedTo": 0,
+              "assignedBy": 1,
+             "description": "Update the Page: U.S. News and Analysis",
+             "memo": "We need this by 5pm close of business!",
+             "assignedAt": 1479850216033,
+             "priority": 1
+          },
+          {
+              "assignedTo": 1,
+              "assignedBy": 0,
+             "description": "Update the Page: U.S. News and Analysis",
+             "assignedAt": 1479850216033,
+             "priority": 1
+          },
+          {
+               "assignedTo": 3,
+              "assignedBy": 1,
+             "description": "Write the News Story: 'Giving? Don't forget your deductions'",
+             "assignedAt": 1479850660963,
+             "priority": 1
+          },
+          {
+               "assignedTo": 3,
+              "assignedBy": 0,
+             "description": "Write the News Story: 'Apple unveils new MacBook Pro with Touch Bar, starting at $1,799'",
+             "assignedAt": 1479850216033,
+             "priority": 2
+          },
+          {
+               "assignedTo": 2,
+              "assignedBy": 1,
+             "description": "Write the News Story: 'Giving? Don't forget your deductions'",
+             "assignedAt": 1479850660963,
+             "priority": 1
+          },
+          {
+               "assignedTo": 2,
+              "assignedBy": 0,
+             "description": "Write the News Story: 'Apple unveils new MacBook Pro with Touch Bar, starting at $1,799'",
+             "assignedAt": 1479850216033,
+             "priority": 1
+          },
+          {
+               "assignedTo": 4,
+              "assignedBy": 3,
+             "description": "Copy Edit the News Story: 'Paying for college and funding your 401(k) are possible — really'",
+             "assignedAt": 1479850764507,
+             "priority": 1
+          },
+          {
+               "assignedTo": 4,
+              "assignedBy": 2,
+             "description": "Copy Edit the News Story: 'It's a holiday win-win: Donate to charity and get a tax break'",
+             "assignedAt": 1479850660963,
+             "priority": 1
+          },
+          {
+               "assignedTo": 5,
+              "assignedBy": 3,
+             "description": "Copy Edit the News Story: 'Paying for college and funding your 401(k) are possible — really'",
+             "assignedAt": 1479850764507,
+             "priority": 1
+          },
+          {
+               "assignedTo": 5,
+              "assignedBy": 2,
+             "description": "Copy Edit the News Story: 'It's a holiday win-win: Donate to charity and get a tax break'",
+             "assignedAt": 1479850660963,
+             "priority": 1
+          },
+          {
+               "assignedTo": 6,
+              "assignedBy": 7,
+             "description": "Re-edit Video: 'Resuscitating the Rust Belt",
+             "assignedAt": 1479850803476,
+             "priority": 1
+          },
+          {
+               "assignedTo": 6,
+              "assignedBy": 0,
+             "description": "Insert Video in the News Story: 'Subscriptions are down, but there's upside in video distribution: Liberty Media CEO'",
+             "assignedAt": 1479850764507,
+             "priority": 2
+          },
+          {
+               "assignedTo": 7,
+              "assignedBy": 6,
+             "description": "Re-edit Video: 'Resuscitating the Rust Belt",
+             "assignedAt": 1479850803476,
+             "priority": 2
+          },
+          {
+               "assignedTo": 7,
+              "assignedBy": 0,
+             "description": "Insert Video in the News Story: 'Subscriptions are down, but there's upside in video distribution: Liberty Media CEO'",
+             "assignedAt": 1479850764507,
+             "priority": 2
+          },
+          {
+               "assignedTo": 8,
+              "assignedBy": 2,
+             "description": "Insert Photo in the News Story: 'Subscriptions are down, but there's upside in video distribution: Liberty Media CEO'",
+             "assignedAt": 1479851551092,
+             "priority": 2
+          },
+          {
+               "assignedTo": 8,
+              "assignedBy": 2,
+             "description": "Insert Photo in the News Story: 'Paying for college and funding your 401(k) are possible — really'",
+             "assignedAt": 1479850764507,
+             "priority": 2
+          },
+          {
+             "assignedTo": 9,
+             "assignedBy": 2,
+             "description": "Insert Photo in the News Story: 'Subscriptions are down, but there's upside in video distribution: Liberty Media CEO'",
+             "assignedAt": 1479851551092,
+             "priority": 2
+          },
+          {
+             "assignedTo": 9,
+             "assignedBy": 2,
+             "description": "Insert Photo in the News Story: 'Paying for college and funding your 401(k) are possible — really'",
+             "assignedAt": 1479850764507,
+             "priority": 2
+          },
+          {
+             "assignedTo": 10,
+             "assignedBy": 1,
+             "description": "Modify the Skin: 'CNBC Make It Entrepreneurs Skin'",
+             "assignedAt": 1479850764507,
+             "priority": 3
+          },
+          {
+             "assignedTo": 11,
+             "assignedBy": 3,
+             "description": "Share News Story on Facebook: 'It's a holiday win-win: Donate to charity and get a tax break'",
+             "assignedAt": 1479850764507,
+             "priority": 3
+          }
+     ]
+}

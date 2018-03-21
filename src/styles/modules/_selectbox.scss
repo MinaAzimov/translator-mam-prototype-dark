@@ -1,0 +1,473 @@
+.selectbox__field {
+    @include font-style-input;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 32px;
+    margin: 0 0 0 0;
+    padding-top: 10px;
+
+    background-image: url(img/icons/arrow.svg);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 5px) 50%;
+
+    &:focus {
+        outline: none;
+    }
+
+    .dark & {
+      color: #fff;
+      font-weight: 300;
+      border-color: rgba(255,255,255,0.3);
+      margin-bottom: 10px;
+    }
+
+    &.selectbox_state_not-empty .selectbox__label {
+        margin: 0;
+        padding: 0 1px;
+        top: -1px;
+
+        font-size: 11px;
+        font-weight: 300;
+        color: $color-grey-light;
+    }
+
+
+
+    &.selectbox_state_err {
+        border-color: $color-red;
+
+        &:hover {
+            border-color: $color-red-dark;
+        }
+
+        .selectbox__label {
+            color: $color-red;
+        }
+
+        .selectbox__help-text {
+            display: none;
+        }
+
+        .selectbox__err-msg {
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin: 5px 0;
+
+            font-size: 10px;
+            color:$color-red;
+        }
+
+        .selectbox__placeholder {
+            color: $color-red;
+        }
+    }
+
+    &.selectbox_state_open,
+    &.selectbox_state_focused
+     {
+        .selectbox__label {
+            margin: 0;
+            padding: 0 1px;
+            top: -1px;
+
+            font-size: 11px;
+            font-weight: 400;
+            color: $color-light-blue;
+        }
+
+        .selectbox__help-text {
+            display: block;
+            opacity: 1;
+        }
+        .selectbox__err-msg {
+            display: none;
+        }
+    }
+
+    &.selectbox_required .selectbox__label::before,
+    &.selectbox.is-required .selectbox__label::before {
+        content: '* ';
+        position: absolute;
+        right: 100%;
+        top: 0;
+        margin: 2px;
+        color: $color-light-blue;
+    }
+}
+
+
+
+.selectbox__wrapper {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    text-align: left;
+}
+
+.selectbox__down-icon {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: color 0.2s;
+
+    .form-dark-theme & {
+        color: rgba(#FFF, 0.5);
+    }
+}
+
+
+.selectbox__input {
+    min-height: 32px;
+    padding: 7px 0px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #dddddd;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: 0.3s ease-out;
+    .selectbox_state_focused & {
+      border-color: $color-light-blue !important;
+      box-shadow: 0 1px 0 0 $color-light-blue;
+    }
+    .selectbox__wrapper:hover & {
+      border-color: #bbb;
+    }
+}
+
+.selectbox__label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 7px 1px;
+  pointer-events: none;
+  @include font-style-input;
+  font-weight: 300;
+  color: $color-grey-light;
+  transition: all 0.2s;
+  .field__not-empty & {
+    margin: 0;
+    padding: 0 1px;
+    top: -1px;
+    @include font-style-tiny;
+    color: $color-grey-light;
+    &::before {
+      margin-top: 0;
+    }
+  }
+  .field__focused & {
+    color: $color-light-blue;
+  }
+}
+
+.selectbox__help-text {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 5px 0;
+    line-height: 1.3;
+
+    font-size: 12px;
+    color:$color-grey-md;
+    font-weight: 300;
+    opacity: 0.6;
+
+    .dark & {
+        opacity: 1;
+        color: #CCC;
+    }
+
+    //In case we wrap input in addable field, help text will be displayed only for last item
+    .c-Addable-row & {
+        display: none;
+    }
+    .c-Addable-row:last-child & {
+        display: block;
+    }
+    .t-animation & {
+        transition: $transition-basic;
+    }
+}
+.selectbox__err-msg {
+    display: none;
+}
+
+.selectbox__placeholder-box {
+    position: relative;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    min-width: 0;
+    flex-direction: column;
+
+    border: 1px solid #eeeeee;
+    background: #FAFAFA;
+    border-radius: 2px;
+}
+
+.selectbox__searchfield {
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 6px 1px;
+    margin: 0;
+
+    font-size: 14px;
+
+    border: none;
+    background-color: transparent;
+
+    &:focus, &active {
+        outline: none;
+    }
+
+    @include placeholder {
+        color: #999999;
+        font-weight: 300;
+    }
+}
+
+//Dark theme
+.selectbox_style_dark.selectbox__field {
+    color: #ffffff;
+    .selectbox__searchfield {
+        color: #ffffff;
+    }
+}
+
+.selectbox__help-text {
+    transition: $transition-basic;
+}
+.selectbox__err-msg {
+    display: $transition-basic;
+}
+.selectbox__field {
+    transition: $transition-basic;
+}
+
+
+//Dark theme
+.selectbox_style_dark.selectbox__field {
+    border-color: fade(#ffffff, 30%);
+
+    &:hover {
+        border-color: fade(#ffffff, 60%);
+    }
+}
+
+
+
+/***** List *****/
+.selectbox__list {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 3px);
+    width: 100%;
+    min-width: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 200;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0, 0.3);
+    cursor: pointer;
+    user-select: none;
+    li {
+         user-select: none;
+    }
+
+    .selectbox_show-list & {
+        display: block;
+    }
+
+
+}
+
+
+
+
+
+
+
+.selectbox__list-item {
+    position: relative;
+    padding: 10px 12px;
+    color: $color-grey-dark;
+
+    &:active, &.is-active {
+        background-color: $color-light-blue;
+        color: #ffffff;
+    }
+
+    &.is-hightlighted {
+        background-color: #eeeeee;
+        color: #000000;
+    }
+
+    &--disabled {
+        color: #CCC;
+    }
+
+
+    &--selected,
+    &--selected.is-hightlighted {
+        color: #FFF;
+        background-color: $color-light-blue;
+        .selectbox__list-item-subtitle {
+            color: #FFF;
+        }
+    }
+
+    .t-animation & {
+        transition: $transition-basic;
+    }
+}
+
+.selectbox__list-item--text {
+    overflow: hidden;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.selectbox__list-item--complex {
+    border-bottom: 1px solid #eeeeee;
+
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.selectbox__complex-list-item {
+    position: relative;
+    min-height: 40px;
+    text-align: left;
+    display: flex;
+}
+
+
+.selectbox__list-item-img {
+
+    left: 0px;
+    top: 0px;
+    width: 40px;
+    height: auto;
+    margin-right: 15px;
+    min-width: 40px;
+    min-height: 40px;
+    max-height: 60px;
+    background: none;
+    img {
+        width: 100%;
+        height: 40px;
+        max-height: 100%;
+
+    }
+}
+
+.selectbox__list-item-img {
+
+}
+
+.selectbox__list-item-title {
+  margin-right: 68px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.selectbox__list-item-subtitle {
+    color: $color-grey-md;
+    text-transform: capitalize;
+    font-weight: 300;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+.selectbox__list-item-status {
+
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size:10px;
+    color: #999;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: -9px;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 10px;
+    }
+
+    &.published:before {
+        background-color: #259229;
+    }
+
+    &.Draft:before {
+        background-color: #ffab00;
+        }
+
+    &.Unpublished:before {
+        background-color: #F23D3D;
+    }
+
+    .selectbox__list-item--selected & {
+        color: #FFF;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/**** MVP Version ****/
+
+.is-mvp {
+
+    .selectbox__field {
+        & ~ .selectbox__label {
+            margin: 0;
+            padding: 0 1px;
+            top: -1px;
+            font-size: 11px;
+            font-weight: 400;
+        }
+
+        & ~ .selectbox__help-text {
+            display: block;
+            opacity: 1;
+        }
+        & ~ .selectbox__err-msg {
+            display: none;
+        }
+
+    }
+
+}

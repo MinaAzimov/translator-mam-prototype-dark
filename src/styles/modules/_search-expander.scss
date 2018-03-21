@@ -1,0 +1,73 @@
+
+
+
+.search-expander {
+  margin-right: 13px;
+  display: flex;
+  //max-width: 324px;
+  width: auto;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+
+.search-expander__icon {
+  color: #ddd;
+  position: relative;
+  cursor: pointer;
+  transition: .2s ease-in;
+
+  &:hover {
+    color: #bbb;
+  }  
+}
+
+
+.search-expander__input {
+  background: #eee;
+  border: none;
+  border-radius: 2px;
+  height: 30px;
+  width: 0px;
+  padding: 0;
+  transition: .3s ease-in-out;
+  margin: 0px 10px;
+  outline: none;
+  display: block;
+
+  &:focus {
+    background: #999;
+    color: #fff;
+
+  }
+
+  .search-expander--open & {
+      padding: 5px;
+      width: 324px;
+  }
+}
+
+
+
+/* Different usage overides */
+
+.top-header {
+
+  .search-expander__input {
+    background: rgba(#FFF, 0.1);
+  }
+  .search-expander__icon {
+    display: block;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+
+}
+
+
+
+

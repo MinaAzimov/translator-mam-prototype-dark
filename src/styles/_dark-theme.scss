@@ -1,0 +1,122 @@
+.dark-theme {
+	background: #1d1e21;
+
+	.library-filters {
+		background: #62788A;
+		border-bottom: solid 6px #36474F;
+
+		&-title {
+			color: #e9e9e9;
+		}
+	}
+
+	.library-filter-controls {
+		button.apply {
+			border-color: #8f9da5;
+			color: #e9e9e9; 
+
+			&:hover {
+				background: transparent;
+				color: darken(#36474F, 10%);
+				border-color: #36474F;
+			}
+		}
+	}
+
+	.bulk-editing-menu {
+		button {
+			&.image-button--highlighted, &.video-button--highlighted, &.audio-button--highlighted {
+				border-color: transparent;
+				background: white; 
+				i {
+					color: #91A5B7; 
+					-webkit-text-stroke: 0px #91A5B7;
+				}
+			}
+		}
+	}
+
+	.dropzone .dz-preview-new.dz-image-preview {
+		background-color: #2a2b30;
+	}
+
+	.selectbox__field .selectbox__label {
+		opacity: 0.72;
+	}
+
+
+	.selectbox__wrapper {
+		.selectbox__input {
+			border-bottom: solid 1px rgba(#ddd, 0.72);
+		}
+		&:hover {
+			.selectbox__input {
+				border-bottom: solid 1px rgba(#ddd, 1);					
+			}			
+		}
+	}
+
+	.field-text__input {
+		border-bottom: solid 1px rgba(#ddd, 0.72);
+		color: #666;
+	}
+
+	.files-information {
+		.files-information-close {
+			background-color: #2a2b30;
+		}
+		&:before {
+			border-bottom-color: #2a2b30;
+		}
+		.card--id-basic-info, .card--id-metadata, .card--id-additional { 
+			background-color: #383a40;
+		}
+	}
+
+	.card-board #header {
+		color: darken(#e9e9e9, 12%);
+	}
+
+	.actions-header {
+		color: darken(#e9e9e9, 6%);
+	}
+
+	.card-section__title:before {
+		border-bottom: 1px solid #1d1e22;
+	}
+
+	.library-item {
+		font-weight: 300;
+		color: darken(#e9e9e9, 12%);
+	}
+
+	.library-item-row {
+		background-color: #383a40;
+	}
+
+	.card-title {
+		color: #eee;
+	}
+
+	.dropzone-wrapper .uploading-content-header {
+		background: #91A5B7;
+		border-bottom: solid 6px #62788A;
+	}
+
+	#drag-and-drop-illustration {
+		-webkit-filter: contrast(40%) invert(100%) grayscale(100%); 
+		filter: contrast(40%) invert(100%) grayscale(100%);
+		opacity: 0.33;
+		fill-opacity: 0;
+		margin-top: 21px;
+
+	}
+
+	.dz-clickable {
+		color: #999;
+	}
+
+	.card {
+		background-color: #2a2b30;
+	}
+}

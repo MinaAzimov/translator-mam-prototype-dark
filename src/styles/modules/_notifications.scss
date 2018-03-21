@@ -1,0 +1,271 @@
+
+.notifications {
+	position: relative;
+}
+
+.notifications-trigger {
+  cursor: pointer;
+  color: rgba(255,255,255,0.5);
+  font-size: 20px;
+  padding-right: 15px;
+	transition: .2s ease-out;
+	&:hover {
+		color: rgba(255,255,255,1);
+	}
+}
+
+.notifications-count {
+	position: absolute;
+	font-size: 11px;
+	padding: 6px;
+	background: #ff4040;
+	color: #FFF;
+	line-height: .6;
+	border-radius: 50%;
+	height: 18px;
+	width: 18px;
+	text-align: center;
+	right: 7px;
+	top: -6px;
+}
+
+
+.notifications-list {
+	width: 320px;
+	border: 1px solid #DDD;
+	position: absolute;
+	top: 30px;
+	right: 20px;
+	z-index: 100;
+	background: #FFF;
+	display: none;
+
+	.notifications--open & {
+		display: block;
+	}
+}
+
+.notification-item {
+	cursor: pointer;
+	border-top: 1px solid #EEE;
+}
+
+.notification-item--empty {
+	background: #FAFAFA;
+	text-align: center;
+	color: #999;
+	padding: 20px 0px;
+}
+
+/* ---------- Dashboard ----------- */
+
+
+.notification-message {
+	width: 90%;
+}
+
+.notification-item-wrapper {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	position: relative;
+
+	.notification-item {
+		position: relative;
+		box-sizing: border-box;
+		padding: 10px 15px;
+		min-width: 0;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		border: 1px solid #eeeeee;
+		background: #FAFAFA;
+		border-radius: 2px;
+		margin: 0 auto 10px;
+		width: calc(100% - 60px)!important;
+		transition: .3s ease-out;
+
+		&:hover {
+	    border-color: #dddddd;
+	    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+	    transform: translate(-2px);
+	  }
+
+		&:after {
+			content: '';
+			background: transparent;
+			transition: .3s ease-out;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		&.active {
+			&:after {
+				background: rgba(0,0,0,0.6);
+			}
+
+			.share-item {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.share-expand {
+				pointer-events: auto;
+			}
+		}
+
+		.share-title {
+			font-size: 10px;
+	    font-weight: 300;
+	    color: #ffffff;
+	    letter-spacing: 1px;
+	    text-transform: uppercase;
+	    line-height: 1;
+	    margin-top: 12px;
+		}
+
+		.share-expand {
+			position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%,-50%);
+	    z-index: 3;
+	    display: flex;
+	    justify-content: space-around;
+	    width: 400px;
+			height: 38px;
+			pointer-events: none;
+		}
+
+		.share-item {
+			animation-name: slideUp;
+    	animation-duration: 1s;
+			animation-delay: .3s;
+			animation-fill-mode: forwards;
+			display: none;
+			opacity: 0;
+
+			&:nth-child(2) {
+				animation-delay: .4s;
+			}
+
+			&:nth-child(3) {
+				animation-delay: .5s;
+			}
+
+			img {
+				width: 40px;
+		    height: 40px;
+		    -webkit-filter: invert(100%);
+		    filter: invert(100%);
+		    border: 1px solid black;
+		    padding: 9px;
+		    border-radius: 50%;
+			}
+		}
+
+		&.high:before, &.low:before {
+			position: absolute;
+			height: 100%;
+			width: 2px;
+			left: 0;
+			top: 0;
+			content: '';
+		}
+
+		&.high:before {
+			background: #f44336;
+		}
+
+		&.low:before {
+			background: #aaa;
+		}
+
+		a {
+			background: #fafafa;
+		}
+	}
+}
+
+
+.remove {
+	width: 22px;
+  height: 22px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+	transition: .3s ease-out;
+	cursor: pointer;
+
+	&:hover {
+		border-color: #bbb;
+	}
+
+	img {
+		height: 8px;
+		width: 8px;
+	}
+}
+
+.share {
+	transition: transform .3s ease-in-out;
+
+	&:hover {
+		transform: scale(.9);
+	}
+
+	img {
+		width: 20px;
+		height: 20px;
+		opacity: 0.1;
+
+		.active & {
+			opacity: 1;
+			filter: invert(100%);
+		}
+	}
+
+	.text {
+		font-size: 9px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #ccc;
+    margin-top: 2px;
+
+		.active & {
+			color: $color-white;
+		}
+	}
+}
+
+.share-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	text-align: center;
+	z-index: 4;
+	cursor: pointer;
+	width: 10%;
+}
+
+@keyframes slideUp {
+    0% {
+			transform: translateY(10px);
+			opacity: 0;
+		}
+
+		100% {
+			transform: translateY(0px);
+			opacity: 1;
+		}
+}

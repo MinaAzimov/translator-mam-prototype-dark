@@ -1,0 +1,184 @@
+
+
+$color-high-priority: #f44336;
+$color-low-priority: #AAA;
+$color-medium-priority: #49b5cd;
+
+.task-creator__success {
+	display: block;
+	padding: 10px;
+	background: #e4ffe4;
+}
+
+/******* Task list *******/
+
+.task-list {
+	margin-bottom: 15px;
+}
+
+.task-item {
+	margin-bottom: 10px;
+}
+
+.task-list__open-add {
+	@include button-light-grey;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+/***** Task creator *******/
+
+.task-creator {
+
+	h3 {
+		@include font-style-h3;
+		text-align: center;
+	}
+
+	.form-cta {
+		justify-content: center;
+	}
+
+	+ .modal__controls {
+		display: none !important;
+	}
+
+	.field-wrapper {
+		margin-bottom: 25px;
+		width: 400px;
+
+		@media screen and (max-width: $bp-small) {
+			width: 250px;
+		}
+	}
+}
+
+.task-creator__submit {
+	@include button-orange-light;
+	margin-top: 15px;
+}
+
+
+.task-creator__cancel {
+	@include button-light-grey;
+	margin-top: 15px;
+}
+
+
+
+/******** My Tasks *******/
+
+.mytask-item {
+	&:before {
+		content: "";
+		position: absolute;
+		left: -1;
+		top: -1;
+		bottom: -1;
+		width: 3px;
+	}
+
+	&--low:before {
+		background: $color-low-priority;
+	}
+
+	&--high:before {
+		background: $color-high-priority;
+	}
+
+
+	&--medium:before {
+		background: $color-medium-priority;
+	}
+}
+
+
+.mytask-check {
+	padding: 15px;
+	background: #f3f3f3;
+	display: flex;
+	justify-content: center;
+	align-self: stretch;
+	flex-direction: column;
+	right: 0;
+	top: 0;
+	text-align: center;
+}
+
+
+.mytask-check__box {
+	width: 16px;
+	height: 16px;
+	border: 1px solid $color-border-grey;
+	background: #FFF;
+	margin: 0 auto 10px;
+	cursor: pointer;
+
+	&:before {
+		@include icon(tick);
+		margin-top: -3px;
+    display: block;
+		transition: opacity 0.3s;
+		font-size: 18px;
+		color: $color-green-success;
+		opacity: 0;
+	}
+
+	&-checked:before {
+		opacity: 1;
+	}
+
+}
+
+.mytask-check__text {
+	@include font-small-caps;
+	font-weight: 400;
+	font-size: 9px;
+	color: #afafaf;
+}
+
+.tasks-key {
+	position: relative;
+	display:flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 15px;
+}
+
+.key-title {
+	font-size: 10px;
+	font-weight: 500;
+	text-transform: uppercase;
+	margin-right: 10px;
+}
+
+.key-high, .key-low, .key-medium {
+	font-weight: 300;
+	font-size: 10px;
+	line-height: 1;
+	position: relative;
+	margin-right: 7px;
+	display: flex;
+	align-items: center;
+
+	&:before {
+		width: 2px;
+		height: 10px;
+		content: '';
+		left: 0px;
+		margin-right: 5px;
+	}
+}
+
+.key-high:before {
+	background: $color-high-priority;
+}
+
+.key-medium:before {
+	background: $color-medium-priority;
+}
+
+.key-low:before {
+	background: $color-low-priority;
+}

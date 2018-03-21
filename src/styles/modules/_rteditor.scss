@@ -1,0 +1,535 @@
+.rteditor {
+	font-family: $font-main;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.rteditor-content {
+	padding: 0px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: strech;
+	max-width: 920px;
+	margin: 0px auto;
+
+	position: relative;
+
+	&:before {
+		content: "";
+		flex: 0 0 40px;
+	}
+
+	>* {
+		flex-grow: 1;
+	}
+
+	h1 {
+		font-size: 28px;
+		margin: 0;
+	}
+
+	h2 {
+		font-size: 20px;
+		margin: 0;
+	}
+
+	strong {
+		font-weight: bold;
+	}
+}
+
+/***** LOCKED BLOCKS ******/
+
+
+
+.rteditor-users {
+	//position: absolute;
+	top: 0;
+	//left: 100%;
+	width: 80px;
+	min-width: 80px;
+	max-width: 80px;
+	position: relative;
+	border-left: 1px solid #EAEAEA;
+	margin-left: 0px;
+}
+
+.rteditor__locked-msg {
+	transition: top 0.3s ease-in-out;
+	position: absolute;
+	left: 12px;
+	top: 0;
+	margin-top: 2px;
+	width: 100%;	
+	.field__locked-msg {
+		width: 100%;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		padding-left: 6px;
+	}	
+
+	svg {
+		position: absolute;
+		top: 2px;
+    	left: -6px;
+    	stroke: none;
+		z-index: 1;
+
+	}
+}
+
+
+.rteditor__locked-block,
+.rteditor__free-block,
+.rteditor__edit-block {
+	padding: 5px;
+	position: relative;
+	transition: 0.3s ease-out;
+
+	a {
+		color: $color-orange;
+		position: relative;
+		display: inline-block;
+
+		&:before {
+			content: '';
+			width: 0;
+			height: 1px;
+			position: absolute;
+			display: block;
+		}
+	}
+}
+.rteditor__edit-block {
+	transition: 0.3s ease-out;
+	color: $color-dark-text;
+	>div {
+		outline: 0;
+		border: none;
+		margin-left: -1px;
+		&:focus {
+			outline: 0;
+		}
+		>div {
+			border-bottom: none;
+			margin: 0;
+		}
+	}
+}
+
+.rteditor__my-block {
+
+}
+
+
+
+.rteditor__free-block {
+	color: #aaa;
+
+	img {
+		width: 100%;
+		max-width: 400px !important;
+		display: block;
+	}
+
+	figure {
+		text-align: left !important;
+		font-size: 12px !important;
+		font-weight: 600 !important;
+		font-family: $font-main;
+	}
+}
+
+.rteditor__user {
+	position: absolute;
+	right: 100%;
+	top: 0;
+	margin-right: 20px;
+	text-align: center;
+	background: #EEEEEE;
+	padding: 10px;
+	border-radius: 5px;
+	display: none;
+	i {
+		position: absolute;
+		top: 3px;
+		left: 44px;
+		font-size: 30px;
+		color:  #EEEEEE;
+	}
+}
+
+.rteditor__username {
+	@include font-small-caps;
+	margin-top: 5px;
+}
+
+.rteditor-link {
+	color: $color-orange;
+	position: relative;
+}
+
+.rteditor-link__tooltip {
+	color: #FFF;
+	background: $color-grey-dark;
+	padding: 7px;
+	border-radius: 5px;
+	position: absolute;
+	top: 25;
+	left: 0;
+	z-index: 1;
+	font-size: 12px;
+	transition: opacity 0.5s, visibility 0.5s;
+	visibility: hidden;
+	opacity: 0;
+	white-space: nowrap;
+	&:after {
+		content: "";
+    position: absolute;
+    top: -5px;
+    left: 15px;
+    margin-left: -5px;
+    border-bottom: 5px solid #2b2b2b;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent
+	}
+
+	.rteditor-link:hover & {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+.rteditor-footer {
+	border-top: 1px solid #EEE;
+  padding-top: 5px;
+  color: $color-grey-md;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  > div {
+  	display: flex;
+  	align-items: center;
+  }
+}
+
+.rteditor-footer__item {
+	margin-right: 10px;
+  font-size: 12px;
+}
+
+.rteditor-autotag {
+	@include button-light-grey;
+}
+
+
+.tag-selector {
+	background-image: none;
+	background: $color-grey-dark;
+	padding: 10px;
+	border-radius: 5px;
+	position: absolute;
+	width: 300px;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	margin-left: -150px;
+	transition: top 0.1s, left 0.1s;
+
+	&:after {
+		content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    margin-left: -5px;
+    border-bottom: 5px solid #2b2b2b;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent
+	}
+
+	input.selectbox__searchfield {
+		color: #FFF;
+	}
+
+}
+
+.tag-selector__trash {
+	color: #FFF;
+  position: absolute;
+  right: 29px;
+  top: 5px;
+  font-size: 17px;
+  cursor: pointer;
+  z-index: 10;
+  .form-dark-theme & {
+    color: #FFF;
+  }
+
+}
+
+
+.tag-selector__wrapper {
+	//min-height: 271px;
+}
+
+.tag-selector__insert {
+	@include button-orange-light;
+}
+
+
+.public-DraftEditorPlaceholder-root {
+	color: #c7c7c7;
+    position: absolute;
+    z-index: 0;
+    font-style: italic;
+    font-size: 16px;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.md-RichEditor-root {
+	padding: 1px 0px 2px;
+	font-family: $font-main;
+	font-size: 14px;
+	font-weight: 300;
+	padding-right: 20px;
+
+	.public-DraftEditor-content {
+		padding: 0!important;
+		min-height: inherit;
+		margin: 0;
+	}
+}
+
+.md-RichEditor-root__container {
+	min-height: 250px;
+}
+
+
+.md-editor-toolbar {
+	background-image: none;
+	background: $color-grey-dark;
+	&:after {
+		display: none;
+	}
+}
+
+.md-editor-toolbar-pointer {
+		display: block;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    margin-left: -5px;
+    border-top: 5px solid #2b2b2b;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent
+}
+
+
+.md-RichEditor-styleButton-highlight,
+.md-RichEditor-styleButton-todo {
+	display: none;
+}
+
+
+
+.md-RichEditor-linkButton,
+.md-RichEditor-styleButton-blockquote {
+	font-family: 'icons';
+	font-size: 12px;
+	position: relative;
+}
+
+
+
+.md-editor-toolbar {
+	display: flex;
+	align-items: center;
+}
+
+.md-RichEditor-controls {
+	display: flex;
+	align-items: center;
+	padding: 3px;
+}
+
+.md-RichEditor-styleButton,
+a.md-RichEditor-styleButton {
+	//height: 32px;
+	//top: -1px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 2px;
+	outline: none;
+	margin-right: 2px;
+	&:last-child {
+		margin-right: 0px;
+	}
+
+
+	&:hover {
+		background: $color-body-bg;
+		color: $color-grey-dark;
+	}
+}
+
+.md-RichEditor-activeButton {
+	color: $color-white;
+	background: $color-orange;
+}
+
+.md-add-button, .md-sb-button {
+	border-radius: 50%;
+	border: 1px solid $color-orange;
+
+	&:hover, &:focus {
+		background: $color-orange;
+		color: $color-orange;
+		border-color: $color-orange;
+
+		&:before {
+			color: $color-white;
+		}
+	}
+}
+
+.md-sb-button {
+	font-size: 16px;
+	color: $color-orange;
+	margin-right: 6px;
+	width: 34px;
+	height: 34px;
+	position: relative;
+	top: -1px;
+
+	&:hover {
+		i {
+			color: $color-white;
+		}
+	}
+}
+
+.md-add-button {
+	top: 0;
+	&:before {
+		font-family: "icons";
+		content: "\EA09";
+		color: $color-orange;
+		font-size: 14px;
+	}
+	i {
+		display: none;
+	}
+}
+
+.md-side-toolbar {
+	top: -14px;
+	left: -42px;
+	background: $color-white;
+	/*
+	visibility: hidden;
+	.rteditor__my-block & {
+		visibility: visible;
+	}
+	*/
+}
+
+.md-block-image {
+	.md-media {
+		position: relative;
+		display: inline-block;
+		width: 100%;
+		.file {
+			padding: 0;
+		}
+	}
+	.md-media__overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transition: .5s all;
+		opacity: 0;
+		&:hover {
+			opacity: 1;
+			background-color: rgba(0, 0, 0, 0.7);
+		}
+		.button {
+			display: block;
+			font-size: 14px;
+			padding: 6px 20px;
+			margin: 0;
+			position: absolute;
+			z-index: 2;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%,-50%);
+		}
+	}
+	.md-block-image-inner-container {
+		img {
+			width: 100%;
+			max-width: 400px !important;
+		}
+	}
+	figcaption, .public-DraftStyleDefault-block {
+		text-align: left !important;
+		font-size: 12px !important;
+		font-weight: 600 !important;
+		font-family: $font-main;
+	}
+}
+.md-RichEditor-editor .md-RichEditor-controls.md-RichEditor-show-link-input {
+	padding: 10px 10px;
+}
+.link-autofill {
+	color: #2a2a2d;
+	width: 100%;
+	> div {
+		max-height: 200px;
+		overflow: auto;
+		color: #2a2a2d;
+		background-color: #fff;
+	}
+	.link-autofill__type {
+		float: right;
+		font-size: 10px;
+	}
+}
+.md-RichEditor-controls {
+	.field-text__input {
+		color: #fff;
+	}
+	.form-fieldset {
+		padding: 5px 0;
+	}
+	.button_style_outline-white {
+		padding: 8px 10px 7px;
+	}
+	.unlink {
+		margin-right: auto;
+		.fa {
+			margin-right: 7px;
+		}
+	}
+	.md-editor-toolbar__controls {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
+.md-editor-toolbar .md-url-input-close {
+	z-index: 5;
+}
+.md-editor-toolbar--linkinput:after {
+	display: none!important;
+}
+.md-link {
+  color: $color-orange;
+}

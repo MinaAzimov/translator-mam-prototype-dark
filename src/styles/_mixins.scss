@@ -1,0 +1,253 @@
+$default-button-height: 30px;
+
+@mixin button {
+  @include font-style-body;
+  display: inline-block;
+  box-sizing: border-box;
+  height: auto;
+  padding: 6px 12px;
+  width: auto;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 300;
+  transition: 0.3s ease-out;
+  border-radius: 2px;
+  background-color: transparent;
+  border: 1px solid $color-grey-dark;
+  color: $color-grey-dark;
+  line-height: 1;
+
+  &:hover {
+    background-color: $color-grey-dark;
+    color: $color-grey-dark;
+  }
+}
+
+@mixin button-orange-light {
+  @include button;
+  border: 1px solid $color-orange;
+  color: $color-orange;
+
+  &:hover {
+    background-color: $color-orange;
+    color: $color-white;
+  }
+}
+
+@mixin button-orange-fill {
+  @include button;
+  border: 1px solid $color-orange;
+  background: $color-orange;
+  color: #FFF;
+  &:hover {
+    background-color: #d65600;
+    border-color: #d65600;
+    color: $color-white;
+  }  
+}
+
+@mixin button-orange-inverted {
+  @include button;
+  border: 1px solid #FFF;
+  color: #FFF;
+  &:hover {
+    background-color: #FFF;
+    color: $color-orange;
+  }
+}
+
+@mixin button-white-dark {
+  @include button;
+  border: 1px solid rgba($color-white,0.5);
+  color: $color-white;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-grey-dark;
+  }
+}
+
+@mixin button-disabled-dark {
+  @include button;
+  border: 1px solid rgba($color-white,0.5);
+  color: rgba($color-white,0.5);
+  cursor: default;
+
+  &:hover {
+    border: 1px solid rgba($color-white,0.5);
+    color: rgba($color-white,0.5);
+    cursor: default;
+  }
+}
+
+@mixin button-light-grey {
+  @include button;
+  background-color: transparent;
+  border: 1px solid #aaa;
+  color: #aaa;
+  &:hover {
+    background: #aaa;
+    border: 1px solid #aaa;
+    color: $color-white;
+  }
+  &:active {
+    background: #dddddd;
+  }
+}
+
+@mixin button-white-outline {
+  @include button;
+
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
+  &:hover {
+    background: #aaa;
+    border: 1px solid #aaa;
+    color: $color-white;
+  }  
+  &.active {
+    color: #FF6700;
+    border-color: #FF6700;
+  }
+
+  /*
+  background-color: transparent;
+  border: 1px solid #aaa;
+  color: #aaa;
+  &:hover {
+    background: #aaa;
+    border: 1px solid #aaa;
+    color: $color-white;
+  }
+  &:active {
+    background: #dddddd;
+  }
+  */
+}
+
+@mixin button-navy-pill {
+  @include button;
+  display: inline-flex;
+  border-radius: 21px;
+  padding: 12px 24px;
+  border: 1px solid $color-navy-dark;
+  color: $color-navy-light;
+
+  &:hover {
+    border-color: transparent;
+    @include background-image(linear-gradient(to bottom right, darken($color-navy-dark, 3%) 0%, darken($color-navy-dark, 0%) 100%));
+    color: $color-white;
+  }
+}
+
+@mixin button-blue-pill {
+  @include button;
+  display: inline-flex;
+  border-radius: 21px;
+  padding: 12px 24px;
+  border: 1px solid $color-light-blue;
+  color: $color-light-blue;
+
+  &:hover {
+    border-color: transparent;
+    @include background-image(linear-gradient(to bottom right, darken($color-light-blue, 3%) 0%, darken($color-light-blue, 0%) 100%));
+    color: $color-white;
+  }
+
+  &:active, &:focus, &:visited {
+    opacity: 0.5;
+  }
+}
+
+@mixin button-gray-pill {
+  @include button;
+  display: inline-flex;
+  border-radius: 21px;
+  font-size: 14px;
+  padding: 9px 21px;
+  border: 1px solid $color-border-grey;
+  color: white;
+  max-height: 36px;
+
+  &:hover {
+    // border-color: darken($color-blue-codrops, 10%);
+    background: transparent;
+    color: white;
+  }
+}
+
+@mixin button-no-pill {
+  @include button;
+  display: inline-flex;
+  font-size: 14px;
+  // padding: 9px 21px;
+  border: none;
+  color: #ddd;
+
+  &:hover {
+    // border-color: transparent;
+    background: transparent;
+    color: #ddd;
+  }
+
+  i {
+    font-size: 15px;
+  }
+}
+
+
+
+@mixin theme-color-background-light {
+  @for $i from 1 through 12 {
+    .theme-color-background-light-#{$i} {
+      background: rgba(nth($theme-colors, $i), 0.1);
+    }
+  }
+}
+
+@mixin theme-color-background {
+  @for $i from 1 through 12 {
+    .theme-color-background-#{$i} {
+      background: nth($theme-colors, $i);
+    }
+  }
+}
+
+@mixin close-button-circle {
+  border: 1px solid $color-grey-light;
+  color: $color-grey-light;
+  border-radius: 50%;
+  background: #FFF;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    border-color: $color-orange;
+    background: $color-orange;
+    color: $color-white;
+  }
+
+  i {
+    margin-left: 2px;
+    position: relative;
+  }
+}
+
+
+@mixin theme-color-fill {
+  @for $i from 1 through 12 {
+    .theme-color-fill-#{$i} {
+      fill: nth($theme-colors, $i);
+    }
+  }
+}

@@ -1,0 +1,82 @@
+.button_style_outline-accent {
+  background-color: transparent;
+  min-width: 80px;
+  border: 1px solid $color-orange;
+  color: $color-orange;
+
+  &:hover {
+    background: $color-orange;
+    color: $color-white;
+  }
+}
+.button_style_outline-gray {
+  background-color: transparent;
+  border: 1px solid #dddddd;
+  color: #666666;
+  transition: .3s ease-out;
+
+  &:hover {
+    border-color: #666;
+  }
+}
+.button_style_fill-accent {
+  background-color: #FF6700;
+  border: 1px solid #FF6700;
+  color: #ffffff;
+}
+.button_style_outline-white {
+  @include button-white-outline;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
+  &.active {
+    color: #FF6700;
+    border-color: #FF6700;
+  }
+
+  &.disabled {
+    @include button-disabled-dark;
+  }
+}
+
+.skinny-close {
+  opacity: 0.5;
+  color: $color-white;
+  transition: opacity .3s ease-out;
+  width: 27px;
+  height: 22px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 0;
+  overflow: hidden;
+  z-index: 1050;
+  background: none;
+  outline: none;
+  border: none;
+  &:before {
+    height: 1px;
+    width: 30px;
+    transform: rotate(45deg);
+    content: '';
+    background: $color-white;
+    display: block;
+  }
+
+  &:after {
+    height: 1px;
+    width: 30px;
+    transform: rotate(-45deg);
+    content: '';
+    background: $color-white;
+    display: block;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  span {
+    display: none;
+  }
+}

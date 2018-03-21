@@ -1,0 +1,32 @@
+
+
+
+.user-settings-menu {
+	position: absolute;
+	right: 0px;
+	top: 100%;
+	width: 100%;
+	background: #555;
+	z-index: 1;
+	border-top: 1px solid #545454;
+	display: none;
+
+	@media screen and (max-width: $bp-small) {
+		width: 90px;
+	}
+	.top-header__profile:hover & {
+		visibility: visible;
+		opacity: 1;
+		display: block;
+	}
+}
+
+.user-settings-menu__item {
+	padding: 10px 20px;
+	color: $color-white;
+	cursor: pointer;
+	transition: .2s ease-out;
+	&:hover {
+		background: #666;
+	}
+}

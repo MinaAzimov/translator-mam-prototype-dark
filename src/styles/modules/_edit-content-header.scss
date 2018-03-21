@@ -1,0 +1,236 @@
+
+.edit-page-header__wrapper {
+	height: $edit-page-header-height;
+	position: relative;
+}
+
+
+.edit-page-header {
+	border-bottom: 1px solid #DDD;
+	background: $color-white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 0px;
+	height: inherit;
+	position: fixed;
+	top: $top-header-height;
+	left: $nav-width;
+	right: 0px;
+	z-index: 40;
+	transition: .2s ease-out;
+
+	@media screen and (max-width: $bp-desktop) {
+		left: 0;
+	}
+}
+
+.edit-page-header__users {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: 10px;
+	font-size: 12px;
+	font-weight: 400;
+	>* {
+		margin-right: 10px;
+	}
+}
+
+.header-controls-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 100%;
+	> button {
+		@include button-orange-light;
+		margin-right: 10px;
+		height: 30px;
+
+		@media screen and (max-width: $bp-medium) {
+			display: block;
+	    width: 100%;
+	    text-align: left;
+			padding: 8px 12px;
+			position: relative;
+			box-sizing: border-box;
+			white-space: nowrap;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: 300;
+			transition: 0.3s ease-out;
+			color: #555;
+			border: none;
+			margin: 0;
+			line-height: normal;
+			border-radius: 0px;
+			height: auto;
+
+			&:hover {
+				background-color: rgba(0, 0, 0, 0.06);
+    		color: #000000;
+			}
+		}
+	}
+}
+
+.edit-page-header__modified {
+	padding: 0px 0px 0px 22px;
+	color: #FFF;
+  font-size: 9px;
+  line-height: 1.1;
+  @include font-small-caps;
+  font-weight: 500;
+
+	@media screen and (max-width: $bp-medium) {
+		display: none;
+	}
+}
+
+.edit-page-header__lock {
+	@include button-orange-light;
+	.edit-content--locked & {
+		@include button-orange-fill;
+	}
+
+	i {
+		line-height: 20px;
+    margin-right: 6px;
+	}
+}
+
+$edit-page-change-bar-width: 412px;
+
+.edit-page-header__on-change {
+	overflow: hidden;
+	width: 0px;
+	height: 100%;
+	transition: width 0.5s;
+	.edit-page-header--show-changed & {
+		width: $edit-page-change-bar-width;
+
+		@media screen and (max-width: $bp-medium) {
+			width: auto;
+		}
+	}
+}
+
+.edit-page-header__on-change-inner {
+	background: $color-orange;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	width: $edit-page-change-bar-width;
+	justify-content: space-between;
+	button {
+		@include button-orange-inverted;
+		height: 30px;
+		margin-right: 10px;
+		@media screen and (max-width: $bp-medium) {
+			display: block;
+	    width: 100%;
+	    text-align: left;
+			padding: 8px 12px;
+			position: relative;
+			box-sizing: border-box;
+			white-space: nowrap;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: 300;
+			transition: 0.3s ease-out;
+			color: $color-white;
+			border: none;
+			margin: 0;
+			line-height: normal;
+			border-radius: 0px;
+			height: auto;
+		}
+		&:first-child {
+			margin-left: 10px;
+			@media screen and (max-width: $bp-medium) {
+				margin: 0;
+			}
+		}
+	}
+
+	@media screen and (max-width: $bp-medium) {
+		width: auto;
+		display: block;
+	}
+}
+
+.users-editing {
+	@media screen and (max-width: $bp-medium) {
+		span {
+			display: none;
+		}
+	}
+}
+
+.header-controls-trigger {
+	display: none !important;
+
+	@media screen and (max-width: $bp-medium) {
+		display: block !important;
+
+		.edit-page-header--show-changed & {
+			border-color: $color-orange;
+			color: $color-white;
+			background: $color-orange;
+		}
+
+		&:hover {
+			.edit-page-header--show-changed & {
+				border-color: $color-orange;
+				color: $color-white;
+				background: $color-orange;
+			}
+		}
+	}
+
+	.header-status-text {
+		display: none;
+
+		@media screen and (max-width: $bp-medium) {
+			.edit-page-header--show-changed & {
+				display: inline-block;
+				margin-left: 10px;
+			}
+		}
+	}
+}
+
+.header-controls-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 100%;
+
+	@media screen and (max-width: $bp-medium) {
+		display: none;
+
+		&.open {
+			position: absolute;
+			z-index: 60;
+			overflow: auto;
+			overflow-y: hidden;
+			box-sizing: border-box;
+			list-style: none;
+			background-color: $color-white;
+			box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+			border-radius: 2px;
+			top: 36px;
+			right: 11px;
+			transition: 0.3s ease-out;
+			transition-delay: .5s;
+			height: 71px;
+			display: block;
+
+			.edit-page-header--show-changed & {
+				height: 176px;
+				top: 39px;
+    		right: 5px;
+			}
+		}
+	}
+}

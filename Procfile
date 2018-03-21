@@ -1,0 +1,1 @@
+web: babel-node src/js/server.js --presets es2015,stage-2 $PORT

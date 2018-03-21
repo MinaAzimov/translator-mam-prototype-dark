@@ -1,0 +1,118 @@
+
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: $color-body-bg;
+	@include font-style-body;
+	height: 100%;
+	position: relative;
+	overflow-x: hidden;
+	outline: none;
+}
+
+
+body.is-dragging {
+	cursor: grabbing;
+	cursor: -webkit-grabbing;
+	cursor: -moz-grabbing;
+
+}
+
+a {
+	text-decoration: none;
+	color: $color-grey-dark;
+}
+
+strong {
+  font-weight: bold;
+}
+
+button:focus {
+	outline: 0;
+}
+
+
+.slide-down {
+  position: relative;
+}
+
+.slide-down--opening,
+.slide-down--closing  {
+  transition: height 0.3s;
+}
+
+.accordion-slide--opening,
+.accordion-slide--closing {
+  transition: height 0.3s;
+}
+
+.disabled {
+	pointer-events: none !important;
+  opacity: 0.3 !important;
+}
+
+
+
+
+
+/* Theme colors for avatars */
+
+@include theme-color-background;
+@include theme-color-background-light;
+@include theme-color-fill;
+
+[aria-hidden='true'] {
+  //display: none;
+}
+
+/* Button styles */
+
+/*
+.button_style_outline-accent {
+  background-color: transparent;
+  min-width: 80px;
+  border: 1px solid $color-orange;
+  color: $color-orange;
+
+  &:hover {
+    background: $color-orange;
+    color: $color-white;
+  }
+}
+
+.button_style_outline-gray {
+  background-color: transparent;
+  border: 1px solid #dddddd;
+  color: #666666;
+  transition: .3s ease-out;
+
+  &:hover {
+    border-color: #666;
+  }
+}
+
+
+.button_style_fill-accent {
+  background-color: #FF6700;
+  border: 1px solid #FF6700;
+  color: #ffffff;
+}
+
+.button_style_outline-white {
+  @include button-white-outline;
+}
+*/
+
+.load-more__wrapper {
+  text-align: center;
+  //border-top: 1px solid #EEE;
+  //margin-top: 20px;
+  padding-top: 20px;
+}
+
+.load-more__button {
+  @include button-light-grey;
+}

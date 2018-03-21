@@ -1,0 +1,240 @@
+.accordion-item {
+	border: 1px solid #EEEEEE;
+	background: #FAFAFA;
+	border-radius: 2px;
+	margin-bottom: 20px;
+	position: relative;
+	&--removed {
+		display: none;
+	}
+}
+
+.accordion-item__remove {
+	@include close-button-circle;
+
+}
+
+.accordion-item__title {
+	@include font-stat-title;
+	width: calc(100% - 26px;)
+}
+
+.accordion-copy {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	cursor: pointer;
+
+	.icon-line-arrow-up {
+		width: auto;
+		margin-left: 10px;
+		color: #bbb;
+		width: 16px;
+		transform: rotate(-180deg);
+		transition: 200ms ease;
+
+		.accordion-slide--opening &,
+		.accordion-slide--open & {
+			transform: rotate(0deg);
+		}
+	}
+}
+
+.chart-left-header {
+	opacity: 0;
+	transition: opacity 2s ease-out;
+	transition-delay: .2s;
+
+	.accordion-slide--opening &,
+	.accordion-slide--open & {
+		opacity: 1;
+	}
+}
+
+.chart-link {
+	opacity: 0;
+	transition: opacity 2s ease-out;
+	transition-delay: .4s;
+
+	.accordion-slide--opening &,
+	.accordion-slide--open & {
+		opacity: 1;
+	}
+}
+
+
+$trans-time: 0.5s;
+
+
+$line-drop-duration: 0.5s;
+
+.chart-section {
+	.chart-item-row {
+		@for $i from 1 through 6 {
+			&:nth-child(#{$i}) {
+				.chart-data-container:after {
+					height: 0px;
+					.accordion-slide--opening &,
+					.accordion-slide--open & {
+						height: calc(100% + 40px);
+						transition: $line-drop-duration ease-out;
+						transition-delay: 1s + ($i * 0.2);
+					}
+				}
+				.chart-item-title, .chart-item-value {
+					opacity: 0;
+
+					.accordion-slide--opening &,
+					.accordion-slide--open & {
+						opacity: 1;
+						transition: opacity 2s ease-out;
+						transition-delay: 0.5s + ($i * 0.1);
+					}
+				}
+
+			}
+		}
+
+
+		/*
+		&:nth-child(2) {
+			.chart-data-container:after {
+				height: 0px;
+
+				.accordion-item--open & {
+					height: calc(100% + 40px);
+					transition: $line-drop-duration ease-out;
+					transition-delay: 1.6s;
+				}
+			}
+			.chart-item-title, .chart-item-value {
+				opacity: 0;
+
+				.accordion-item--open & {
+					opacity: 1;
+					transition: opacity 2s ease-out;
+					transition-delay: .8s;
+				}
+			}
+		}
+		&:nth-child(3) {
+			.chart-data-container:after {
+				height: 0px;
+
+				.accordion-item--open & {
+					height: calc(100% + 40px);
+					transition: 1s ease-out;
+					transition-delay: 2.6s;
+				}
+			}
+			.chart-item-title, .chart-item-value {
+				opacity: 0;
+
+				.accordion-item--open & {
+					opacity: 1;
+					transition: opacity 2s ease-out;
+					transition-delay: 1s;
+				}
+			}
+		}
+		&:nth-child(4) {
+			.chart-data-container:after {
+				height: 0px;
+
+				.accordion-item--open & {
+					height: calc(100% + 40px);
+					transition: 1s ease-out;
+					transition-delay: 3.6s;
+				}
+			}
+			.chart-item-title, .chart-item-value {
+				opacity: 0;
+
+				.accordion-item--open & {
+					opacity: 1;
+					transition: opacity 2s ease-out;
+					transition-delay: 1.2s;
+				}
+			}
+		}
+		&:nth-child(5) {
+			.chart-data-container:after {
+				height: 0px;
+
+				.accordion-item--open & {
+					height: calc(100% + 40px);
+					transition: 1s ease-out;
+					transition-delay: 4s;
+				}
+			}
+			.chart-item-title, .chart-item-value {
+				opacity: 0;
+
+				.accordion-item--open & {
+					opacity: 1;
+					transition: opacity 2s ease-out;
+					transition-delay: 1.4s;
+				}
+			}
+		}
+		&:nth-child(6) {
+			.chart-item-title, .chart-item-value {
+				opacity: 0;
+
+				.accordion-item--open & {
+					opacity: 1;
+					transition: opacity 2s ease-out;
+					transition-delay: 1.6s;
+				}
+			}
+		}
+		*/
+	}
+}
+
+.accordion-stat-summary {
+	display: flex;
+  padding: 0 10px;
+}
+
+.stat-summary-item {
+	font-size: 24px;
+  position: relative;
+  font-family: 'bonn_light_betaregular';
+  min-width: 30px;
+  width: 100%;
+  text-align: center;
+	letter-spacing: 1px;
+	color: $color-orange;
+	margin: 0px 15px;
+	
+	&.shares {
+		color: #55acee;
+	}
+
+	&.likes {
+		color: #3b5999;
+	}
+	
+}
+
+.stat-summary-item__label {
+	content: 'UV:Yesterday';
+  font-size: 10px;
+  font-weight: 300;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 55px;
+  transform: translateX(-50%);
+	letter-spacing: 1px;
+	font-family: $font-main;
+  width: auto;
+  white-space: nowrap;	
+}
+
+.autoplay-label {
+	font-size: 10px;
+	float: right;
+}

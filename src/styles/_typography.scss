@@ -1,0 +1,74 @@
+
+
+
+$font-main: 'Roboto', sans-serif;
+
+
+@mixin font-style-body {
+  font-family: $font-main;
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: .42px;
+  line-height: 1.6;
+}
+
+@mixin font-style-tiny {
+  font-family: $font-main;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: .42px;
+  line-height: 1.2;
+}
+
+@mixin font-style-input {
+  font-family: $font-main;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: .42px;
+  line-height: 1.2;
+}
+
+
+@mixin font-style-h3 {
+  font-family: $font-main;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.1;
+  text-transform: capitalize;
+}
+
+
+@mixin font-small-caps {
+  font-family: $font-main;
+  font-weight: 300;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@mixin font-dashboard-text {
+  font-family: $font-main;
+  font-weight: normal;
+  letter-spacing: .42px;
+  line-height: 1.2;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #666;
+  font-weight: 400;
+}
+
+@mixin font-dashboard-time {
+  font-family: $font-main;
+  letter-spacing: .42px;
+  color: $color-grey-md;
+  font-weight: 200;
+  line-height: 1.2;
+  font-size: 12px;
+  font-style: italic;
+}
+
+@mixin font-stat-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #444;
+}

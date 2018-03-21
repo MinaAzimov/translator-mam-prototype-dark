@@ -1,0 +1,681 @@
+{
+	"fields": [
+	  {
+	    "id": 0,
+	    "name": "content_title",
+	    "label": "Title",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": "This is the page title. Use one primary keyword.",
+			"autoPropagateTo": [3, 6, 34, 35]
+	  },
+	  {
+	    "id": 1,
+	    "name": "content_slug",
+	    "label": "Slug",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": "e.g. Trader Bets on Alphabet SMITH 161129 EC, Tech Stocks USAT 161116 EC"
+	  },
+	  {
+	    "id": 2,
+	    "name": "content_byline",
+	    "label": "Byline",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": "Select or type in the name of the original writer."
+	  },
+	  {
+	    "id": 3,
+	    "name": "content_link_headline",
+	    "label": "Link Headline",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": "Headline that appears as links on the homepage and used as the default Twitter text. Present tense recommended.",
+	  	"autoPropagateTo": [35]
+	  },
+	  {
+	    "id": 4,
+	    "name": "content_short_headline",
+	    "label": "Shorter Headline",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": "Headline that will be used where real estate is limited. If empty, content from the next available Headline field will be used and truncated if needed."
+	  },
+	  {
+	    "id": 5,
+	    "name": "content_shortest_headline",
+	    "label": "Shortest Headline",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": "Headline that will be used where real estate is very limited. If empty, content from the next available Headline field will be used and truncated if needed."
+	  },
+	  {
+	    "id": 6,
+	    "name": "content_seo_title",
+	    "label": "SEO Title",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": "This title is used to rank the pages on search engines."
+	  },
+	  {
+	    "id": 7,
+	    "name": "content_seo_description",
+	    "label": "Description",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": "Summarize the article by using the primary keyword at least once. This description is displayed on search engines and also serves as summary for Amazon Alexa. Do not copy over the title.",
+	  	"autoPropagateTo": [36]
+	  },
+	  {
+	    "id": 8,
+	    "name": "content_seo_shorter_description",
+	    "label": "Shorter Description",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": "Description that will be used where real estate is limited. If empty, content from the next available Description field will be used and truncated if needed."
+	  },
+	  {
+	    "id": 9,
+	    "name": "content_seo_shortest_description",
+	    "label": "Shortest Description",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": "Description that will be used where real estate is very limited. If empty, content from the next available Description field will be used and truncated if needed."
+	  },
+	  {
+	    "id": 10,
+	    "name": "content_seo_keywords",
+	    "label": "Keywords",
+	    "currentEditor": null,
+	    "value": [],
+	    "widget": "Text",
+			"helpText": "Enter up to 10 specific representative keywords and phrases of the article that audience would enter in search engines."
+	  },
+	  {
+	    "id": 11,
+	    "name": "content_assocation_franchise",
+	    "label": "Content item",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": "Select the franchise where this article would appear under."
+	  },
+	  {
+	    "id": 12,
+	    "name": "content_assocation_primary",
+	    "currentEditor": null,
+	    "value": [{
+	      "_repeaterItemId": 0,
+	      "value": null
+    	}],
+	    "widget": "Text",
+			"helpText": "Select the assets that are primarily related with this article. The article would be tagged and appear under the primary assets."
+	  },
+	  {
+	    "id": 13,
+	    "name": "content_assocation_related",
+	    "currentEditor": null,
+	    "value": [{
+	      "_repeaterItemId": 0,
+	      "value": null
+    	}],
+	    "widget": "Text",
+			"helpText": "Select the assets that are somewhat related with this article."
+	  },
+	  {
+	    "id": 14,
+	    "name": "content_body",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "RTEditor",
+	    "blocks": null
+	  },
+	  {
+	    "id": 15,
+	    "name": "content_media_overlay",
+	    "currentEditor": null,
+	    "value": [],
+	    "widget": ""
+      },
+	  {
+	    "id": 16,
+	    "name": "content_media_card",
+	    "currentEditor": null,
+	    "value": [],
+	    "widget": ""
+    },
+	  {
+	    "id": 17,
+	    "label": "Allow comments",
+	    "name": "content_comments",
+	    "currentEditor": null,
+	    "value": true,
+	    "widget": ""
+    },
+	  {
+	    "id": 18,
+	    "label": "Family-friendly",
+	    "name": "content_family-friendly",
+	    "currentEditor": null,
+	    "value": true,
+	    "widget": ""
+    },
+	  {
+	    "id": 19,
+	    "label": "Dateline",
+	    "name": "content_dateline",
+	    "currentEditor": null,
+	    "value": true,
+	    "widget": ""
+    },
+	  {
+	    "id": 20,
+	    "label": "Byline",
+	    "name": "content_byline-on",
+	    "currentEditor": null,
+	    "value": true,
+	    "widget": ""
+    },
+	  {
+	    "id": 21,
+	    "label": "Source",
+	    "name": "content_source",
+	    "currentEditor": null,
+	    "value": true,
+	    "widget": ""
+    },
+	  {
+	    "id": 22,
+	    "label": "Team",
+	    "name": "content_team",
+	    "currentEditor": null,
+	    "value":   {
+		    "id": 0,
+		    "title": "CNBC US Team"
+		  },
+	    "widget": "",
+			"helpText": ""
+    },
+	  {
+	    "id": 23,
+	    "label": "Project",
+	    "name": "content_project",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "",
+			"helpText": ""
+    },
+	  {
+	    "id": 24,
+	    "label": "Allow syndication",
+	    "name": "content_syndication",
+	    "currentEditor": null,
+	    "value": true,
+	    "widget": ""
+    },
+	  {
+	    "id": 25,
+	    "label": "Premium Content",
+	    "name": "content_premium_content",
+	    "currentEditor": null,
+	    "value": false,
+	    "widget": ""
+    },
+	  {
+	    "id": 26,
+	    "label": "Native",
+	    "name": "content_byline-on",
+	    "currentEditor": null,
+	    "value": false,
+	    "widget": ""
+    },
+	  {
+	    "id": 27,
+	    "label": "Pre-roll on videos",
+	    "name": "content_source",
+	    "currentEditor": null,
+	    "value": true,
+	    "widget": ""
+    },
+	  {
+	    "id": 28,
+	    "label": "Template",
+	    "name": "content_team",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "",
+			"helpText": ""
+    },
+	  {
+	    "id": 29,
+	    "label": "Skin",
+	    "name": "content_team",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "",
+			"helpText": ""
+    },
+	  {
+		"id": 30,
+		"label": "Image effect presets",
+		"name": "image_effect_presets",
+		"currentEditor": null,
+		"value": [
+			{
+				"id": 0,
+				"title": "High Contrast",
+				"subtitle": "",
+				"disabled": false,
+				"effects": {
+					"contrast": 150,
+					"brightness": 140,
+					"shadowOpacity": 0.8,
+					"shadowBlur": 100
+				}
+			},
+			{
+				"id": 1,
+				"title": "Bleak",
+				"subtitle": "",
+				"disabled": false,
+				"effects": {
+					"contrast": 150,
+					"brightness": 60,
+					"shadowOpacity": 1,
+					"shadowBlur": 40
+				}
+			}
+		],
+		"widget": ""
+    },
+	  {
+			"id": 31,
+			"label": "Send mobile notification",
+			"name": "publish_send_mobile",
+			"currentEditor": null,
+			"value": true,
+			"widget": ""
+    },
+	  {
+			"id": 32,
+			"label": "Display as homepage banner",
+			"name": "publish_show_on_home",
+			"currentEditor": null,
+			"value": false,
+			"widget": ""
+    },
+	  {
+			"id": 33,
+			"label": "Post to Twitter @CNBC",
+			"name": "publish_twitter",
+			"currentEditor": null,
+			"value": true,
+			"widget": ""
+    },
+	  {
+	    "id": 34,
+	    "name": "twitter_tweet",
+	    "label": "Tweet",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 35,
+	    "name": "twitter_title",
+	    "label": "Twitter Title",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 36,
+	    "name": "twitter_description",
+	    "label": "Twitter Description",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 37,
+	    "name": "source",
+	    "label": "Source",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 38,
+	    "name": "content_permalink",
+	    "label": "Permalink slug",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 39,
+	    "name": "content_notes",
+	    "label": "Internal notes",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 40,
+	    "name": "mat_id",
+	    "label": "Mat Id",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 41,
+	    "name": "title_1",
+	    "label": "Title 1",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 42,
+	    "name": "title_2",
+	    "label": "Title 2",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 43,
+	    "name": "duration",
+	    "label": "Duration",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 44,
+	    "name": "frame_rate",
+	    "label": "Frame Rate",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 45,
+	    "name": "type",
+	    "label": "Type",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 46,
+	    "name": "aspect_ratio",
+	    "label": "Aspect Ratio",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 47,
+	    "name": "global_id",
+	    "label": "Global Id",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 48,
+	    "name": "transformation",
+	    "label": "Transformation",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 49,
+	    "name": "version_desc",
+	    "label": "Version Description",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 50,
+	    "name": "version_type",
+	    "label": "Version Type",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 51,
+	    "name": "revision",
+	    "label": "Revision",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 52,
+	    "name": "episode",
+	    "label": "Episode",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 53,
+	    "name": "seasons",
+	    "label": "Seasons",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 54,
+	    "name": "show",
+	    "label": "Show",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 55,
+	    "name": "track_types",
+	    "label": "Track Types",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 56,
+	    "name": "owner",
+	    "label": "Owner",
+	    "currentEditor": null,
+	    "value": "",
+	    "widget": "TextArea",
+			"helpText": ""
+	  },
+	  {
+	    "id": 57,
+	    "name": "material_type",
+	    "label": "Material Type",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 58,
+	    "name": "file_size_increment",
+	    "label": "File Size Increment",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 59,
+	    "name": "secondary_type",
+	    "label": "Secondary Type",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 60,
+	    "name": "media_type_class",
+	    "label": "Media Type Class",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 61,
+	    "name": "frame_rate",
+	    "label": "Frame Rate",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 62,
+	    "name": "aspect_ratio_new",
+	    "label": "Aspect Ratio",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 63,
+	    "name": "air_version_type",
+	    "label": "Air Version Type",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 64,
+	    "name": "show_list",
+	    "label": "Show",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 65,
+	    "name": "season_list",
+	    "label": "Season",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 66,
+	    "name": "actors_list",
+	    "label": "Actors",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 67,
+	    "name": "network_list",
+	    "label": "Network",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 68,
+	    "name": "project_name",
+	    "label": null,
+	    "currentEditor": null,
+	    "value": "Project Name",
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 69,
+	    "label": "Multi Select",
+	    "name": "multi_select",
+	    "currentEditor": null,
+	    "value": false,
+	    "widget": ""
+    },
+    {
+	    "id": 70,
+	    "name": "episode_filed",
+	    "label": null,
+	    "currentEditor": null,
+	    "value": "Subtitle",
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 71,
+	    "name": "episode_season",
+	    "label": null,
+	    "currentEditor": null,
+	    "value": "Title",
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	   {
+	    "id": 72,
+	    "name": "secondary_type_new",
+	    "label": "Secondary Type",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  }
+
+
+
+
+	]
+}

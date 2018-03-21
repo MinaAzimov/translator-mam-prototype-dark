@@ -1,0 +1,114 @@
+{
+	"projectsHiddenMia": [
+		{
+			"title": "Top Chef Jr. Promos",
+			"items": [
+				{
+					"name": "Kards Catch Up",
+					"subtitle": "Season 14 Episode 1",
+					"type": "video",
+					"lastEditedBy": "Mia Butera",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1496769563000,
+					"size": 1523232,
+					"img": "/assets/img/e-news/golden-globes-red-carpet/1.jpg",
+					"height": 760,
+                    "width": 1280,
+                    "id": 1,
+				},
+				{
+					"name": "Kylie in San Francisco",
+					"subtitle": "This Sunday: Brand New",
+					"type": "image",
+					"lastEditedBy": "Lova Yazdani",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1496769563000,
+					"size": 1523232,
+					"img": "/assets/img/e-news/golden-globes-red-carpet/2.jpg",
+					"height": 760,
+                    "width": 1280,
+                    "id": 2
+
+				},
+				{
+					"name": "Xmas Tree",
+					"subtitle": "This Sunday: Brand New",
+					"type": "image",
+					"lastEditedBy": "Grecia Lopez",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1496769563000,
+					"size": 1523232,
+					"img": "/assets/img/e-news/golden-globes-red-carpet/3.jpg",
+					"height": 760,
+                    "width": 1280,
+                    "id": 3
+				},
+				{
+					"name": "Xmas Tree",
+					"subtitle": "This Sunday: Brand New",
+					"type": "image",
+					"lastEditedBy": "Grecia Lopez",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1496769563000,
+					"size": 1523232,
+					"img": "/assets/img/e-news/golden-globes-red-carpet/4.jpg",
+					"height": 760,
+                    "width": 1280,
+                    "id": 4
+				},
+				{
+					"name": "Xmas Tree",
+					"subtitle": "This Sunday: Brand New",
+					"type": "image",
+					"lastEditedBy": "Grecia Lopez",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1496769563000,
+					"size": 1523232,
+					"img": "/assets/img/e-news/golden-globes-red-carpet/5.jpg",
+					"height": 760,
+                    "width": 1280,
+                    "id": 5
+				},
+				{
+					"name": "Xmas Tree",
+					"subtitle": "This Sunday: Brand New",
+					"type": "image",
+					"lastEditedBy": "Grecia Lopez",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1496769563000,
+					"size": 1523232,
+					"img": "/assets/img/e-news/golden-globes-red-carpet/6.jpg",
+					"height": 760,
+                    "width": 1280,
+                    "id": 6
+				},
+				{
+					"name": "Xmas Tree",
+					"subtitle": "This Sunday: Brand New",
+					"type": "image",
+					"lastEditedBy": "Grecia Lopez",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1496769563000,
+					"size": 1523232,
+					"img": "/assets/img/e-news/golden-globes-red-carpet/7.jpg",
+					"height": 760,
+                    "width": 1280,
+                    "id": 7
+				},
+				{
+					"name": "Xmas Tree",
+					"subtitle": "This Sunday: Brand New",
+					"type": "image",
+					"lastEditedBy": "Grecia Lopez",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1496769563000,
+					"size": 1523232,
+					"img": "/assets/img/e-news/golden-globes-red-carpet/8.jpg",
+					"height": 760,
+                    "width": 1280,
+                    "id": 8
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,32 @@
+
+
+.edit-content__locked-overlay {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background: rgba(#FFF, 0.8);
+	z-index: 100;
+	top: $top-header-height + $edit-page-header-height;
+	left: $nav-width;
+	@media screen and (max-width: $bp-desktop) {
+		left: 0;
+	}	
+}
+
+.edit-content__locked-overlay-msg {
+	background: transparent;
+	padding: 5px;
+	color: #FFF;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0px 30px;
+	color: $color-grey-md;
+	font-size: 24px;
+	font-weight: 400;
+	i {
+		font-size: 175px;
+	}
+}

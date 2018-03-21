@@ -1,0 +1,493 @@
+
+.field-wrapper {
+  margin-bottom: 15px;
+  @include theme-color-background;
+
+  &:hover {
+    .field-text__input {
+      border-color: #bbb;
+    }
+  }
+}
+.field-wrapper--spaced {
+  margin-bottom: 28px;
+  &:after {
+    content: "";
+    display: block;
+    width: 94px;
+    margin: 0px auto;
+    margin-top: 28px;
+    height: 1px;
+    background: rgba(#FFF, 0.3);
+    transform: translateX(-1px);
+  }
+}
+
+.field-header {
+  margin: 0 0 10px 0;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+
+.form-small-close {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+  color: #FFF;
+  .form-dark-theme & {
+    color: #FFF;
+  }
+}
+
+
+.field__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 10px 0 0 0;
+  padding: 7px 1px;
+  pointer-events: none;
+  @include font-style-input;
+  font-weight: 300;
+  color: $color-grey-light;
+  transition: all 0.2s;
+  .field__focused &,
+  .field__not-empty & {
+  	margin: 0;
+    padding: 0 1px;
+    top: -1px;
+    @include font-style-tiny;
+    color: $color-grey-light;
+    &::before {
+      margin-top: 0;
+    }
+  }
+  .field__focused & {
+  	color: $color-light-blue !important;
+    font-weight: 600;
+  }
+}
+
+.field-blurb {
+  font-size: 10px;
+  color: #999;
+  background: #FAFAFA;
+  padding: 2px;
+  border: 1px solid #EEE;
+  margin-bottom: 10px;
+}
+
+.field-blurb__strong {
+  font-weight: bold;
+}
+
+.field_read-only {
+  div:first-child {
+    @include font-style-tiny;
+    color: #999;
+  }
+  div:last-child {
+    color: #FFF;
+  }
+  margin-bottom: 10px;
+}
+
+
+.field__locked-msg {
+	@include font-style-tiny;
+	color: #FFF;
+	display: inline-block;
+	padding: 3px;
+	position: absolute;
+	top: 0;
+	right: 0;
+  font-size: 9px;
+	i {
+		margin-right: 3px;
+	}
+}
+
+/********* Text ************/
+
+.field-text {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+
+.field-text__character-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  color: #bbb;
+  padding: 0 3px;
+  border-radius: 2px;
+  background: transparent;
+  transition: .3s ease-out;
+  .field-text--exceeded-limit & {
+    background-color: $color-notify-red;
+    color: $color-white;
+    animation-name: countNotification;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+  }
+}
+
+.field-text__input {
+	outline: none;
+	background: none;
+	position: relative;
+  width: 100%;
+  margin: 10px 0 0 0;
+  padding: 7px 25px 7px 5px;
+  resize: none;
+
+  background-color: transparent;
+  @include font-style-input;
+  border: none;
+  border-bottom: 1px solid $color-grey-light;
+  color: #666;
+  transition: all 0.2s;
+
+  .field__focused & {
+  	border-color: $color-light-blue !important;
+    box-shadow: 0 1px 0 0 $color-light-blue;
+  }
+
+  .field-wrapper--locked & {
+    border-bottom: none;
+  }
+
+  .form-dark-theme & {
+    color: #FFF;
+  }
+}
+
+
+/******* Text area ********/
+
+
+
+.field-textarea__input {
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  min-height: 200px;
+  @include font-style-input;
+  resize: none;
+}
+
+
+
+/****** checkbox ******/
+
+
+.field-checkbox {
+  input {
+    margin-right: 5px;
+  }
+  span {
+    color: #FFF;
+  }
+}
+
+
+/******* switch ********/
+.switch {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  label {
+    color: $color-grey-md;
+    cursor: pointer;
+
+    .field-wrapper--locked & {
+      color: #bbb;
+    }
+  }
+}
+
+.switch-toggle {
+    webkit-appearance: none;
+    margin: 0 5px 0 0;
+    width: 26px;
+    height: 16px;
+    font-size: 10px;
+    background: #dddddd;
+    border: 1px solid #dddddd;
+    border-radius: 100px;
+    background-position: left;
+    background-size: contain;
+    background-image: url(img/icons/circle.svg);
+    background-repeat: no-repeat;
+    position: relative;
+    transition: background 0.3s, border 0.3s;
+    margin-right: 10px;
+    &:before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #FFF;
+      position: absolute;
+      left: 1px;
+      top: 1px;
+      transition: left 0.3s;
+    }
+
+    .switch--on & {
+      background: $color-light-blue !important;
+      border: 1px solid $color-light-blue !important;
+      &:before {
+        left: 11px;
+      }
+    }
+}
+
+
+/********** Text switch ***********/
+
+.field-texttoggle {
+  position: relative;
+}
+
+.field-texttoggle__label {
+  @include font-style-tiny;
+  color: $color-grey-light;
+  margin: -3px 0 6px 0;  
+  display: block;
+}
+
+.field-texttoggle__list {
+  display: flex;
+}
+
+.field-texttoggle__item {
+  padding: 6px 14px;
+  border: 1px solid #DDD;
+  @include font-style-input;
+  color: $color-grey-md;
+  cursor: pointer;
+  transition: color 0.2s;
+  background: #FFF;
+  margin-right: -1px;
+  position: relative;
+  z-index: 0;
+  &:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+  &:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  &--selected {
+    background: $color-light-blue;
+    border-color: $color-light-blue;
+    color: #FFF;
+    cursor: default;
+    z-index: 1;
+  }
+
+  &:hover:not(.field-texttoggle__item--selected) {
+    color: $color-light-blue;
+  }
+
+}
+
+/****** SELECT REPEATERS *******/
+.field__select-repeater {
+  .repeater-item__drag {
+    margin-left: -10px;
+  }
+  .repeater-remove {
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .repeater-item__main {
+    margin: 0px 40px 0px 40px;
+  }
+}
+.field--tags-input {
+  .field__label {
+    padding: 0 1px;
+  }
+  .has-value,
+  .is-focused {
+    padding-top: 17px;
+  }
+  input {
+    padding: 4px 0 12px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: .42px;
+    line-height: 1.2;
+    color: white;
+  }
+}
+.field--multi-selectbox {
+  .field__label {
+    padding: 0 1px;
+  }
+  &.field__focused,
+  &.field__not-empty {
+    .field__label {
+      color: #999;
+      top: -14px;
+      font-weight: 300;
+    }
+  }
+  .is-focused {
+    .Select-control,
+    .Select-input {
+      height: 35px;
+    }
+  }
+  .has-value {
+    .Select-control,
+    .Select-input {
+      height: 36px;
+    }
+  }
+  input {
+    padding: 4px 0 12px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: .42px;
+    line-height: 1.2;
+    color: white;
+  }
+}
+
+.field__group-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 20px 0 10px;
+  transition: 0.3s ease-out;
+}
+
+@keyframes countNotification {
+  0% {
+    background-color: $color-notify-red;
+    color: $color-white;
+  }
+  50% {
+    background-color: #ff7a7a;
+  }
+  100% {
+    background-color: $color-notify-red;
+    color: $color-white;
+  }
+}
+
+.field__help-text {
+  position: relative;
+  display: block;
+  width: 300px;
+  padding: 0;
+  margin: 5px 0;
+  line-height: 1.3;
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0;
+  transform: translate3d(0px, 10px, 0);
+  transition: .3s ease-out;
+  left: -280px;
+  background: #2a2a2d;
+  color: $color-white;
+  padding: 7px;
+  top: 20px;
+  z-index: 2;
+  pointer-events: none;
+
+  @media screen and (max-width: 340px) {
+    width: 250px;
+    left: -230px;
+  }
+
+  &:after {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 5px 5px 5px;
+    border-color: transparent transparent #000 transparent;
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 6px;
+  }
+}
+
+.field__help-text__container {
+  position: absolute;
+  left: 96%;
+  top: 18px;
+  cursor: pointer;
+  width: 23px;
+  height: 23px;
+
+  .icon-info {
+    font-size: 12px;
+    position: absolute;
+    left: 4px;
+    opacity: 1;
+    top: 6;
+    color: #d8d8d8;
+    transition: 0.3s ease-out;
+  }
+
+  &:hover {
+    .field__help-text {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+    .icon-info {
+      color: #aaa;
+    }
+  }
+}
+
+.field__help-text__icon {
+  width: 13px;
+  height: 13px;
+  font-weight: 600;
+  font-size: 8px;
+  color: white;
+  background: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.field--tags-input {
+  .field__help-text {
+    display: none;
+  }
+}
+
+.card-section--media {
+  .field-wrapper--locked {
+    background: none!important;
+  }
+}

@@ -1,0 +1,181 @@
+$feed-bp: 1000px;
+
+
+.dashboard {
+
+	.centered {
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
+		@media (max-width: $feed-bp) {
+			flex-direction: column-reverse;
+		}
+	}
+
+}
+
+.dashboard .card-board {
+  max-width: calc(100% - 360px);
+  @media (max-width: $feed-bp) {
+		max-width: none;
+	}
+}
+
+
+.dashboard-feed {
+	padding: 40px 10px 40px 20px;
+	border-left: 1px solid rgba(0,0,0,0.08);
+	flex: 0 0 360px;
+	@media (max-width: $feed-bp) {
+		padding: 40px 20px 0px 20px;
+		flex: 0 0 0;
+	}
+}
+
+.dashboard-feed-filter-icon {
+	margin-right: 7px;
+  	padding-top: 7px;
+  	color: #888;
+}
+.dashboard-feed__filter {
+	display: flex;
+	  position: absolute;
+    top: -8px;
+    right: 0;
+    width: 180px;
+
+    .selectbox__field {
+    	padding-top: 0;
+    }
+
+    .selectbox__input,
+    .selectbox__field {
+    	min-height: 0;
+    }
+
+
+}
+
+
+
+/* Statistics card */
+
+.statistics-card {
+	.statistics-item {
+		display: none;
+	}
+	
+	&--any {
+		.statistics-item {
+			display: block;
+		}
+	}
+
+	&--1 {
+		.show-on-1 {
+			display: block;
+		}
+	}
+
+	&--2 {
+		.show-on-2 {
+			display: block;
+		}
+	}
+
+}
+
+
+
+
+
+
+/* Faking filtering the feed */
+
+.dashboard-feed {
+	.my-latest,
+	.published,
+	.status-track {
+		display: none;
+	}
+}
+
+.dashboard-feed--0 {
+	.my-latest,
+	.published,
+	.status-track {
+		display: block;
+	}
+}
+
+.dashboard-feed--1 {
+	.dashboard-feed__item {
+		display: none;
+	}
+	.my-latest {
+		display: block;
+	}
+
+}
+.dashboard-feed--2 {
+	.dashboard-feed__item {
+		display: none;
+	}
+	.published {
+		display: block;
+	}
+
+}
+
+.dashboard-feed--3 {
+	.dashboard-feed__item {
+		display: none;
+	}
+	.status-track {
+		display: block;
+	}
+}
+
+
+
+.dashboard-feed__header {
+	margin-bottom: 20px;
+	position: relative;
+
+	h2 {
+		@include font-style-h3;
+	}
+}
+
+.dashboard-feed__list {
+	@media (max-width: $feed-bp) {
+		display: flex;
+		overflow-x: scroll;
+		max-width: 100%;
+	}
+}
+
+.dashboard-feed__item {
+	border-bottom: 1px solid rgba(0,0,0,0.08);
+	padding: 10px 10px;
+	transition: .4s ease-in-out;
+
+	&:hover {
+		background: rgba(white, 0.7);
+	}
+
+	&:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+
+	@media (max-width: $feed-bp) {
+		flex: 0 0 260px;
+		max-width: 260px;
+		border-right: 1px solid rgba(0,0,0,0.08);
+		border-bottom: none;
+		padding: 0px 20px;
+	}
+
+}
