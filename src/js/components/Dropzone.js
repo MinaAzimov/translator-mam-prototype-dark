@@ -1523,6 +1523,10 @@ updateFilesForBulkList = (e, value) => {
 				label="File Size"
 				value={this.state.target.size}
 				/>
+				<FieldWidgets.Text
+				label="Total Run Time"
+				value="01:15:23"
+				/>
 				<Field field={fields[58]}>
 				<Selectbox
 				helpText=""
@@ -1561,10 +1565,6 @@ updateFilesForBulkList = (e, value) => {
 				<FieldWidgets.Text
 				label="File Size"
 				value={this.state.target.size}
-				/>
-				<FieldWidgets.Text
-				label="Total Run Time"
-				value="01:15:23"
 				/>
 				<Field field={fields[58]}>
 				<Selectbox
