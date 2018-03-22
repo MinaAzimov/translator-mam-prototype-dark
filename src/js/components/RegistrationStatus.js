@@ -42,11 +42,11 @@ export default class RegistrationStatus extends Component {
             <circle id="readyForIngest"  fill={isReadyForIngest ? "#F54E02" : "transparent"} cx="8" cy="9" r="5"></circle>
             <circle id="readyForService" fill={isReadyForService ? "#7DCBC4" : "transparent"} cx="35" cy="9" r="5"></circle>
             <circle id="searchOptimized" fill={isSearchOptimized ? "#618393" : "transparent"} cx="62" cy="9" r="5"></circle>
-            <circle stroke="#999999" strokeWidth="1" stroke-linecap="square" stroke-linejoin="round" cx="8" cy="9" r="7"></circle>
-            <circle stroke="#999999" strokeWidth="1" stroke-linecap="square" stroke-linejoin="round" cx="35" cy="9" r="7"></circle>
-            <circle stroke="#999999" strokeWidth="1" stroke-linecap="square" stroke-linejoin="round" cx="62" cy="9" r="7"></circle>
-            <path d="M43,9 L54.5,9" stroke="#999999" stroke-width="1" stroke-linecap="square" stroke-linejoin="round"></path>
-            <path d="M15,9 L27.5,9" stroke="#999999" stroke-width="1" stroke-linecap="square" stroke-linejoin="round"></path>
+            <circle stroke="#999999" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round" cx="8" cy="9" r="7"></circle>
+            <circle stroke="#999999" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round" cx="35" cy="9" r="7"></circle>
+            <circle stroke="#999999" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round" cx="62" cy="9" r="7"></circle>
+            <path d="M43,9 L54.5,9" stroke="#999999" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round"></path>
+            <path d="M15,9 L27.5,9" stroke="#999999" strokeWidth="1" strokeLinecap="square" strokeLinejoin="round"></path>
           </g>
         </svg>    
       </div>

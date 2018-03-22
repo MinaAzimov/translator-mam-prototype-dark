@@ -22,6 +22,7 @@ import Field from "./Field";
 import FieldWidgets from "./form/FieldWidgets";
 import moment from "moment";
 
+
 import Truncate from 'react-truncate';
 
 
@@ -159,6 +160,7 @@ class EditFileOverlay extends Component {
       showPrompt: false,
       selectedImageStyle: null,
       checked: true,
+      showPrompt: false,
       filesArray: [],
       saveStatus: "Save",
       removed: false
@@ -174,14 +176,26 @@ class EditFileOverlay extends Component {
   };
 
   close(){
-     this.props.closeModal();
-     this.props.disableBulkEdit();  
-      this.setState({
+     setTimeout(function() { 
+        this.setState({
       saveStatus: "Save"
-    });
+     });
+
+         }, 2000); 
+   
+
+      if(this.state.saveStatus == "Save") {
+        this.setState({
+      showPrompt: true
+     });
+    }
+
+else {
+   this.props.closeModal();
+   this.props.disableBulkEdit();   
+}
+
   };
-
-
 
   changeStatus(){
 
@@ -190,6 +204,21 @@ class EditFileOverlay extends Component {
     });
 
   }
+
+    onPromptCancel = () => {
+    this.setState({
+      showPrompt: false,
+    });
+  };
+
+
+  onPromptOk = () => {
+    this.setState({
+      showPrompt: false
+    });
+   this.props.closeModal();
+   this.props.disableBulkEdit();  
+  };
 
 
 handleChange = (e, value) => {
@@ -505,6 +534,16 @@ handleChange = (e, value) => {
             </div>
           </div>
         </BaseModal>
+        <Prompt
+          show={this.state.showPrompt}
+          onCancel={this.onPromptCancel}
+          onSubmit={this.onPromptOk}
+          header={<h2 className="licensing-popup__title">Cancel Changes?</h2>}
+          cancelText="Nevermind"
+          submitText="Yes, cancel"
+        >
+          <h3 className="licensing-popup__info">Any unsaved changes you made will be lost. Are you sure you want to cancel?</h3>
+        </Prompt>
 
         
      
