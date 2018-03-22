@@ -16,12 +16,12 @@ export default class RegistrationStatus extends Component {
     isSearchOptimized: false
   }
 
-	render() {
+  render() {
     const { isReadyForIngest, isReadyForService, isSearchOptimized } = this.props;
-		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
-		
+    const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
+    
     return (
-			<div className="">
+      <div className="">
         <svg
           style={{
             display: "inlineBlock",
@@ -50,6 +50,6 @@ export default class RegistrationStatus extends Component {
           </g>
         </svg>    
       </div>
-		)
-	}
+    )
+  }
 }

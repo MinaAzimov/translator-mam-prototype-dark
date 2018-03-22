@@ -1,11 +1,11 @@
 {
 	"projectsCharlotte": [
 		{
-			"title": "Floogals Season Promos",
+			"title": "Floogals Season 1 Promos",
 			"items": [
 				{
-					"name": "For The Love of Spock: Clip Life at Home 1",
-					"subtitle": "For The Love of Spock",
+					"name": "Floogals Characters Isolated",
+					"subtitle": "Floogals Season 1 Promotions",
 					"type": "video",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -20,8 +20,8 @@
                     "id": 1,
 				},
 				{
-					"name": "For The Love of Spock: Clip Life at Home 2",
-					"subtitle": "For The Love of Spock",
+					"name": "Floogals Characters Scene",
+					"subtitle": "Floogals Season 1 Promotions",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -37,8 +37,8 @@
 
 				},
 				{
-					"name": "Official-Theatrical-Trailer",
-					"subtitle": "For The Love of Spock",
+					"name": "Floogals Characters Textful",
+					"subtitle": "Floogals Season 1 Promotions",
 					"type": "video",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -53,8 +53,8 @@
                     "id": 3
 				},
 				{
-					"name": "Spock In Action",
-					"subtitle": "For The Love of Spock",
+					"name": "Floogals Characters Isolated 2",
+					"subtitle": "Floogals Season 1 Promotions",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -69,8 +69,8 @@
                     "id": 4
 				},
 				{
-					"name": "Vintage Shot",
-					"subtitle": "For The Love of Spock",
+					"name": "Floogals Characters Scene 2",
+					"subtitle": "Floogals Season 1 Promotions",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -85,9 +85,9 @@
                     "id": 5
 				},
 				{
-					"name": "For The Love of Spock HD (2016)",
-					"subtitle": "For The Love of Spock",
-					"type": "video",
+					"name": "Floogals Character 1",
+					"subtitle": "Floogals Season 1 Promotions",
+					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
 					"searchOptimized": false,
@@ -103,11 +103,11 @@
 			]
 		},
 		{
-			"title": "Nina's World",
+			"title": "Nina's World Promos",
 			"items": [
 				{
-					"name": "Reading a Comic",
-					"subtitle": "New York Comic Con",
+					"name": "Gallery Item 1",
+					"subtitle": "Nina's World Gallery",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -122,8 +122,8 @@
                     "id": 1,
 				},
 				{
-					"name": "Cosplayers #1",
-					"subtitle": "New York Comic Con",
+					"name": "Gallery Item 1",
+					"subtitle": "Nina's World Gallery",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -138,8 +138,8 @@
                     "id": 2
 				},
 				{
-					"name": "Cosplayers #2",
-					"subtitle": "New York Comic Con",
+					"name": "Gallery Item 1",
+					"subtitle": "Nina's World Gallery",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -154,8 +154,8 @@
                     "id": 3
 				},
 				{
-					"name": "Cosplayers #3",
-					"subtitle": "New York Comic Con",
+					"name": "Gallery Item 1",
+					"subtitle": "Nina's World Gallery",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -170,8 +170,8 @@
                     "id": 4
 				},
 				{
-					"name": "Cosplayers #4",
-					"subtitle": "New York Comic Con",
+					"name": "Gallery Item 1",
+					"subtitle": "Nina's World Gallery",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -186,8 +186,8 @@
                     "id": 5
 				},
 				{
-					"name": "Cosplayers #4",
-					"subtitle": "New York Comic Con",
+					"name": "Gallery Item: Music Video Texted",
+					"subtitle": "Nina's World Gallery Texted",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -202,8 +202,8 @@
                     "id": 6
 				},
 				{
-					"name": "Cosplayers #4",
-					"subtitle": "New York Comic Con",
+					"name": "Gallery Item: January Texted",
+					"subtitle": "Nina's World Gallery Texted",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -218,8 +218,8 @@
                     "id": 7
 				},
 				{
-					"name": "Cosplayers #4",
-					"subtitle": "New York Comic Con",
+					"name": "Gallery Item: Remix Texted",
+					"subtitle": "Nina's World Gallery Texted",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,
@@ -234,8 +234,8 @@
                     "id": 8
 				},
 				{
-					"name": "Cosplayers #4",
-					"subtitle": "New York Comic Con",
+					"name": "Gallery Item 1",
+					"subtitle": "Nina's World Gallery",
 					"type": "image",
 					"readyForIngest": false,
 					"readyForService": false,

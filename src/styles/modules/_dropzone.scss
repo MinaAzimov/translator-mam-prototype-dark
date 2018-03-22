@@ -665,7 +665,7 @@
                     margin-right: 30px;
                     display: flex;
                     align-items: center;
-                    
+
                     i {
                         font-size: 18px;
                         margin-right: 9px;
@@ -813,6 +813,7 @@
                                 // margin: 0;
 
                                 .field-text__input {
+                                    min-width: 350px;
                                     font-size: 21px; 
                                     text-align: center;    
                                 }
@@ -889,6 +890,7 @@
                             margin-top: 21px;
                             .field-text__input {
                                 color: #eee;
+                                min-width: auto !important;
                                 text-align: left !important;
                                 margin-bottom: 6px;
                                 margin-top: 14px;
@@ -970,6 +972,160 @@
                         flex-wrap: wrap;
                         width: 100%;
                         max-height: 1879px;
+                    }
+                }
+
+                .notify-others {
+                    flex: 1;
+                    display: flex;
+                    justify-content: flex-end;
+
+                    .input {
+                        position: relative;
+                        z-index: 1;
+                        display: inline-block;
+                        margin: 0 0 18px;
+                        max-width: 200px;
+                        width: calc(100% - 2em);
+                        vertical-align: top;
+
+                        &__field {
+                            position: relative;
+                            display: block;
+                            float: right;
+                            padding: 0.8em;
+                            width: 60%;
+                            border: none;
+                            border-radius: 0;
+                            background: #f0f0f0;
+                            color: #aaa;
+                            font-weight: 400;
+                            -webkit-appearance: none; 
+
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+                        &__label {
+                            display: inline-block;
+                            float: right;
+                            padding: 0 1em;
+                            width: 40%;
+                            color: #696969;
+                            font-weight: bold;
+                            font-size: 14px;
+                            -webkit-font-smoothing: antialiased;
+                            -moz-osx-font-smoothing: grayscale;
+                            -webkit-touch-callout: none;
+                            -webkit-user-select: none;
+                            -khtml-user-select: none;
+                            -moz-user-select: none;
+                            -ms-user-select: none;
+                            user-select: none;
+                        }
+                        &__label-content {
+                            position: relative;
+                            display: block;
+                            padding: 1.6em 0;
+                            width: 100%;
+                        }
+                    }
+                    .input--chisato {
+                        padding-top: 18px;
+                    }
+
+                    .input__field--chisato {
+                        width: 100%;
+                        padding: 0 18px;
+                        height: 36px;
+                        background: transparent;
+                        border: 1px solid #b5b5b5;
+                        border-radius: 25px;
+                        color: transparent;
+                        -webkit-transition: all 0.25s;
+                        transition: all 0.25s;
+                    }
+
+                    .input__label--chisato {
+                        width: 100%;
+                        position: absolute;
+                        top: 0;
+                        font-size: 14px;
+                        text-align: center;
+                        overflow: hidden;
+                        padding: 0;
+                        pointer-events: none;
+                        -webkit-transform: translate3d(0, 24px, 0);
+                        transform: translate3d(0, 24px, 0);
+
+                        i {
+                            margin-left: 9px;
+                            font-size: 15px
+                        }
+                    }
+
+                    .input__label-content--chisato {
+                        padding: 0 1em;
+                        font-weight: 300;
+                        color: #000;
+                    }
+
+                    .input__label-content--chisato::after {
+                        content: attr(data-content);
+                        position: absolute;
+                        top: -200%;
+                        left: 9px;
+                        text-align: left;
+                        font-size: 12px;
+                        color: $color-light-blue;
+                        font-weight: 600;
+                    }
+
+                    .input__field--chisato:focus,
+                    .input--filled .input__field--chisato {
+                        border-color: $color-light-blue;
+                        color: #b5b5b5;
+                    }
+
+                    .input__field--chisato:focus + .input__label--chisato,
+                    .input--filled .input__label--chisato {
+                        -webkit-animation: anim-chisato-1 0.25s forwards;
+                        animation: anim-chisato-1 0.25s forwards;
+                    }
+
+                    .input__field--chisato:focus + .input__label--chisato .input__label-content--chisato,
+                    .input--filled .input__label-content--chisato {
+                        -webkit-animation: anim-chisato-2 0.25s forwards ease-in;
+                        animation: anim-chisato-2 0.25s forwards ease-in;
+                    }
+
+                    @keyframes anim-chisato-1 {
+                        0%, 70% {
+                            -webkit-transform: translate3d(0, 3em, 0);
+                            transform: translate3d(0, 3em, 0);
+                        }
+                        71%, 100% {
+                            -webkit-transform: translate3d(0, 0, 0);
+                            transform: translate3d(0, 0, 0);
+                        }
+                    }
+
+                    @keyframes anim-chisato-2 {
+                        0% {
+                            -webkit-transform: translate3d(0, 0, 0);
+                            transform: translate3d(0, 0, 0);
+                        }
+                        70%, 71% {
+                            -webkit-transform: translate3d(0, 125%, 0);
+                            transform: translate3d(0, 125%, 0);
+                            opacity: 0;
+                            -webkit-animation-timing-function: ease-out;
+                        }
+                        100% {
+                            color: transparent;
+                            -webkit-transform: translate3d(0, 200%, 0);
+                            transform: translate3d(0, 200%, 0);
+                        }
                     }
                 }
 

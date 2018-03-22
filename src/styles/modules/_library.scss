@@ -101,10 +101,16 @@
 
 .library-header-row {
   margin: 0;
-  padding: 0 20px 0 0;
+  padding: 0 5px 0 0;
   background: transparent;
   box-shadow: none;
   border: 0px;
+
+  .library-item {
+    &:last-child, &:nth-last-child(2), &:nth-last-child(3) {
+      // padding-right: 0;
+    }
+  }
 
   @media screen and (max-width: $bp-medium) {
     display: none;
@@ -221,7 +227,7 @@
   }
 
   &:nth-child(4) {
-    width: 6%;
+    width: 12%;
     text-align: center;
     font-weight: 300;
 

@@ -309,7 +309,7 @@ class RegisterContent extends Component {
           <div id={"test" + index} key={index} className={showCardBoard}>
             <Card title={project.title} id={"project" + index}>
               <div className="actions-header">
-                <i className="iconcss icon-edit"></i>
+                <i className="iconcss icon-edit" onClick={this.showDropzone.bind(this)}></i>
                 <i className="iconcss icon-upload"></i>
                 <div className="group-by">
                   <i className="iconcss icon-group-by"></i>
@@ -317,7 +317,11 @@ class RegisterContent extends Component {
                 </div>
               </div>
               <CardSection>
-                <ProjectCardHeader type='Video'/>
+                { (project.items.filter((obj) => obj.type == 'video').length > 0) ? 
+                (
+                  <ProjectCardHeader type='Video'/>
+                ) : null
+                }
                 { 
                   project.items
                     .filter((obj) =>
@@ -337,7 +341,11 @@ class RegisterContent extends Component {
                       />
                     )
                 }
-                <ProjectCardHeader type='Image'/>
+                { (project.items.filter((obj) => obj.type == 'image').length > 0) ? 
+                (
+                  <ProjectCardHeader type='Image'/>
+                ) : null
+                }
                 { 
                   project.items
                     .filter((obj) =>
@@ -357,7 +365,11 @@ class RegisterContent extends Component {
                       />
                     )
                 }
-                <ProjectCardHeader type='Audio'/>
+                { (project.items.filter((obj) => obj.type == 'audio').length > 0) ? 
+                (
+                  <ProjectCardHeader type='Audio'/>
+                ) : null
+                }
                 { 
                   project.items
                     .filter((obj) =>
@@ -399,7 +411,11 @@ class RegisterContent extends Component {
                 </div>
               </div>
 
-                <ProjectCardHeader type='Video'/>
+                { (project.items.filter((obj) => obj.type == 'video').length > 0) ? 
+                (
+                  <ProjectCardHeader type='Video'/>
+                ) : null
+                }
                 { 
                   project.items
                     .filter((obj) =>
@@ -419,7 +435,11 @@ class RegisterContent extends Component {
                       />
                     )
                 }
-                <ProjectCardHeader type='Image'/>
+                { (project.items.filter((obj) => obj.type == 'image').length > 0) ? 
+                (
+                  <ProjectCardHeader type='Image'/>
+                ) : null
+                }
                 { 
                   project.items
                     .filter((obj) =>
@@ -439,8 +459,12 @@ class RegisterContent extends Component {
                       />
                     )
                 }
-                <ProjectCardHeader type='Audio'/>
-                { 
+                { (project.items.filter((obj) => obj.type == 'audio').length > 0) ? 
+                (
+                  <ProjectCardHeader type='Audio'/>
+                ) : null
+                }
+                {
                   project.items
                     .filter((obj) =>
                       obj.type == 'audio'

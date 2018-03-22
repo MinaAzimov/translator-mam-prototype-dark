@@ -245,6 +245,18 @@
     .task-creator__cancel, .task-creator__submit {
       margin: 0 7px;
     }
+
+    .task-creator__submit {
+      @include button-blue-pill;
+    }
+    .task-creator__cancel {
+      @include button-gray-pill;
+      padding: 21px 24px;
+      font-size: 14px;
+      line-height: 0;
+      color: #aaa;
+      border-color: #aaa;
+    }
   }
   .modal-header {
     padding-bottom: 0;
@@ -254,6 +266,9 @@
     padding: 30px;
     position: relative;
     border-radius: 2px;
+
+    border: none;
+    box-shadow: 0 -6px 60px 40px rgba(0,0,0,0.12);
   }
   .licensing-popup__title {
     font-size: 22px;

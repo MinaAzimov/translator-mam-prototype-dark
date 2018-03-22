@@ -9,7 +9,7 @@ export default class ProjectItem extends Component {
 
 
   callLocalEdit() {
-  this.props.editExistingProject();            
+    this.props.editExistingProject();            
   }
 
 

@@ -14,19 +14,19 @@ export function getRoleConfig(role) {
 	switch (role) {
 		case USER_ROLE_PA: {
 			return {
-				label: "Product Assistant"
+				label: "Production Assistant"
 			}
 		}
 
 		case USER_ROLE_PA_1: {
 			return {
-				label: "Product Assistant"
+				label: "Production Assistant"
 			}
 		}
 
 		case USER_ROLE_PA_2: {
 			return {
-				label: "Product Assistant"
+				label: "Production Assistant"
 			}
 		}
 

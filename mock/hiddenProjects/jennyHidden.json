@@ -1,11 +1,11 @@
 {
 	"projectsHiddenJenny": [
 		{
-			"title": "Unsolved Season 1",
+			"title": "Unsolved-S1-2018",
 			"items": [
 				{
-					"name": "Kards Catch Up",
-					"subtitle": "Season 14 Episode 1",
+					"name": "Biggie-and-Tupac",
+					"subtitle": "Main Characters",
 					"type": "video",
 					"lastEditedBy": "Mia Butera",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -13,12 +13,15 @@
 					"size": 1523232,
 					"img": "/assets/img/usa/unsolved-season-1/20180318_Unsolved_Image1.jpg",
 					"height": 760,
+					"readyForIngest": true,
+					"readyForService": true,
+					"searchOptimized": false,
                     "width": 1280,
                     "id": 1,
 				},
 				{
-					"name": "Kylie in San Francisco",
-					"subtitle": "This Sunday: Brand New",
+					"name": "Gallery Image 1",
+					"subtitle": "Unsolved S1 Gallery",
 					"type": "image",
 					"lastEditedBy": "Lova Yazdani",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -28,11 +31,10 @@
 					"height": 760,
                     "width": 1280,
                     "id": 2
-
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "Gallery Image 2",
+					"subtitle": "Unsolved S1 Gallery",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -44,8 +46,8 @@
                     "id": 3
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "Gallery Image 3",
+					"subtitle": "Unsolved S1 Gallery",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -57,8 +59,8 @@
                     "id": 4
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "Gallery Image 4",
+					"subtitle": "Unsolved S1 Gallery",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -70,8 +72,8 @@
                     "id": 5
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "Gallery Image 5",
+					"subtitle": "Unsolved S1 Gallery",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -83,8 +85,8 @@
                     "id": 6
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "Gallery Image 6",
+					"subtitle": "Unsolved S1 Gallery",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -96,14 +98,27 @@
                     "id": 7
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "Gallery Image 7",
+					"subtitle": "Unsolved S1 Gallery",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
 					"lastModified": 1496769563000,
 					"size": 1523232,
 					"img": "/assets/img/usa/unsolved-season-1/20180318_Unsolved_Image8.jpg",
+					"height": 760,
+                    "width": 1280,
+                    "id": 8
+				},
+				{
+					"name": "Unsolved Season 1 Promo",
+					"subtitle": "Unsolved S1 Gallery",
+					"type": "image",
+					"lastEditedBy": "Grecia Lopez",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1496769563000,
+					"size": 1523232,
+					"img": "/assets/img/usa/unsolved-season-1/20180318_Unsolved_Promo1.png",
 					"height": 760,
                     "width": 1280,
                     "id": 8
