@@ -1467,7 +1467,7 @@ updateFilesForBulkList = (e, value) => {
 					value={this.state.selectedFilterOptimezed}
 					/>
 					<FieldWidgets.Text label="House ID" />
-					<FieldWidgets.Text label="Composistion" />
+					<FieldWidgets.Text label="Composition" />
 					<FieldWidgets.Text label="Color" />
 					<FieldWidgets.Text label="Color Format" />
 					<FieldWidgets.Text label="Promo Code" />
@@ -1522,10 +1522,6 @@ updateFilesForBulkList = (e, value) => {
 				<FieldWidgets.Text
 				label="File Size"
 				value={this.state.target.size}
-				/>
-				<FieldWidgets.Text
-				label="Total Run Time"
-				value="01:15:23"
 				/>
 				<Field field={fields[58]}>
 				<Selectbox
