@@ -247,9 +247,9 @@ handleChange = (i) => {
   render() {
 
 
-    const { fields, showModal, closeModal, itemsForBulk, disableBulkEdit, editingLocalProject, updateFilesForBulkList, removeFileFromOverlay } = this.props;
+    const { fields, showModal, closeModal, itemsForBulk, disableBulkEdit, editingLocalProject, removeFileFromOverlay } = this.props;
     const {saveStatus, filesArray, removed} = this.state;
-    console.log(itemsForBulk )
+    
 
     return (
       <div className="media-overlay media-overlay">

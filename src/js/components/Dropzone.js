@@ -774,8 +774,9 @@ closeModal = () => {
 		audioSelectionEnabled: false
 	});
 
-		this.state.files.forEach((file) => {
-		
+		this.state.files.forEach((file, b) => {
+				 this.refs[b + 1].classList.remove('fa-circle');
+				 this.refs[b + 1].classList.add('icon-checkmark');
 			 var elements = document.getElementsByClassName("image/jpeg--show");
 			 var elementsJpg = document.getElementsByClassName("image/jpg--show");
 			 var elementsPng = document.getElementsByClassName("image/png--show");
@@ -784,26 +785,41 @@ closeModal = () => {
 			 var elementsVideo = document.getElementsByClassName("video/mp4--show");
 			 var elementsAudio = document.getElementsByClassName("audio/mp3--show");
 			 for(var i = 0; i < elements.length; i++){
-					elements[i].className = "image/jpeg"; 
+				   elements[i].className = "image/jpeg"; 
+				  
+  	               	 
 			 } 
 			 for(var i = 0; i < elementsSvg.length; i++){
 					elementsSvg[i].className = "image/svg+xml"; 
+					
+  	               
 			 }     
 			 for(var i = 0; i < elementsJpg.length; i++){
 				 elementsJpg[i].className = "image/jpg";
+				 
+  	             
 			 }     
 			 for(var i = 0; i < elementsPng.length; i++){
-				 elementsPng[i].className = "image/png";  
+				 elementsPng[i].className = "image/png"; 
+				
+  	             
 			 }     
 			 for(var i = 0; i < elementsGif.length; i++){
 				 elementsGif[i].className = "image/gif";
+				 
+  	             
 			 }
 				for(var i = 0; i < elementsVideo.length; i++){
 				 elementsVideo[i].className = "video/mp4";
+				
+  	             
 			 }     
 				for(var i = 0; i < elementsAudio.length; i++){
 				 elementsAudio[i].className = "audio/mp3";
+				 
+  	             
 			 }   
+		   
 			 
 		});	   
 }
@@ -829,28 +845,34 @@ disableBulkEdit = val =>  {
 	//}
 //}
 
-updateFilesForBulkList = (e, value) => {
-
-	if (e.target.checked){
-			//append to array
-			this.setState({
-				itemsForBulk: this.state.itemsForBulk.concat([value])
-			})
-				console.log(e.target.value)
-
-		} else {
+updateFilesForBulkList = (i, file) => {
+	if(this.state.itemsForBulk.includes(file)) {
+			console.log(this, i, file)
 			var array = this.state.itemsForBulk;
-			var index = e.target.value;
-			console.log(e.target)
-			array.splice(index, 1);
+			var index = i;
+			array.splice(i, 1);
+			
 			this.setState({
 				 itemsForBulk: array
-			 
 			});
-
-			
-		}
+	} else {
+		 this.setState({
+				itemsForBulk: this.state.itemsForBulk.concat([file])
+			})
 	}
+ 
+  if(this.refs[i + 1].classList.contains('icon-checkmark')) {
+  	this.refs[i + 1].classList.remove('icon-checkmark');
+  	this.refs[i + 1].classList.add('fa-circle');
+    this.refs[i + 1].parentElement.classList.add('empty-circle');
+  }
+  else {
+  	this.refs[i + 1].classList.add('icon-checkmark');
+  	this.refs[i + 1].classList.remove('fa-circle');
+  	this.refs[i + 1].parentElement.classList.remove('empty-circle');	 
+  }
+			
+}
 
 	removeFileFromOverlay = (i) => {
 		    var array = this.state.itemsForBulk;
@@ -869,6 +891,7 @@ updateFilesForBulkList = (e, value) => {
 
 	selectImageFiles() {
 	 let newArray = [];
+
 		this.state.files.forEach((file) => {
 		 if ((file.type == "image/jpeg") || (file.type == "image/jpg") || (file.type == "image/svg+xml") || (file.type == "image/png") || (file.type == "image/gif")) {
 				newArray.push(file)
@@ -987,14 +1010,11 @@ updateFilesForBulkList = (e, value) => {
 		});
 
 		const checkboxDisable = classNames({
-			"": false,
-			"hidden": !multiSelect
+			"check": true,
+			"hidden": !videoSelectionEnabled && !imageSelectionEnabled && !audioSelectionEnabled
 		});
 
-		const loadingAnimation = classNames({
-			"": false,
-			"hidden": !multiSelect
-		});
+		
 
 
 
@@ -1165,9 +1185,8 @@ updateFilesForBulkList = (e, value) => {
 					type="checkbox"
 					checked="checked"
 					className={file.type}
-					
 					/>
-					<div className="check"><i className="iconcss icon-checkmark" value={i} onClick={(e)=>this.updateFilesForBulkList(e, file)}></i></div>
+					<div className={checkboxDisable} ><i className="iconcss icon-checkmark" ref={file.id} value={i} key={i} onClick={this.updateFilesForBulkList.bind(this, i, file)}></i></div>
 					</div>
 
 					<span className="dz-title"><Truncate lines={1} ellipsis={"..." + file.name.slice(-12)}>
@@ -1241,7 +1260,7 @@ updateFilesForBulkList = (e, value) => {
 					key={file} 
 					className={file.type}
 					type='checkbox' 
-					onClick={(e)=>this.updateFilesForBulkList(e,file)}     
+					  
 					/>
 					</div>
 					<span>
