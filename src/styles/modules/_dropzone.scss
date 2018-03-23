@@ -554,8 +554,8 @@
                     display: none;
                     position: absolute;
                     top: 0px;
-                    background: rgba(white, 0.24);
-                    border: solid 1px white;
+                    background: $color-light-blue;
+                    border: solid 1px $color-light-blue;
                     width: 19px;
                     border-radius: 50%;
                     height: 19px; 
@@ -564,6 +564,7 @@
 
                     i {
                         color: white;
+                        -webkit-text-stroke: 0.5px white;
                         font-size: 11px;
                         transform: scale(0);
                         transition: all 0.3s cubic-bezier(.77, 0, .175, 1);

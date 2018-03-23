@@ -685,8 +685,9 @@
   right: 72px;
   display: flex;
   flex-direction: row-reverse;
+  align-items: center;
 
-  .group-by {
+  .group-by, .last-edited, .created-by {
     i {
       margin-right: 6px;
     }
@@ -695,12 +696,32 @@
     }
   }
 
+  .last-edited {
+    i {
+      font-size: 15px;
+    }
+  }
+
+  div {
+    color: #999;
+  }
+
+  .group-by {
+    color: #000;
+  }
+
   > * {
-    margin: 0 12px;
+    margin-right: 24px;
+  }
+
+  > * {
+    &:first-child {
+      margin: 0;
+    }
   }
 
   i {
-    font-size: 17px;
+    font-size: 18px;
   }
 }
 

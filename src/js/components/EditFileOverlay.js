@@ -176,12 +176,12 @@ class EditFileOverlay extends Component {
   };
 
   close(){
-     setTimeout(function() { 
+     setTimeout(() => { 
         this.setState({
       saveStatus: "Save"
-     });
+     })
 
-         }, 2000); 
+         }, 1000); 
    
 
       if(this.state.saveStatus == "Save") {
@@ -199,16 +199,32 @@ else {
 
   changeStatus(){
 
-    this.setState({
+   this.setState({
+      showPrompt: false,
       saveStatus: "Saved"
     });
+   this.props.closeModal();
+   this.props.disableBulkEdit();
+   setTimeout(() => { 
+        this.setState({
+      saveStatus: "Save"
+     })
+
+         }, 1000);   
 
   }
 
     onPromptCancel = () => {
+ if(this.state.saveStatus == "Save") {
+
     this.setState({
       showPrompt: false,
     });
+  }
+  else {
+   this.props.closeModal();
+   this.props.disableBulkEdit();   
+}
   };
 
 
@@ -221,8 +237,8 @@ else {
   };
 
 
-handleChange = (e, value) => {
-  this.props.removeFileFromOverlay(e, value);
+handleChange = (i) => {
+  this.props.removeFileFromOverlay(i);
 
    console.log(this.props.itemsForBulk)
    this.setState({filesArray: this.props.itemsForBulk})
@@ -296,10 +312,11 @@ handleChange = (e, value) => {
 
                       <div className="dz-checkbox">
                        <input 
-                         key={file} 
+                         key={i}
+                         value={i} 
                          checked={this.state.checked}
                          type='checkbox' 
-                         onClick={(e)=>this.handleChange(e,file)}     
+                         onClick={(i)=>this.handleChange(i)}     
                          />
                           <div className="check">
                             <i className="iconcss icon-checkmark"></i>
@@ -377,7 +394,7 @@ handleChange = (e, value) => {
                       <div className="dz-size">
                       <div>
                      <input 
-                       key={file} 
+                       key={i} 
                        checked={this.state.checked}
                        type='checkbox' 
                        onClick={(e)=>this.handleChange(e,file)}     

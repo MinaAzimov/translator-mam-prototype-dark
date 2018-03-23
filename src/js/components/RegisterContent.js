@@ -48,7 +48,7 @@ import projects from '../../../mock/projects.json';
 
 import DropzoneComponent from 'react-dropzone-component';
 
-
+import NotifyButton from "./NotifyButton";
 
 import { ReduxFormFieldSimpleReactDropzone } from 'simple-react-dropzone';
 
@@ -315,6 +315,15 @@ class RegisterContent extends Component {
                   <i className="iconcss icon-group-by"></i>
                   <span>Group By: File Type</span>
                 </div>
+                <div className="last-edited">
+                  <i className="iconcss icon-last-modified"></i>
+                  <span>{moment.unix(Date.now()).format("MMM D hh:mm:ss A")}</span>
+                </div>
+                <div className="created-by">
+                  <i className="iconcss icon-user"></i>
+                  <span>{this.props.client.user.name}</span>
+                </div>
+
               </div>
               <CardSection>
                 { (project.items.filter((obj) => obj.type == 'video').length > 0) ? 
@@ -403,11 +412,19 @@ class RegisterContent extends Component {
               <CardSection>
 
               <div className="actions-header">
-                <i className="iconcss icon-edit"></i>
+                <i className="iconcss icon-edit" onClick={this.showDropzone.bind(this)}></i>
                 <i className="iconcss icon-upload"></i>
                 <div className="group-by">
                   <i className="iconcss icon-group-by"></i>
                   <span>Group By: File Type</span>
+                </div>
+                <div className="last-edited">
+                  <i className="iconcss icon-last-modified"></i>
+                  <span>{moment.unix(Date.now()).format("MMM D hh:mm:ss A")}</span>
+                </div>
+                <div className="created-by">
+                  <i className="iconcss icon-user"></i>
+                  <span>{this.props.client.user.name}</span>
                 </div>
               </div>
 
@@ -544,7 +561,9 @@ class RegisterContent extends Component {
                         </div>
                       </div>
                     </span>
-                    <button className="apply">Notify Me When Complete<i className="iconcss icon-bullhorn"></i></button>    
+                    {/*<ComplexListItem/>*/}
+                    {/*<NotifyButton/>*/}
+                    <button className="apply">Notify Me When Complete<i className="iconcss icon-bullhorn"></i></button>
                     </div>
                 </div>
   

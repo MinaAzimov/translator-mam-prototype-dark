@@ -1,7 +1,7 @@
 {
 	"projectsHiddenMia": [
 		{
-			"title": "Top Chef Jr. Promos",
+			"title": "Golden Globes 2018",
 			"items": [
 				{
 					"name": "Kards Catch Up",
@@ -10,6 +10,9 @@
 					"lastEditedBy": "Mia Butera",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
 					"lastModified": 1496769563000,
+					"readyForIngest": true,
+					"readyForService": true,
+					"searchOptimized": false,
 					"size": 1523232,
 					"img": "/assets/img/e-news/golden-globes-red-carpet/1.jpg",
 					"height": 760,

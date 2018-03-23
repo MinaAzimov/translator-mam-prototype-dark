@@ -773,7 +773,10 @@ closeModal = () => {
 		videoSelectionEnabled: false,
 		audioSelectionEnabled: false
 	});
-			 var elements = document.getElementsByClassName("image/jpeg");
+
+		this.state.files.forEach((file) => {
+		
+			 var elements = document.getElementsByClassName("image/jpeg--show");
 			 var elementsJpg = document.getElementsByClassName("image/jpg--show");
 			 var elementsPng = document.getElementsByClassName("image/png--show");
 			 var elementsGif = document.getElementsByClassName("image/gif--show");
@@ -800,7 +803,9 @@ closeModal = () => {
 			 }     
 				for(var i = 0; i < elementsAudio.length; i++){
 				 elementsAudio[i].className = "audio/mp3";
-			 }     
+			 }   
+			 
+		});	   
 }
 
 
@@ -831,11 +836,12 @@ updateFilesForBulkList = (e, value) => {
 			this.setState({
 				itemsForBulk: this.state.itemsForBulk.concat([value])
 			})
+				console.log(e.target.value)
 
 		} else {
 			var array = this.state.itemsForBulk;
-			var index = e;
-			console.log(index);
+			var index = e.target.value;
+			console.log(e.target)
 			array.splice(index, 1);
 			this.setState({
 				 itemsForBulk: array
@@ -846,18 +852,14 @@ updateFilesForBulkList = (e, value) => {
 		}
 	}
 
-	removeFileFromOverlay = (e, value) => {
-	 if (!e.target.checked){
-		 var array = this.state.itemsForBulk;
-			var index = e;
-			console.log(e, value);
-			array.splice(e, 1);
+	removeFileFromOverlay = (i) => {
+		    var array = this.state.itemsForBulk;
+			var index = i.target.value;
+			array.splice(index, 1);
 			this.setState({
 				 itemsForBulk: array
 			 
 			});
- }
-
 	}
 
 	removeDropzone() {
@@ -1054,7 +1056,7 @@ updateFilesForBulkList = (e, value) => {
 			/>
 			</div>
 
-			<EditFileOverlay showModal={this.state.showModal} closeModal={this.closeModal} itemsForBulk={this.state.itemsForBulk} disableBulkEdit={this.disableBulkEdit} editingLocalProject={this.props.editingLocalProject} updateFilesForBulkList={this.updateFilesForBulkList}  removeFileFromOverlay={this. removeFileFromOverlay} />
+			<EditFileOverlay showModal={this.state.showModal} closeModal={this.closeModal} itemsForBulk={this.state.itemsForBulk} disableBulkEdit={this.disableBulkEdit} editingLocalProject={this.props.editingLocalProject} updateFilesForBulkList={this.updateFilesForBulkList}  removeFileFromOverlay={this.removeFileFromOverlay} />
 			<div className="dz-container-1">
 			<div className="filepicker dropzone dz-clickable">
 			<div className="dz-clickable" id="dz-custom-mesg-1">
@@ -1158,13 +1160,14 @@ updateFilesForBulkList = (e, value) => {
 					</div>
 					<div className="dz-checkbox">
 					<input 
-					key={file} 
+					key={i} 
+					value={i}
 					type="checkbox"
 					checked="checked"
 					className={file.type}
-					onClick={(e)=>this.updateFilesForBulkList(e,file)}
+					
 					/>
-					<div className="check" onClick={(e)=>this.updateFilesForBulkList(e,file)}><i className="iconcss icon-checkmark"></i></div>
+					<div className="check"><i className="iconcss icon-checkmark" value={i} onClick={(e)=>this.updateFilesForBulkList(e, file)}></i></div>
 					</div>
 
 					<span className="dz-title"><Truncate lines={1} ellipsis={"..." + file.name.slice(-12)}>
