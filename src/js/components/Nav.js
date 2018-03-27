@@ -1,7 +1,29 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import classNames from "classnames";
+import $ from "jquery";
+import BodyClass from './BodyClass';
+import Switch from './form/Switch';
 
-export default class Nav extends Component {
+class Nav extends Component {
+
+	constructor(props) {
+		super(props);
+		
+	}
+
+	componentDidMount() {
+			
+	}
+
+	handleClick() {
+
+		     let classname = 'user-role';
+			 classname = classname + ' dark-theme';
+			$("body").toggleClass(classname);
+	}
+
 	render() {
 		return (
 			<div className="nav">
@@ -44,12 +66,22 @@ export default class Nav extends Component {
 					<div className="nav-item disabled">Collections</div>
 					<div className="nav-item disabled">Configuration</div>*/}
 				</div>
-				{/*<div className="nav-toolbelt">
-					<a href="http://toolbelt.cnbc.com">
-						<i className="iconcss icon-toolbelt-logo"></i> Go to toolbelt
+				<div className="nav-toolbelt" onClick={this.handleClick.bind(this)} style={{'opacity': '0.2'}} >
+					<a>
+						<i className="material-icons"></i>Switch Theme
 					</a>
-				</div>*/}
+				</div>
 			</div>
-		)
+			)
 	}
 }
+
+const mapStateToProps = (state) => {
+  return {
+    client: state.client
+  }
+}
+
+Nav = connect(mapStateToProps)(Nav);
+
+export default Nav;

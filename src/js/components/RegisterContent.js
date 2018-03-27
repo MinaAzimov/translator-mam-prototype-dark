@@ -247,6 +247,11 @@ class RegisterContent extends Component {
       this.setState({hiddenProjects: projectsHiddenLuke.projectsHiddenLuke,
                     projects: projectsLuke.projectsLuke  })
     }
+
+    if(this.props.client.user.name == "Tristan Wynn") {
+      this.setState({hiddenProjects: projectsHiddenReed.projectsHiddenReed,
+                    projects: projectsReed.projectsReed  })
+    }
   }
 
   showDropzone = () => {

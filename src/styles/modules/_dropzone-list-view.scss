@@ -1,0 +1,84 @@
+.dropzone .dz-message + div {
+	&.list-view {
+		.dz-preview-new {
+			width: 100%;
+			display: flex;
+			// min-height: 132px;
+			min-height: 100px;
+			align-items: center;
+			padding-right: 12px;
+			margin: 9px;
+			padding-bottom: 0px;
+
+			.dz-image, .dz-image img {
+				// width: 140px;
+				// height: 90px;
+			    width: 100px;
+			    height: 70px;
+				margin-left: 12px;
+			}
+
+			.dz-details {
+				opacity: 1;
+			}
+
+			.dz-checkbox {
+				top: 6px;
+				left: 15px;
+				.check {
+					box-shadow: none;
+					border: solid 1px white;
+
+				}
+				.empty-circle {
+				    border: solid 2px white !important;
+				    background: #ddd !important;
+				}
+			}
+
+			.dz-status {
+				position: relative;
+				bottom: 0;
+				right: 0;
+			}
+
+			.dz-title {
+				// margin: 0 60px 0 24px;
+				margin: 0 48px 0 24px;
+				font-size: 19px;
+				font-size: 17px;
+			}
+
+			.dz-size {
+				margin-bottom: 0;
+				align-items: center;
+
+				span {
+				}
+			}
+
+			.dz-icon {
+				margin-right: 30px;
+				font-size: 19px;
+				left: auto;
+				bottom: auto;
+				position: relative;
+			}
+
+			.dz-remove {
+				position: relative;
+				top: auto;
+				right: 0;
+				svg {
+					fill: black !important;
+				}
+			}
+			&:hover {
+				.dz-image img {
+					transform: none;
+					filter: none;
+				}
+			}
+		}
+	}
+}

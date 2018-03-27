@@ -23,7 +23,7 @@ class BaseLayout extends Component {
 
 	componentDidMount() {
 			let classname = 'user-role--' + this.props.client.user.role;
-			classname = classname + ' dark-theme';
+			// classname = classname + ' dark-theme';
 			$("body").addClass(classname);
 	}
 

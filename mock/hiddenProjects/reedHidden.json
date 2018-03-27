@@ -16,7 +16,7 @@
                     "width": 1280,
 					"readyForIngest": true,
 					"readyForService": true,
-					"searchOptimized": false,
+					"searchOptimized": true,
                     "id": 1,
 				},
 				{

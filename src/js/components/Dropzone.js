@@ -756,7 +756,7 @@ onSearchOptimizedSelect = val => {
 		});
 	}
 	 var selector = document.getElementById(this.state.target.name);
-	 selector.firstChild.firstChild.firstChild.childNodes[2].style.fill = "#618393";
+	 selector.firstChild.firstChild.firstChild.childNodes[2].style.fill = "#3592bd";
 };
 
 
@@ -775,7 +775,7 @@ closeModal = () => {
 	});
 
 		this.state.files.forEach((file, b) => {
-				 this.refs[b + 1].classList.remove('fa-circle');
+				 this.refs[b + 1].classList.remove('icon-last-modified');
 				 this.refs[b + 1].classList.add('icon-checkmark');
 			 var elements = document.getElementsByClassName("image/jpeg--show");
 			 var elementsJpg = document.getElementsByClassName("image/jpg--show");
@@ -863,12 +863,12 @@ updateFilesForBulkList = (i, file) => {
  
   if(this.refs[i + 1].classList.contains('icon-checkmark')) {
   	this.refs[i + 1].classList.remove('icon-checkmark');
-  	this.refs[i + 1].classList.add('fa-circle');
+  	this.refs[i + 1].classList.add('icon-last-modified');
     this.refs[i + 1].parentElement.classList.add('empty-circle');
   }
   else {
   	this.refs[i + 1].classList.add('icon-checkmark');
-  	this.refs[i + 1].classList.remove('fa-circle');
+  	this.refs[i + 1].classList.remove('icon-last-modified');
   	this.refs[i + 1].parentElement.classList.remove('empty-circle');	 
   }
 			
@@ -887,6 +887,7 @@ updateFilesForBulkList = (i, file) => {
 	removeDropzone() {
 		this.props.hideDropzone();
 		this.resetFilesSource();
+		this.setState({selected: false})
 	}
 
 	selectImageFiles() {
@@ -1442,14 +1443,14 @@ updateFilesForBulkList = (i, file) => {
 					 {(this.state.target.type == "video" || this.state.target.type == "video/mp4")  ? (
 						<div>
 					
-					<Selectbox
+					{<Selectbox
 					helpText=""
 					label="Air Version Type"
 					items={airVersionList}
 					inputPlaceholder="Type source"
 					onChange={this.onSearchOptimizedSelect}
 					value={this.state.selectedFilterOptimezed}
-					/>
+					/>}
 				 
 					<FieldWidgets.Text label="House ID" />
 					<Field field={fields[64]}>
@@ -1480,27 +1481,27 @@ updateFilesForBulkList = (i, file) => {
 					</div> ) : (
 
 					<div>
-					<Selectbox
-					helpText=""
-					label="Air Version Type"
-					items={airVersionList}
-					inputPlaceholder="Type source"
-					onChange={this.onSearchOptimizedSelect}
-					value={this.state.selectedFilterOptimezed}
-					/>
+					{/*<Selectbox
+										helpText=""
+										label="Show"
+										items={showList}
+										inputPlaceholder="Type source"
+										onChange={this.onSearchOptimizedSelect}
+										value={this.state.selectedFilterOptimezed}
+										/>*/}
 					<FieldWidgets.Text label="House ID" />
 					<FieldWidgets.Text label="Composition" />
 					<FieldWidgets.Text label="Color" />
 					<FieldWidgets.Text label="Color Format" />
 					<FieldWidgets.Text label="Promo Code" />
-					<Field field={fields[64]}>
 					<Selectbox
 					helpText=""
 					label="Show"
 					items={showList}
 					inputPlaceholder="Type source"
+					onChange={this.onSearchOptimizedSelect}
+					value={this.state.selectedFilterOptimezed}
 					/>
-					</Field>
 					<Field field={fields[65]}>
 					<Selectbox
 					helpText=""

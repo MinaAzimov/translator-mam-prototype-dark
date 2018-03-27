@@ -54,7 +54,14 @@
 			"id": 8,
 			"avatarImgPath": "/img/avatar/lucia-wang.jpg",
 			"role": "USER_ROLE_PA_1",
-			"colorProfile": "7"
+			"colorProfile": "9"
+		},
+		{
+			"name": "Tristan Wynn",
+			"id": 9,
+			"avatarImgPath": "/img/avatar/shaun-martinez.jpg",
+			"role": "USER_ROLE_PA_3",
+			"colorProfile": "10"
 		}
 	]
 }
