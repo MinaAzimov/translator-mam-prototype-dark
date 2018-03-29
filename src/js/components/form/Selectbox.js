@@ -24,7 +24,8 @@ export default class Selectbox extends React.Component {
       textValue: "",
       isFocused: props.stealFocus === true,
       highlightedOption: -1,
-      filteredItems: props.items
+      filteredItems: props.items,
+      isDetected: (this.props.detected) ? true : false
     }
 
     // We use native events to detect clicks on the document body
@@ -77,7 +78,8 @@ export default class Selectbox extends React.Component {
     e.preventDefault();
 
     this.setState({
-      isFocused: true
+      isFocused: true,
+      isDetected: false
     });
 
   }
@@ -234,7 +236,7 @@ export default class Selectbox extends React.Component {
 
   render() {
 
-    const selectedOption = this.props.value;
+    const selectedOption = (this.state.isDetected) ? this.props.detected : this.props.value;
     const { allowCustomText, hideMenuUntilType } = this.props;
     const { textValue, filteredItems, isFocused } = this.state;
     const stateNotEmpty = (selectedOption) ? true : false;
@@ -244,8 +246,10 @@ export default class Selectbox extends React.Component {
       "selectbox__field--complex": true,
       "selectbox_state_not-empty": stateNotEmpty,
       "selectbox_state_focused": this.state.isFocused,
+      "selectbox_state_detected": this.state.isDetected,
       "selectbox_show-list": hideMenuUntilType ? isFocused && textValue : isFocused,
-      "selectbox_state_err": this.props.errorMsg
+      "selectbox_state_err": this.props.errorMsg,
+      "selectbox_state_required": this.props.required
     });
 
     var placeholderText = (selectedOption) ? selectedOption.title : textValue;
@@ -294,7 +298,7 @@ export default class Selectbox extends React.Component {
 	              placeholder
 	          }
 	        </div>
-	        <label className="selectbox__label">{this.props.label}</label>
+	        <label className="selectbox__label">{this.props.label}<span className="selectbox__label_required">{(this.props.required) ? "*" : null}</span></label>
 	        <div className="selectbox__help-text">{this.props.helpText}</div>
 	        <div className="selectbox__err-msg">{this.props.errorMsg}</div>
 	        <SelectList

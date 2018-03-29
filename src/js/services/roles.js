@@ -2,7 +2,6 @@ import {
 	USER_ROLE_PA,
 	USER_ROLE_PA_1,
 	USER_ROLE_PA_2,
-	USER_ROLE_PA_3,
 	USER_ROLE_MAM,
 	USER_ROLE_MPM,
 	USER_ROLE_MMC,
@@ -28,12 +27,6 @@ export function getRoleConfig(role) {
 		case USER_ROLE_PA_2: {
 			return {
 				label: "Production Assistant"
-			}
-		}
-
-		case USER_ROLE_PA_3: {
-			return {
-				label: "Digital Media Administrator"
 			}
 		}
 

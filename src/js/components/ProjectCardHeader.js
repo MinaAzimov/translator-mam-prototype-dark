@@ -11,7 +11,7 @@ export default class ProjectCardHeader extends Component {
 			<thead className="library-header">
                 <tr className="library-header-row">
                   <th className="library-item library-header-item">{type} <i className="iconcss icon-line-arrow-up"> </i></th>                  
-                  <th className="library-item library-header-item">Title / Subtitle</th>
+                  <th className="library-item library-header-item">Title / Description</th>
                   <th className="library-item library-header-item">Type</th>
                   <th className="library-item library-header-item">Status</th>
                   <th className="library-item library-header-item">Edit</th>

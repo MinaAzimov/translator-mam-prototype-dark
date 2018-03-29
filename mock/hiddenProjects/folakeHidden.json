@@ -1,11 +1,11 @@
 {
 	"projectsHiddenFolake": [
 		{
-			"title": "12 Monkeys Season 4",
+			"title": "12Monkeys-S4-2018",
 			"items": [
 				{
-					"name": "Kards Catch Up",
-					"subtitle": "Season 14 Episode 1",
+					"name": "12 Monkeys-Web-Gallery-1",
+					"subtitle": "Season 4 Episode 9 Recap",
 					"type": "video",
 					"lastEditedBy": "Mia Butera",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -14,11 +14,14 @@
 					"img": "/assets/img/syfy/12-monkeys-season-4/12Monkeys_gallery_309Recap_01.jpg",
 					"height": 760,
                     "width": 1280,
+					"readyForIngest": true,
+					"readyForService": true,
+					"searchOptimized": true,
                     "id": 1,
 				},
 				{
-					"name": "Kylie in San Francisco",
-					"subtitle": "This Sunday: Brand New",
+					"name": "12 Monkeys-Web-Gallery-2",
+					"subtitle": "Season 4 Episode 9 Recap",
 					"type": "image",
 					"lastEditedBy": "Lova Yazdani",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -31,8 +34,8 @@
 
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "12 Monkeys-Web-Gallery-3",
+					"subtitle": "Season 4 Episode 9 Recap",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -44,8 +47,8 @@
                     "id": 3
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "12 Monkeys-Web-Gallery-4",
+					"subtitle": "Season 4 Episode 9 Recap",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -57,8 +60,8 @@
                     "id": 4
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "12 Monkeys-Web-Gallery-5",
+					"subtitle": "Season 4 Episode 9 Recap",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -70,8 +73,8 @@
                     "id": 5
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "12 Monkeys-Web-Gallery-6",
+					"subtitle": "Season 4 Episode 9 Recap",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -83,8 +86,8 @@
                     "id": 6
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "12 Monkeys-Web-Gallery-7",
+					"subtitle": "Season 4 Episode 9 Recap",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -96,8 +99,8 @@
                     "id": 7
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "12 Monkeys-Web-Gallery-8",
+					"subtitle": "Season 4 Episode 9 Recap",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -109,8 +112,8 @@
                     "id": 8
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "12 Monkeys-Web-Gallery-9",
+					"subtitle": "Season 4 Episode 9 Recap",
 					"type": "video",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -122,8 +125,8 @@
                     "id": 9
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "12 Monkeys-Web-Gallery-10",
+					"subtitle": "Season 4 Episode 9 Recap",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",

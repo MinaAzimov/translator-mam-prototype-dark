@@ -56,7 +56,7 @@
   pointer-events: none;
   @include font-style-input;
   font-weight: 300;
-  color: $color-grey-light;
+  color: $color-grey-mid;
   transition: all 0.2s;
   .field__focused &,
   .field__not-empty & {
@@ -64,7 +64,7 @@
     padding: 0 1px;
     top: -1px;
     @include font-style-tiny;
-    color: $color-grey-light;
+    color: $color-grey-mid;
     &::before {
       margin-top: 0;
     }
@@ -123,6 +123,7 @@
   text-align: left;
   padding: 0;
   margin: 0;
+
 }
 
 .field-text__character-count {

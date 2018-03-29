@@ -1,6 +1,10 @@
 .dark-theme {
 	background: #1d1e21;
 
+	.nav {
+		background: lighten(#2a2b30, 2%);
+	}
+
 	.library-filters {
 		background: #62788A;
 		border-bottom: solid 6px #36474F;
@@ -23,15 +27,31 @@
 		}
 	}
 
+	.dropzone .dz-message + div {
+		&.list-view {
+			.dz-preview-new {
+
+				.dz-checkbox {
+					.check {
+						border: solid 1px #2a2b30;
+					}
+					.empty-circle {
+						border: solid 2px #2a2b30 !important;
+					}
+				}
+			}
+		}
+	}
+
 	.dropzone .dz-checkbox .check {
-        background: #7d99b3;
-	    border: solid 1px #7d99b3;
-	    box-shadow: 0 0 12px 12px rgba(black,.2);
+		background: #7d99b3;
+		border: solid 1px #7d99b3;
+		box-shadow: 0 0 12px 12px rgba(black,.2);
 	}
 
 	.bulk-editing-menu {
 		button {
-			&.image-button--highlighted, &.video-button--highlighted, &.audio-button--highlighted {
+			&.image-button--highlighted, &.video-button--highlighted, &.audio-button--highlighted, &.grid-view-button--highlighted, &.list-view-button--highlighted {
 				border-color: transparent;
 				background: white; 
 				i {
@@ -50,6 +70,51 @@
 		opacity: 0.72;
 	}
 
+	.notify-others {
+		.notify-button {
+			border-bottom-color: rgba(#e9e9e9, 0.4);
+
+			button {
+				background-color: #91A5B7
+			}
+			div.ReactTags__selected span.ReactTags__tag {
+			    border: 1px solid #383a40;
+			    background: #383a40;
+			}
+
+			div.ReactTags__tagInput input.ReactTags__tagInputField,
+		    div.ReactTags__tagInput input.ReactTags__tagInputField:focus {
+		      color: #e9e9e9;
+		    }
+		}
+	}
+
+	.bulk-editing-menu button.bulk-button.disabled {
+	    border-color: #AEBDCA;
+	    i {
+	    	color: #AEBDCA;
+	    	-webkit-text-stroke: .5px #AEBDCA;
+	    }
+	}
+
+	.filling-out-status {
+		.swatch {
+			border: solid 1px #2a2b30;
+		}
+	}
+
+	.selectbox_state_focused .selectbox__input, .field__focused .field-text__input {
+		border-color: lighten(#91A5B7, 6%) !important;
+		box-shadow: 0 1px 0 0 lighten(#91A5B7, 6%);
+	}
+
+	.selectbox__field.selectbox_state_open .selectbox__label, .selectbox__field.selectbox_state_focused .selectbox__label {
+		color: lighten(#91A5B7, 6%);
+	}
+
+	.selectbox__list-item--selected, .selectbox__list-item--selected.is-hightlighted {
+		background-color: lighten(#91A5B7, 6%);
+	}
 
 	.selectbox__wrapper {
 		.selectbox__input {
@@ -92,7 +157,7 @@
 	}
 
 	.actions-header .group-by {
-	    color: darken(#e9e9e9, 6%);
+		color: darken(#e9e9e9, 6%);
 	}
 
 	.card-section__title:before {

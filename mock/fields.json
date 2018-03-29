@@ -536,6 +536,7 @@
 	    "label": "Material Type",
 	    "currentEditor": null,
 	    "value": null,
+		"required": true,
 	    "widget": "Text",
 			"helpText": ""
 	  },
@@ -563,6 +564,7 @@
 	    "label": "Media Type Class",
 	    "currentEditor": null,
 	    "value": null,
+	    "required": true,
 	    "widget": "Text",
 			"helpText": ""
 	  },
@@ -597,6 +599,7 @@
 	    "id": 64,
 	    "name": "show_list",
 	    "label": "Show",
+		"required": true,
 	    "currentEditor": null,
 	    "value": null,
 	    "widget": "Text",
@@ -606,6 +609,7 @@
 	    "id": 65,
 	    "name": "season_list",
 	    "label": "Season",
+		"required": true,
 	    "currentEditor": null,
 	    "value": null,
 	    "widget": "Text",
@@ -632,9 +636,9 @@
 	  {
 	    "id": 68,
 	    "name": "project_name",
-	    "label": null,
+	    "label": "Project Name",
 	    "currentEditor": null,
-	    "value": "Project Name",
+	    "value": "",
 	    "widget": "Text",
 			"helpText": ""
 	  },
@@ -649,18 +653,19 @@
     {
 	    "id": 70,
 	    "name": "episode_filed",
-	    "label": null,
+	    "label": "Description",
 	    "currentEditor": null,
-	    "value": "Subtitle",
+	    "value": "",
 	    "widget": "Text",
 			"helpText": ""
 	  },
 	  {
 	    "id": 71,
 	    "name": "episode_season",
-	    "label": null,
+	    "label": "Title",
+	    "required": true,
 	    "currentEditor": null,
-	    "value": "Title",
+	    "value": "",
 	    "widget": "Text",
 			"helpText": ""
 	  },
@@ -670,6 +675,45 @@
 	    "label": "Secondary Type",
 	    "currentEditor": null,
 	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	   {
+	    "id": 73,
+	    "name": "content_type",
+	    "label": "Content Type",
+	    "currentEditor": null,
+	    "value": null,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+  	  {
+	    "id": 74,
+	    "name": "material_type2",
+	    "label": "Material Type",
+	    "currentEditor": null,
+	    "value": null,
+		"required": true,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 75,
+	    "name": "media_type_class2",
+	    "label": "Media Type Class",
+	    "currentEditor": null,
+	    "value": null,
+	    "required": true,
+	    "widget": "Text",
+			"helpText": ""
+	  },
+	  {
+	    "id": 76,
+	    "name": "language",
+	    "label": "Language",
+	    "currentEditor": null,
+	    "value": null,
+	    "required": true,
 	    "widget": "Text",
 			"helpText": ""
 	  }

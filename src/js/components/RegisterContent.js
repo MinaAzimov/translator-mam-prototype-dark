@@ -25,6 +25,7 @@ import { getContentItems } from "../services/content";
 import { getUserData } from "../services/users";
 import TagsInput from "./form/TagsInput";
 import moment from "moment";
+import axios from 'axios';
 
 import projectsFolake from '../../../mock/folake.json';
 import projectsCharlotte from '../../../mock/charlotte.json';
@@ -203,7 +204,6 @@ class RegisterContent extends Component {
       $(this).toggleClass("active");
     });
 
-
   }
 
   componentWillMount() {
@@ -246,11 +246,6 @@ class RegisterContent extends Component {
     if(this.props.client.user.name == "Luke Marron") {
       this.setState({hiddenProjects: projectsHiddenLuke.projectsHiddenLuke,
                     projects: projectsLuke.projectsLuke  })
-    }
-
-    if(this.props.client.user.name == "Tristan Wynn") {
-      this.setState({hiddenProjects: projectsHiddenReed.projectsHiddenReed,
-                    projects: projectsReed.projectsReed  })
     }
   }
 
@@ -345,6 +340,7 @@ class RegisterContent extends Component {
                       <ProjectItem
                       //editingLocalProject={this.state.editingLocalProject}
                       //editExistingProject={this.editExistingProject}
+                      key={index}
                       name={item.name}
                       subtitle={item.subtitle}
                       type={item.type}
@@ -369,6 +365,7 @@ class RegisterContent extends Component {
                       <ProjectItem
                       //editingLocalProject={this.state.editingLocalProject}
                       //editExistingProject={this.editExistingProject}
+                      key={index}
                       name={item.name}
                       subtitle={item.subtitle}
                       type={item.type}
@@ -393,6 +390,7 @@ class RegisterContent extends Component {
                       <ProjectItem
                       //editingLocalProject={this.state.editingLocalProject}
                       //editExistingProject={this.editExistingProject}
+                      key={index}
                       name={item.name}
                       subtitle={item.subtitle}
                       type={item.type}
@@ -447,6 +445,7 @@ class RegisterContent extends Component {
                       <ProjectItem
                       editingLocalProject={this.state.editingLocalProject}
                       editExistingProject={this.showDropzone}
+                      key={index}
                       name={item.name}
                       subtitle={item.subtitle}
                       type={item.type}
@@ -471,6 +470,7 @@ class RegisterContent extends Component {
                       <ProjectItem
                       editingLocalProject={this.state.editingLocalProject}
                       editExistingProject={this.showDropzone}
+                      key={index}
                       name={item.name}
                       subtitle={item.subtitle}
                       type={item.type}
@@ -495,6 +495,7 @@ class RegisterContent extends Component {
                       <ProjectItem
                       editingLocalProject={this.state.editingLocalProject}
                       editExistingProject={this.showDropzone}
+                      key={index}
                       name={item.name}
                       subtitle={item.subtitle}
                       type={item.type}
@@ -551,25 +552,20 @@ class RegisterContent extends Component {
                     <FieldWidgets.Text />
                   </Field>
                   </div>
-                  <div className="uploading-content-row">
-
-                 {/*<Field field={fields[69]}>
-                                         <Switch/>
-                                   </Field>*/}
-                   
-                    <span className="dz-upload" id="upload">
-                      <div className="dz-master-progress">
-                        <span className="dz-master-progress--text-lg">Uploaded 8 of 8</span>
-                        <span className="dz-master-progress--text-sm"><i className="iconcss icon-last-modified"></i>3/22/18</span>
+                  <div id="upload" className="uploading-content-col">
+                  <div className="dz-master-progress">
+                    <span className="dz-master-progress--text-lg">Uploaded 8 of 8</span>
+                    <span className="dz-master-progress--text-sm"><i className="iconcss icon-last-modified"></i>3/22/18</span>
+                  </div>
+                    <div className="uploading-content-row">
+                      <button className="apply">Notify When Complete<i className="iconcss icon-bullhorn"></i></button>
+                      <span className="dz-upload">
                         <div className="dz-master-progress--bar">
-                            <div className="dz-master-progress--bar-inner"></div>
+                        <div className="dz-master-progress--bar-inner"></div>
                         </div>
-                      </div>
-                    </span>
-                    {/*<ComplexListItem/>*/}
-                    {/*<NotifyButton/>*/}
-                    <button className="apply">Notify Me When Complete<i className="iconcss icon-bullhorn"></i></button>
+                      </span>
                     </div>
+                  </div>
                 </div>
   
                 <CardSection>

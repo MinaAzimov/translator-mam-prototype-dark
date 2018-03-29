@@ -12,46 +12,42 @@ import { defaultIcons } from "../lib/ui/DefaultIcons";
 
 export default class UploadedFile extends Component {
 
-	onClick = (i) => {
-		this.props.handleClick(this, i)
-	}
-
 	render() {
 
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
-		const { handleClick, file, updateFilesForBulkList, removeFile, type, src, name, size, i, selected, imageSelectionEnabled, videoSelectionEnabled, audioSelectionEnabled, multiSelect, files, target, id } = this.props;
+		const { handleClick, file, updateFilesForBulkList, removeFile, type, src, name, size, i, selected, imageSelectionEnabled, videoSelectionEnabled, audioSelectionEnabled, multiSelect, files, target, id, setRef } = this.props;
 
-			const classnames = classNames({
+	const classnames = classNames({
 			"files-information": true,
 			"files-information--show": selected
 		});
 
 		const imageSelector = classNames({
-			"image-button": true,
+			"image-button": videoSelectionEnabled || audioSelectionEnabled,
 			"image-button--highlighted": imageSelectionEnabled,
-			"disabled": videoSelectionEnabled || audioSelectionEnabled
+			
 		});
 
 		const videoSelector = classNames({
-			"video-button": true,
+			"video-button": imageSelectionEnabled || audioSelectionEnabled,
 			"video-button--highlighted": videoSelectionEnabled,
-			"disabled": imageSelectionEnabled || audioSelectionEnabled
+			
 		});
 
 		const audioSelector = classNames({
-			"audio-button": true,
+			"audio-button": videoSelectionEnabled || imageSelectionEnabled,
 			"audio-button--highlighted": audioSelectionEnabled,
-			"disabled": videoSelectionEnabled || imageSelectionEnabled
+			
 		});
 
-			const bulkDisable = classNames({
+		const bulkDisable = classNames({
 			"bulk-button": true,
 			"disabled": !videoSelectionEnabled && !imageSelectionEnabled && !audioSelectionEnabled
 		});
 
 		const checkboxDisable = classNames({
-			"": false,
-			"hidden": !multiSelect
+			"check": true,
+			"hidden": !videoSelectionEnabled && !imageSelectionEnabled && !audioSelectionEnabled
 		});
 
 		const loadingAnimation = classNames({
@@ -61,7 +57,7 @@ export default class UploadedFile extends Component {
 
 		return (
 	   			<div key={i} className="dz-preview-new dz-processing dz-image-preview" >
-					<div className="dz-image" onClick={(i) => this.onClick(this, i)}>
+					<div className="dz-image" value={i} key={i} onClick={this.props.handleClick.bind(this, i, file)}>
 					<div>
 					{ 
 						(file.type == 'video/mp4') ? (
@@ -100,11 +96,10 @@ export default class UploadedFile extends Component {
 					<input 
 					key={file} 
 					type="checkbox"
-					checked="checked"
 					className={type}
-					onClick={(e)=>this.props.updateFilesForBulkList(e,file)}
+					onClick={this.props.updateFilesForBulkList.bind(this, i, file)}
 					/>
-					<div className="check" onClick={(e)=>this.props.updateFilesForBulkList(e,file)}><i className="iconcss icon-checkmark"></i></div>
+					<div className={checkboxDisable} ref={id} value={i} key={i} onClick={this.props.updateFilesForBulkList.bind(this, i, file)}><i className="iconcss icon-checkmark"></i></div>
 					</div>
 
 					<span className="dz-title"><Truncate lines={1} ellipsis={"..." + name.slice(-12)}>
@@ -144,6 +139,10 @@ export default class UploadedFile extends Component {
 					</div>
 
 					<div className="dz-error-mark">
+					<span />
+					</div>
+
+					<div className="dz-edit" onClick={this.props.handleClick.bind(this, i, file)}>
 					<span />
 					</div>
 					</div>	

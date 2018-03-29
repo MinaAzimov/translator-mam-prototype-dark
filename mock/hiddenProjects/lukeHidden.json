@@ -1,11 +1,11 @@
 {
 	"projectsHiddenLuke": [
 		{
-			"title": "Life of Kylie",
+			"title": "LifeofKylie-S1-2018",
 			"items": [
 				{
-					"name": "Kards Catch Up",
-					"subtitle": "Season 14 Episode 1",
+					"name": "Blonde-Kylie-Shoot",
+					"subtitle": "New Hairstyle",
 					"type": "video",
 					"lastEditedBy": "Mia Butera",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -14,11 +14,14 @@
 					"img": "/assets/img/e!/life-of-kylie/1.jpg",
 					"height": 760,
                     "width": 1280,
+					"readyForIngest": true,
+					"readyForService": true,
+					"searchOptimized": true,
                     "id": 1,
 				},
 				{
-					"name": "Kylie in San Francisco",
-					"subtitle": "This Sunday: Brand New",
+					"name": "Blonde-Kylie-Shoot 2",
+					"subtitle": "Swimsuit",
 					"type": "image",
 					"lastEditedBy": "Lova Yazdani",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -31,8 +34,8 @@
 
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "Blonde-Kylie-Shoot 3",
+					"subtitle": "Sweatpants",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -44,8 +47,8 @@
                     "id": 3
 				},
 				{
-					"name": "Xmas Tree",
-					"subtitle": "This Sunday: Brand New",
+					"name": "Blonde-Kylie-Shoot 3",
+					"subtitle": "Poolside",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
 					"lastEditedOn": "03/15/18 at 02:15 PM",
@@ -57,7 +60,7 @@
                     "id": 4
 				},
 				{
-					"name": "Xmas Tree",
+					"name": "Blonde-Kylie-Shoot 3",
 					"subtitle": "This Sunday: Brand New",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
@@ -70,7 +73,7 @@
                     "id": 5
 				},
 				{
-					"name": "Xmas Tree",
+					"name": "Selfie Promo Text",
 					"subtitle": "This Sunday: Brand New",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
@@ -83,7 +86,7 @@
                     "id": 6
 				},
 				{
-					"name": "Xmas Tree",
+					"name": "Mirrors Promo",
 					"subtitle": "This Sunday: Brand New",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",
@@ -96,7 +99,7 @@
                     "id": 7
 				},
 				{
-					"name": "Xmas Tree",
+					"name": "Dark Promo Text",
 					"subtitle": "This Sunday: Brand New",
 					"type": "image",
 					"lastEditedBy": "Grecia Lopez",

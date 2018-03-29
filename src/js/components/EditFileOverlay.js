@@ -265,8 +265,8 @@ handleChange = (i) => {
             </div>
               <div className="dz-container-1">
             <div className="filepicker dropzone dz-clickable">
-              <div className="dz-clickable" id="dz-custom-mesg-1">
-            <div>
+              <div className="dz-clickable" id="dz-custom-mesg-2">
+            <div className="overflow-scrolling">
              {!removed ? (
                itemsForBulk.map((file, i) => (
 

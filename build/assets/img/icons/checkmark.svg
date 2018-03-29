@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="11px" height="9px" viewBox="0 0 11 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.4 (15588) - http://www.bohemiancoding.com/sketch -->
-    <title>checkmark</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="checkmark" sketch:type="MSLayerGroup" transform="translate(-3.000000, -4.000000)">
-            <rect id="Rectangle-718" sketch:type="MSShapeGroup" x="0" y="0" width="16" height="16"></rect>
-            <path d="M12.792,4.00047014 C12.018,4.45047014 11.01,5.38647014 10.344,5.98047014 C9.012,7.16847014 7.734,8.41047014 6.474,9.67047014 L3.954,7.47447014 L3,8.41047014 C4.386,9.79647014 5.88,11.2904701 7.104,12.8384701 C8.67,10.2644701 11.226,6.57447014 13.422,4.63047014 C13.35,4.48647014 13.044,3.98247014 12.792,4.00047014 Z" id="õ" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
-        </g>
-    </g>
-</svg>
+<svg width="11" height="9" viewBox="0 0 11 9" xmlns="http://www.w3.org/2000/svg"><title>checkmark</title><g fill="none" fill-rule="evenodd"><path d="M-3-4h16v16H-3z"/><path d="M9.792 0C9.018.45 8.01 1.386 7.344 1.98a93.649 93.649 0 0 0-3.87 3.69L.954 3.474 0 4.41c1.386 1.386 2.88 2.88 4.104 4.428C5.67 6.264 8.226 2.574 10.422.63c-.072-.144-.378-.648-.63-.63z" fill="#FFF"/></g></svg>

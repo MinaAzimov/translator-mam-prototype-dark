@@ -53,7 +53,7 @@ class Field extends Component {
 	}
 
 	render() {
-		let { name, field, client, addPencil } = this.props;
+		let { name, field, client, addPencil, detected } = this.props;
 		if (!field) { return (<div className="field-wrapper" />); }
 		let currentEditor = null;
 		let isLocked = field.currentEditor !== null && field.currentEditor !== client.user.id;
@@ -69,6 +69,8 @@ class Field extends Component {
 				onStartEdit: this.onStartEdit,
 				onStopEdit: this.onStopEdit,
 				value: field.value,
+				required: field.required,
+				detected: detected,
 				label: field.label,
 				helpText: field.helpText,
 				isLocked: isLocked,

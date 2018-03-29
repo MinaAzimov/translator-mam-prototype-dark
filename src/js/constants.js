@@ -7,7 +7,6 @@ export const TASK_PRIORITY_LOW = 2;
 export const USER_ROLE_PA = "USER_ROLE_PA"
 export const USER_ROLE_PA_1 = "USER_ROLE_PA_1"
 export const USER_ROLE_PA_2 = "USER_ROLE_PA_2"
-export const USER_ROLE_PA_3 = "USER_ROLE_PA_3"
 export const USER_ROLE_MAM = "USER_ROLE_MAM"
 export const USER_ROLE_MPM = "USER_ROLE_MPM"
 export const USER_ROLE_MMC = "USER_ROLE_MMC"

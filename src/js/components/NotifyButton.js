@@ -1,82 +1,136 @@
 import React, { Component, PropTypes } from 'react';
+import { EMAILS } from '../../../mock/emails.js';
+import { WithOutContext as ReactTags } from 'react-tag-input';
 import classNames from "classnames";
-import { findDOMNode } from "react-dom";
 
-import $ from "jquery";
 
 export default class NotifyButton extends Component {
-
-
-  callLocalEdit() {
-    this.props.editExistingProject();            
+  constructor(props) {
+    super(props);
+    this.state = {
+      notifyOptionsShow: false, 
+      placeholder: "Notify By Email",
+      tags: [],
+      // tags: [
+      //   { id: 1, text: "enews.pa@nbcuni.com" }, 
+      //   { id: 2, text: "enews.pa-team@nbcuni.com" }
+      // ],
+      suggestions: EMAILS,
+    };
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleAddition = this.handleAddition.bind(this);
+    this.handleDrag = this.handleDrag.bind(this);
+    this.handleTagClick = this.handleTagClick.bind(this);
+    this.openNotifyOptions = this.openNotifyOptions.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
-
-    const notify = findDOMNode(this.refs.notify);
-    const form = findDOMNode(this.refs.form);
-    const input = findDOMNode(this.refs.input);
-    // this.$form = findDOMNode(this.refs.form);
-    // this.$label = $(this.label);
-    // this.$email = $(this.email);
-
-    // console.log(this.$form);
-    // this.$el.chosen();
-
-    // this.handleChange = this.handleChange.bind(this);
-    // this.$el.on('change', this.handleChange);
-
-
-    $(notify).click(function(){
-      $(".cta:not(.sent)").addClass("active");
-      $("input").focus();
-    });
-
-    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    $(input).on('input', function(){
-      if(regex.test($(this).val())) {
-        $("button").removeAttr("disabled"); }
-      else {
-        $("button").attr("disabled", "disabled"); }
-    });
-
-    $(form).submit(function(x){
-      x.preventDefault();
-      if(regex.test($("input").val())) {
-        $(".cta span").text("Thank you!");
-        $(".cta").removeClass("active").addClass("sent");
-      }
-    });
-
+      document.addEventListener('mousedown', this.handleClickOutside);
   }
 
+  componentWillUnmount() {
+      document.removeEventListener('mousedown', this.handleClickOutside);
+  }
 
-	render() {
-    // const { name, subtitle, type, img, editExistingProject, editingLocalProject, readyForIngest, readyForService, searchOptimized } = this.props;
-		// const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
+  handleClickOutside(event) {
+    if(!this.refs.wrapper.contains(event.target)) {
+      this.setState({
+        notifyOptionsShow: false
+      });
+    }
+  }
 
-    // const iconClassnames = classNames({
-    //   'iconcss': true,
-    //   'icon-type-video': type == 'video',
-    //   'icon-type-image': type == 'image',
-    //   'icon-type-audio': type == 'audio'
-    // })
-		
+  handleDelete(i) {
+    this.setState({
+      tags: this.state.tags.filter((tag, index) => index !== i),
+    });
+  }
+
+  handleAddition(tag) {
+    let { tags } = this.state;
+    this.setState({ tags: [...tags, { id: tags.length + 1, text: tag }] });
+  }
+
+  handleDrag(tag, currPos, newPos) {
+    const tags = [...this.state.tags];
+
+    // mutate array
+    tags.splice(currPos, 1);
+    tags.splice(newPos, 0, tag);
+
+    // re-render
+    this.setState({ tags });
+  }
+
+  handleTagClick(index) {
+    console.log('The tag at index ' + index + ' was clicked');
+    this.setState({
+      notifyOptionsShow: false
+    });
+  }
+
+  openNotifyOptions() {
+    this.setState({
+      notifyOptionsShow: true
+    });
+  }
+
+  onSubmit() {
+    this.setState({
+      placeholder: "Success!",
+      tags: [],
+      notifyOptionsShow: false
+    });
+    setTimeout(()=>{
+      this.setState({
+        placeholder: "Notify By Email",
+      });
+    }, 3600);
+  }
+
+  render() {
+    const { placeholder, tags, suggestions } = this.state;
+
+    const notifyOptionsClassNames = classNames({
+      "notify-options": true,
+      "notify-options--show": this.state.notifyOptionsShow
+    })
+
     return (
-      <div className="notify-button">
-        <div className="cta">
-          <span ref="notify">Notify When Complete</span>
-          <form ref="form">
-            <div className="input">
-              <input ref="input" placeholder="E-mail"></input>
-            </div>
-            <div className="button">
-              <button disabled="disabled" type="submit">Send</button>
-            </div>
-          </form>
+      <div className="notify-button" ref="wrapper">
+        <ReactTags
+          placeholder={placeholder}
+          tags={tags}
+          suggestions={suggestions}
+          handleDelete={this.handleDelete}
+          handleAddition={this.handleAddition}
+          handleDrag={this.handleDrag}
+          handleTagClick={this.handleTagClick}
+          removeComponent={RemoveComponent}
+        />
+        <button onClick={this.openNotifyOptions}><i className="iconcss icon-bullhorn"></i></button>
+        <ul className={notifyOptionsClassNames}>
+          <li><a onClick={this.onSubmit}><i className="iconcss icon-bullhorn"></i>Notify Now</a></li>
+          <li><a onClick={this.onSubmit}><img src="/assets/img/icons/ready-for-ingest.svg"/><span>When Ready for Ingest</span></a></li>
+          <li><a onClick={this.onSubmit}><img src="/assets/img/icons/ready-for-service.svg"/><span>When Ready for Service</span></a></li>
+          <li><a onClick={this.onSubmit}><img src="/assets/img/icons/search-optimized.svg"/><span>When Search Optimized</span></a></li>
+        </ul>
+        <div className="scheduled-dots">
+          <span className="scheduled-dot scheduled-dot--ingest"></span>
+          <span className="scheduled-dot scheduled-dot--service"></span>
+          <span className="scheduled-dot scheduled-dot--optimized"></span>
         </div>
       </div>
-		)
-	}
+    );
+  }
+}
+
+class RemoveComponent extends Component {
+   render() {
+      return (
+         <i {...this.props} className="iconcss icon-close"></i>
+      )
+   }
 }

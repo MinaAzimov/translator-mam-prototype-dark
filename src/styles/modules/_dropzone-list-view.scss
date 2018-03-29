@@ -13,22 +13,40 @@
 			.dz-image, .dz-image img {
 				// width: 140px;
 				// height: 90px;
-			    width: 100px;
-			    height: 70px;
+			    width: 112px;
+			    height: 72px;
 				margin-left: 12px;
+			}
+			.dz-image img {
+				margin-left: 0;
+			}
+
+			.dz-edit {
+				position: absolute;
+				width: 95%;
+			    height: 100%;
 			}
 
 			.dz-details {
 				opacity: 1;
+				height: 100%;
+			    display: inline-flex;
+			    align-items: center;
+			    padding-top: 0;
+			    width: auto;
+			    min-width: auto;
+			    position: absolute;
+			    left: auto;
+			    right: 0;
 			}
 
 			.dz-checkbox {
 				top: 6px;
 				left: 15px;
+
 				.check {
 					box-shadow: none;
 					border: solid 1px white;
-
 				}
 				.empty-circle {
 				    border: solid 2px white !important;

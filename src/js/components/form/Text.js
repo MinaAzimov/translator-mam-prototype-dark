@@ -9,7 +9,8 @@ export default class Text extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: ''
+			value: '',
+			isDetected: true
 		}
 	}
 
@@ -46,7 +47,10 @@ export default class Text extends Component {
 	};
 
 	onFocus = (e) => {
-		this.setState({ focused: true });
+		this.setState({ 
+			focused: true,
+			isDetected: false
+		});
 		if (this.props.onStartEdit) {
 			this.props.onStartEdit();
 		}
@@ -72,8 +76,10 @@ export default class Text extends Component {
 		let classnames = classNames({
 			'field-text': true,
 			'field__not-empty': value,
+			'field__detected': (this.props.value != null) ? ((this.state.isDetected) ? true : false) : false,
 			'field__focused': this.state.focused,
 			'field__disabled': this.props.disabled,
+			'field__required': this.props.required,
 			'field-text--exceeded-limit': characterLimit !== null && ccount > characterLimit
 		});
 
@@ -81,7 +87,7 @@ export default class Text extends Component {
 		return (
 			<div className={classnames}>
 				<label className="field__label">
-					{this.props.label }
+					{this.props.label }<span className="field__label_required">{(this.props.required) ? "*" : null}</span>
 				</label>
 				<input
 					className="field-text__input"

@@ -15,7 +15,7 @@
 					"height": 760,
 					"readyForIngest": true,
 					"readyForService": true,
-					"searchOptimized": false,
+					"searchOptimized": true,
                     "width": 1280,
                     "id": 1,
 				},

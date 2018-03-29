@@ -317,6 +317,20 @@
       opacity: 0;
     }
   }
+
+  .overflow-scrolling {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    margin-bottom: 24px;
+
+    .dz-preview-new {
+      min-width: 290px;
+    }
+  }
+  .filepicker {
+    padding: 0;
+  }
 }
 
 .cnbc-modal {
@@ -484,7 +498,7 @@ body > div:[aria-hidden="true"]:last-of-type {
   overflow-y: scroll;
   top: 0;
   z-index: 99999;
-  background: rgba(#222, .85);
+  background: rgba(#222, .9);
   outline: none;
   border: none;
   box-shadow: 0px 0px 12px 8px rgba(#FFF, 0.5);

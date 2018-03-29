@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
-import { staticUrl } from '../lib/utils';
 export default class Svg extends Component {
 
 	render() {
 	
 		return (
-			<div>
+			
 			<svg width="325px" height="250px" viewBox="0 0 221 170" style={{display: 'inlineBlock', color: 'rgba(0, 0, 0, 0.87)', fill: 'currentcolor', height: '250px', width: '325px' }}>
 			<g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
 			<g id="drag-and-drop-illustration" transform="translate(-60.000000, -14.000000)">
@@ -58,7 +57,7 @@ export default class Svg extends Component {
 			</g>
 			</g>
 			</svg>
-			</div>
+		
 		
 		)
 	}
