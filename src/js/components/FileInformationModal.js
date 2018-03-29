@@ -80,16 +80,16 @@ class FileInformationModal extends Component {
 					{ (this.props.target.type == "audio" || this.props.target.type == "image/mp3") ? (<i className="iconcss icon-type-audio"></i>) : null}
 					{ this.props.target.type }
 					</span>
-					<span className="corner"><div className="swatch"></div>Detected Fields</span>
-					<span className="corner"><div className="required-legend">*</div>Required Fields</span>
+					<span><div className="swatch"></div>Detected Fields</span>
+					<span><div className="required-legend">*</div>Required Fields</span>
 					<div className="notify-others">
-						{<NotifyButton/>}
-						{/*<span className="input input--chisato">
-													<input className="input__field input__field--chisato" type="text" id="input-13"/>
-													<label className="input__label input__label--chisato" htmlFor="input-13">
-														<span className="input__label-content input__label-content--chisato" data-content="Email">Notify Others<i className="iconcss icon-bullhorn"></i></span>
-													</label>
-												</span>*/}
+						{/*<NotifyButton/>*/}
+						<span className="input input--chisato">
+							<input className="input__field input__field--chisato" type="text" id="input-13"/>
+							<label className="input__label input__label--chisato" htmlFor="input-13">
+								<span className="input__label-content input__label-content--chisato" data-content="Email">Notify Others<i className="iconcss icon-bullhorn"></i></span>
+							</label>
+						</span>
 					</div>
 	 
 					</div>

@@ -308,23 +308,19 @@ class RegisterContent extends Component {
     projectsData = this.state.projects.map((project, index) =>
           <div id={"test" + index} key={index} className={showCardBoard}>
             <Card title={project.title} id={"project" + index}>
-              <div className="actions-header">
-                <i className="iconcss icon-edit" onClick={this.showDropzone.bind(this)}></i>
-                <i className="iconcss icon-upload"></i>
+              <div className="actions-header actions-header--right">
+                <i className="iconcss icon-upload" onClick={this.showDropzone.bind(this)}></i>
+                <div className="last-edited">
+                  <i className="iconcss icon-last-modified"></i>
+                  <span>Last Modified by {this.props.client.user.name.split(' ').shift()} on {moment().format("MMM D")}</span>
+                </div>
+              </div>
+              <div className="actions-header actions-header--left">
                 <div className="group-by">
                   <i className="iconcss icon-group-by"></i>
                   <span>Group By: File Type</span>
                 </div>
-                <div className="last-edited">
-                  <i className="iconcss icon-last-modified"></i>
-                  <span>{moment.unix(Date.now()).format("MMM D hh:mm:ss A")}</span>
                 </div>
-                <div className="created-by">
-                  <i className="iconcss icon-user"></i>
-                  <span>{this.props.client.user.name}</span>
-                </div>
-
-              </div>
               <CardSection>
                 { (project.items.filter((obj) => obj.type == 'video').length > 0) ? 
                 (
@@ -414,20 +410,17 @@ class RegisterContent extends Component {
             <Card title={project.title} id={"project" + index} >
               <CardSection>
 
-              <div className="actions-header">
-                <i className="iconcss icon-edit" onClick={this.showDropzone.bind(this)}></i>
-                <i className="iconcss icon-upload"></i>
+              <div className="actions-header actions-header--right">
+                <i className="iconcss icon-upload" onClick={this.showDropzone.bind(this)}></i>
+                <div className="last-edited">
+                  <i className="iconcss icon-last-modified"></i>
+                  <span>Last Modified by {this.props.client.user.name.split(' ').shift()} on {moment().format("MMM D")}</span>
+                </div>
+              </div>
+              <div className="actions-header actions-header--left">
                 <div className="group-by">
                   <i className="iconcss icon-group-by"></i>
                   <span>Group By: File Type</span>
-                </div>
-                <div className="last-edited">
-                  <i className="iconcss icon-last-modified"></i>
-                  <span>{moment.unix(Date.now()).format("MMM D hh:mm:ss A")}</span>
-                </div>
-                <div className="created-by">
-                  <i className="iconcss icon-user"></i>
-                  <span>{this.props.client.user.name}</span>
                 </div>
               </div>
 
