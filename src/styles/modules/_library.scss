@@ -446,6 +446,11 @@
   &:first-child {
     font-size: 16px;
   }
+
+  .icon-edit {
+    cursor: pointer;
+    color: $color-light-blue;
+  }
 }
 
 .library-item-user {
@@ -631,6 +636,7 @@
     i {
       font-size: 15px;
       margin-left: 9px;
+
     }
 
     &.apply {
@@ -684,6 +690,10 @@
     .card-section__title:before {
       border-color: transparent;
     }
+    .card-title {
+      padding: 32px 24px;
+      font-size: 21px;
+    }
   }
 
 .actions-header {
@@ -699,7 +709,7 @@
   }
 
   &--right {
-    top: -48px;
+    top: -62px;
     right: 72px;
   }
 
@@ -708,23 +718,45 @@
     left: 24px;
   }
 
-  .group-by, .last-edited, .created-by {
+  .go-to-project, .group-by {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     i {
       margin-right: 6px;
+      font-size: 17px;
     }
+
     span {
+      font-size: 14px;
+      // margin-top: 3px;
+      font-weight: 400;
+    }
+  }
+
+  .go-to-project {
+     i {
+        font-size: 21px;
+        color: $color-light-blue;
+     }
+  }
+
+  .last-edited {
+    color: #999;
+    i {
+      margin-right: 6px;
       font-size: 13px;
     }
-  }
-
-  .last-edited, .group-by {
-    i {
-      font-size: 15px;
+    span {
+      font-size: 12px;
+      font-weight: 400;
     }
   }
 
+
   div {
-    color: #999;
   }
 
   .group-by {

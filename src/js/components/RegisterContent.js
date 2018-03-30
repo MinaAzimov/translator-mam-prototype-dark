@@ -309,17 +309,22 @@ class RegisterContent extends Component {
           <div id={"test" + index} key={index} className={showCardBoard}>
             <Card title={project.title} id={"project" + index}>
               <div className="actions-header actions-header--right">
-                <i className="iconcss icon-upload" onClick={this.showDropzone.bind(this)}></i>
+                <div className="go-to-project">
+                  <i className="iconcss icon-upload" onClick={this.showDropzone.bind(this)}></i>
+                  <span>Go To Project</span>
+                </div>
+              </div>
+              <div className="actions-header actions-header--left">
                 <div className="last-edited">
                   <i className="iconcss icon-last-modified"></i>
                   <span>Last Modified by {this.props.client.user.name.split(' ').shift()} on {moment().format("MMM D")}</span>
                 </div>
-              </div>
-              <div className="actions-header actions-header--left">
+
                 <div className="group-by">
                   <i className="iconcss icon-group-by"></i>
                   <span>Group By: File Type</span>
                 </div>
+
                 </div>
               <CardSection>
                 { (project.items.filter((obj) => obj.type == 'video').length > 0) ? 
@@ -411,16 +416,19 @@ class RegisterContent extends Component {
               <CardSection>
 
               <div className="actions-header actions-header--right">
-                <i className="iconcss icon-upload" onClick={this.showDropzone.bind(this)}></i>
-                <div className="last-edited">
-                  <i className="iconcss icon-last-modified"></i>
-                  <span>Last Modified by {this.props.client.user.name.split(' ').shift()} on {moment().format("MMM D")}</span>
+                <div className="go-to-project">
+                  <i className="iconcss icon-upload" onClick={this.showDropzone.bind(this)}></i>
+                  <span>Go To Project</span>
                 </div>
               </div>
               <div className="actions-header actions-header--left">
+                <div className="last-edited">
+                    <i className="iconcss icon-last-modified"></i>
+                    <span>Last Modified by {this.props.client.user.name.split(' ').shift()} on {moment().format("MMM D")}</span>
+                </div>
                 <div className="group-by">
-                  <i className="iconcss icon-group-by"></i>
-                  <span>Group By: File Type</span>
+                    <i className="iconcss icon-group-by"></i>
+                    <span>Group By: File Type</span>
                 </div>
               </div>
 
