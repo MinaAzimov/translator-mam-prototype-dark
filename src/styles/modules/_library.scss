@@ -474,7 +474,7 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding: 10px 20px;
+  padding: 18px 30px;
   height: inherit;
   position: relative;
   transition: .2s ease-out;
@@ -502,7 +502,7 @@
 }
 
 .library-filters-title {
-  margin-top: 10px;
+  // margin-top: 10px;
   font-family: $font-main;
   font-size: 40px;
   font-weight: 100;
@@ -629,7 +629,7 @@
 }
 
 .library-filter-controls {
-  padding: 9px 0 0;
+  // padding: 9px 0 0;
 
   button {
 
@@ -709,16 +709,16 @@
   }
 
   &--right {
-    top: -62px;
+    top: -60px;
     right: 72px;
   }
 
   &--left {
-    top: -12px;
+    top: -18px;
     left: 24px;
   }
 
-  .go-to-project, .group-by {
+  .go-to-project {
     cursor: pointer;
     display: flex;
     flex-direction: row;
@@ -733,6 +733,7 @@
       font-size: 14px;
       // margin-top: 3px;
       font-weight: 400;
+      line-height: 0;
     }
   }
 
@@ -743,7 +744,7 @@
      }
   }
 
-  .last-edited {
+  .last-edited, .group-by {
     color: #999;
     i {
       margin-right: 6px;
@@ -751,7 +752,7 @@
     }
     span {
       font-size: 12px;
-      font-weight: 400;
+      // font-weight: 400;
     }
   }
 

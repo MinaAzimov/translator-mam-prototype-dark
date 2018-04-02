@@ -97,6 +97,14 @@
 	    }
 	}
 
+	.actions-header .last-edited, .actions-header .group-by {
+	    color: #cacaca;
+	}
+
+	.library-item-text .icon-edit, .actions-header .go-to-project i {
+		color: #91A5B7;
+	}
+
 	.filling-out-status {
 		.swatch {
 			border: solid 1px #2a2b30;
@@ -146,6 +154,11 @@
 		.card--id-basic-info, .card--id-metadata, .card--id-additional { 
 			background-color: #383a40;
 		}
+	}
+
+	.modal-main {
+		background-color: rgba(darken(#62788A, 12%), 0.95);
+		background-color: rgba(lighten(#2a2b30, 12%), 0.9);
 	}
 
 	.card-board #header {

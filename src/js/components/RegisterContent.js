@@ -309,8 +309,8 @@ class RegisterContent extends Component {
           <div id={"test" + index} key={index} className={showCardBoard}>
             <Card title={project.title} id={"project" + index}>
               <div className="actions-header actions-header--right">
-                <div className="go-to-project">
-                  <i className="iconcss icon-upload" onClick={this.showDropzone.bind(this)}></i>
+                <div className="go-to-project" onClick={this.showDropzone.bind(this)}>
+                  <i className="iconcss icon-upload"></i>
                   <span>Go To Project</span>
                 </div>
               </div>
@@ -416,8 +416,8 @@ class RegisterContent extends Component {
               <CardSection>
 
               <div className="actions-header actions-header--right">
-                <div className="go-to-project">
-                  <i className="iconcss icon-upload" onClick={this.showDropzone.bind(this)}></i>
+                <div className="go-to-project" onClick={this.showDropzone.bind(this)}>
+                  <i className="iconcss icon-upload"></i>
                   <span>Go To Project</span>
                 </div>
               </div>

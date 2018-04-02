@@ -116,3 +116,18 @@ button:focus {
 .load-more__button {
   @include button-light-grey;
 }
+
+.page-base {
+  transition: filter 0.3s 0s ease;
+  filter: blur(0px);
+  // transform: scale(1);
+}
+
+.modal-container-slider {
+  // transform: translate3d(0, 0, 0);
+  .page-base {
+    transition: filter 0.6s 0.6s ease;
+    filter: blur(2px);
+    // margin: -2px -4px -4px -2px;
+  }
+}

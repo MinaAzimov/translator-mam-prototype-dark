@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from "react";
 import Chat from "./Chat";
 import Field from "./Field";
 import BaseLayout from "./BaseLayout";
+import Prompt from './Prompt';
 import { Card, CardSection, CardBoard } from "./Card";
 import { connect } from "react-redux";
 import { Modal } from "react-bootstrap";
@@ -142,6 +143,7 @@ class Dropzone extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			showDeletePrompt: false,
 			files: [],
 			counter: 0,
 			percentage: 10,
@@ -188,6 +190,12 @@ class Dropzone extends Component {
 				target: array,
 				selected: false
 			});
+	}
+
+	deleteFilePrompt = (i) => {
+	    this.setState({
+	  		showDeletePrompt: !this.state.showDeletePrompt
+		});
 	}
 
 	closeFilesInformation = () => {
@@ -397,12 +405,14 @@ updateFilesForBulkList = (i, file) => {
 }
 
 	removeFileFromOverlay = (i) => {
+	    // setTimeout(() => {
 		    var array = this.state.itemsForBulk;
 			var index = i.target.value;
 			array.splice(index, 1);
 			this.setState({
 				 itemsForBulk: array
 			});
+	    // }, 600);
 	}
 
 removeDropzone() {
@@ -502,6 +512,8 @@ selectImageFiles() {
 					   videoSelectionEnabled: false,
 					   audioSelectionEnabled: false})
 	}
+
+
 
 selectVideoFiles() {
 	this.closeFilesInformation();
@@ -671,18 +683,47 @@ selectAudioFiles() {
 		return (
 			<div>
 			<div className="bulk-editing-menu">
-			<button className={gridViewToggleClassnames} onClick={this.toggleListGridView.bind(this)}><i className="iconcss icon-grid-view"></i></button>
-			<button className={listViewToggleClassnames} onClick={this.toggleListGridView.bind(this)}><i className="iconcss icon-list-view"></i></button>
+			<div className="group">
+				<div className="group-item">
+					<button className={gridViewToggleClassnames} onClick={this.toggleListGridView.bind(this)}><i className="iconcss icon-grid-view"></i></button>
+					<button className={listViewToggleClassnames} onClick={this.toggleListGridView.bind(this)}><i className="iconcss icon-list-view"></i></button>
+				</div>
+				<div className="group-item">
+					<span>Grid / List View</span>
+				</div>
+			</div>
 			<hr></hr>
-			<span>Select By</span>
-			<button className={imageSelector} onClick={this.selectImageFiles.bind(this)}><i className="iconcss icon-type-image"></i></button>
-			<button className={videoSelector} onClick={this.selectVideoFiles.bind(this)}><i className="iconcss icon-type-video"></i></button>
-			<button className={audioSelector} onClick={this.selectAudioFiles.bind(this)}><i className="iconcss icon-type-audio"></i></button>
-			<span className={bulkDisable}>Bulk Edit</span>
-			<button className={bulkDisable} onClick={this.bulkEdit.bind(this)}><i className="iconcss icon-bulk-edit"></i></button>
+			<input id="bulk-drawer-toggle" type="checkbox"></input>
+			<label htmlFor="bulk-drawer-toggle">
+				<i className="iconcss icon-bulk-edit"></i>
+				<span>Bulk Editor</span>
+			</label>
+			<div className="bulk-drawer">
+			<div className="bulk-drawer-item">
+				<div className="bulk-drawer-row">
+					<button className={imageSelector} onClick={this.selectImageFiles.bind(this)}><i className="iconcss icon-type-image"></i></button>
+					<button className={videoSelector} onClick={this.selectVideoFiles.bind(this)}><i className="iconcss icon-type-video"></i></button>
+					<button className={audioSelector} onClick={this.selectAudioFiles.bind(this)}><i className="iconcss icon-type-audio"></i></button>
+				</div>
+				<div className="bulk-drawer-row">
+					<span>Bulk Edit</span>
+				</div>
+			</div>
+			<div className="bulk-drawer-item">
+				<div className="bulk-drawer-row">
+					<button className={bulkDisable} onClick={this.bulkEdit.bind(this)}><i className="iconcss icon-launch"></i></button>
+				</div>
+				<div className="bulk-drawer-row">
+					<span className={bulkDisable}>Launch Editor</span>
+				</div>
+			</div>
+			</div>
 			</div>
 			<div>
-			<button className="back-to-projects" onClick={this.removeDropzone.bind(this)}><i className="material-icons">arrow_back</i>Save & Back To All Projects</button>
+			<div className="above-bar">
+				<button className="back-to-projects" onClick={this.removeDropzone.bind(this)}><i className="material-icons">arrow_back</i>Back To All Projects</button>
+				<button className="save-button"><i className="iconcss icon-save"></i>Save</button>
+			</div>
 			<div
 			style={{
 				opacity: 0,
@@ -732,6 +773,17 @@ selectAudioFiles() {
 			/>
 			</div>
 
+	        <Prompt
+	          show={this.state.showDeletePrompt}
+	          onCancel={this.deleteFilePrompt}
+	          onSubmit={this.onPromptOk}
+	          header={<h2 className="licensing-popup__title">Are you Sure?</h2>}
+	          cancelText="Nevermind"
+	          submitText="Yes, Delete"
+	        >
+	          <h3 className="licensing-popup__info">Deleting this file will permanently remove it from the project.</h3>
+	        </Prompt>
+
 			<EditFileOverlay 
 			showModal={this.state.showModal}
 			closeModal={this.closeModal}
@@ -761,6 +813,7 @@ selectAudioFiles() {
 						file={file}
 						updateFilesForBulkList={this.updateFilesForBulkList}
 						removeFile={this.removeFile}
+						deleteFilePrompt={this.deleteFilePrompt}
 						type={file.type}
 						src={file.previewTemplate.firstElementChild.firstChild.currentSrc}
 						name={file.name}

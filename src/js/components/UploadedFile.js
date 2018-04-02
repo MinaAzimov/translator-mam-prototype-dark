@@ -15,7 +15,7 @@ export default class UploadedFile extends Component {
 	render() {
 
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
-		const { handleClick, file, updateFilesForBulkList, removeFile, type, src, name, size, i, selected, imageSelectionEnabled, videoSelectionEnabled, audioSelectionEnabled, multiSelect, files, target, id, setRef } = this.props;
+		const { handleClick, file, updateFilesForBulkList, removeFile, deleteFilePrompt, type, src, name, size, i, selected, imageSelectionEnabled, videoSelectionEnabled, audioSelectionEnabled, multiSelect, files, target, id, setRef } = this.props;
 
 	const classnames = classNames({
 			"files-information": true,

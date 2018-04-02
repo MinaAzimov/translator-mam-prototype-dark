@@ -21,6 +21,8 @@ import { Card, CardSection, CardBoard } from './Card';
 import Field from "./Field";
 import FieldWidgets from "./form/FieldWidgets";
 import moment from "moment";
+import ReactTimeout from 'react-timeout'
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 
 import Truncate from 'react-truncate';
@@ -172,10 +174,9 @@ class EditFileOverlay extends Component {
   onSubmit = () => {
     this.props.onSubmit(this.state.media);
     socket.emit("UPDATE_MEDIA_ITEM", this.state.media);
-    
   };
 
-  close(){
+  close() {
      setTimeout(() => { 
         this.setState({
       saveStatus: "Save"
@@ -236,12 +237,44 @@ else {
    this.props.disableBulkEdit();  
   };
 
+  whichAnimationEvent = () => {
+  var t,
+      el = document.createElement("fakeelement");
 
-handleChange = (i) => {
-  this.props.removeFileFromOverlay(i);
+  var animations = {
+    "animation"      : "animationend",
+    "OAnimation"     : "oAnimationEnd",
+    "MozAnimation"   : "animationend",
+    "WebkitAnimation": "webkitAnimationEnd"
+  }
 
-   console.log(this.props.itemsForBulk)
-   this.setState({filesArray: this.props.itemsForBulk})
+  for (t in animations){
+    if (el.style[t] !== undefined){
+      return animations[t];
+    }
+  }
+}
+
+  handleRemoval = (i) => {
+    this.props.removeFileFromOverlay(i);
+    this.setState({filesArray: this.props.itemsForBulk});
+  }
+
+  handleChange = (i, file) => {
+    console.log(file);
+    console.log(i.target);
+    i.target.parentNode.parentNode.classList.add('animate-out');
+    i.persist();
+    // this.props.removeFileFromOverlay(i);
+
+    const animationEvent = this.whichAnimationEvent();
+    i.target.parentNode.parentNode.addEventListener(animationEvent, () => {
+      this.props.removeFileFromOverlay(i);
+      this.setState({filesArray: this.props.itemsForBulk});
+      i.target.parentNode.parentNode.classList.remove('animate-out');
+      i.stopPropagation();
+    });
+    console.log(animationEvent);
   }
 
   render() {
@@ -261,7 +294,7 @@ handleChange = (i) => {
           containerClassName="modal-container-slider">
           <div className="modal-main">
             <div className="modal-top">
-              <h4 className="modal-title">Edit Media Items</h4>
+              <h4 className="modal-title">Bulk Edit Items <span>({itemsForBulk.length})</span></h4>
             </div>
               <div className="dz-container-1">
             <div className="filepicker dropzone dz-clickable">
@@ -269,7 +302,7 @@ handleChange = (i) => {
             <div className="overflow-scrolling">
              {!removed ? (
                itemsForBulk.map((file, i) => (
-
+                
                     <div key={i} className="dz-preview-new dz-processing dz-image-preview" >
 
                       <div className="dz-image">
@@ -289,15 +322,6 @@ handleChange = (i) => {
                           
                         </span>
                       </div>
-                        {/*<div className="dz-date">
-                                                  
-                                                  {file.name ? (
-                                                  <span>{moment.unix(file.lastModified).format("HH:mm:ss")}   </span>
-                                                  ): (
-                                                  <span>03/19/2018</span>
-                                                  )
-                                                    }
-                                                </div>*/}
                       </div>
 
                       <span className="dz-title"><Truncate lines={1} ellipsis={"..." + file.name.slice(-12)}>
@@ -314,9 +338,9 @@ handleChange = (i) => {
                        <input 
                          key={i}
                          value={i} 
-                         checked={this.state.checked}
+                         defaultChecked={this.state.checked}
                          type='checkbox' 
-                         onClick={(i)=>this.handleChange(i)}     
+                         onClick={(i)=>this.handleChange(i, file)}     
                          />
                           <div className="check">
                             <i className="iconcss icon-checkmark"></i>
@@ -368,8 +392,8 @@ handleChange = (i) => {
                     </div>
                   ))
                  ) : (
-
                  filesArray.map((file, i) => (
+                
                     <div key={i} className="dz-preview-new dz-processing dz-image-preview" >
 
                       <div className="dz-image">
@@ -395,7 +419,7 @@ handleChange = (i) => {
                       <div>
                      <input 
                        key={i} 
-                       checked={this.state.checked}
+                       defaultChecked={this.state.checked}
                        type='checkbox' 
                        onClick={(e)=>this.handleChange(e,file)}     
                        />
@@ -405,8 +429,7 @@ handleChange = (i) => {
                           <strong>{(file.size / 1024).toFixed(2)}KB</strong>
                           ): (
                          <strong>{(file.upload.total / 1024).toFixed(2)} KB</strong>
-                          )
-                            }
+                          )}
                           
                         </span>
                       </div>
@@ -557,7 +580,7 @@ handleChange = (i) => {
           onSubmit={this.onPromptOk}
           header={<h2 className="licensing-popup__title">Cancel Changes?</h2>}
           cancelText="Nevermind"
-          submitText="Yes, cancel"
+          submitText="Yes, Cancel"
         >
           <h3 className="licensing-popup__info">Any unsaved changes you made will be lost. Are you sure you want to cancel?</h3>
         </Prompt>
