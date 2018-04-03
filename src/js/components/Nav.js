@@ -5,6 +5,7 @@ import classNames from "classnames";
 import $ from "jquery";
 import BodyClass from './BodyClass';
 import Switch from './form/Switch';
+import socket from "../client/socketClient";
 
 class Nav extends Component {
 
@@ -17,11 +18,16 @@ class Nav extends Component {
 			
 	}
 
-	handleClick() {
+	logout = () => {
+		let sid = window.SESSION_ID;
+		let userId = this.props.client.user.id;
+	    socket.emit("LOGOUT", userId, sid);
+	}
 
-		     let classname = 'user-role';
-			 classname = classname + ' dark-theme';
-			$("body").toggleClass(classname);
+	handleClick() {
+		let classname = 'user-role';
+		classname = classname + ' dark-theme';
+		$("body").toggleClass(classname);
 	}
 
 	render() {
@@ -67,8 +73,13 @@ class Nav extends Component {
 					<div className="nav-item disabled">Configuration</div>*/}
 				</div>
 				<div className="nav-toolbelt" onClick={this.handleClick.bind(this)} style={{'opacity': '0.2'}} >
-					<a>
+					<a style={{'bottom': '92px'}} >
 						<i className="material-icons"></i>Switch Theme
+					</a>
+				</div>
+				<div className="nav-toolbelt" onClick={this.logout} style={{'opacity': '0.4'}}>
+					<a>
+						<i className="iconcss icon-user"></i>Log Out
 					</a>
 				</div>
 			</div>

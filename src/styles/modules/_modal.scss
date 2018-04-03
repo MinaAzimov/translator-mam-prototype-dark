@@ -326,6 +326,7 @@
     flex-direction: row;
     overflow-x: scroll;
     margin-bottom: 24px;
+    padding-left: calc((100vw - 1253px) / 2);
 
     .dz-preview-new {
       min-width: 290px;
@@ -333,6 +334,10 @@
 
       .dz-image {
         cursor: default;
+      }
+
+      &:last-of-type {
+        margin-right: calc((100vw - 1253px) / 2);
       }
 
       @keyframes scaleOut {

@@ -135,6 +135,12 @@
 	cursor: pointer;
 }
 
+#dz-custom-mesg-2 {
+	> div > svg {
+		margin-top: 18px;
+	}
+}
+
 .dropzone.dz-clickable * {
 	cursor: default;
 }

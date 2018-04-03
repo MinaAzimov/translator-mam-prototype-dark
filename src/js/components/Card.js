@@ -150,7 +150,8 @@ class Card extends Component {
 			isDragging,
       connectDragSource, 
       connectDropTarget, 
-      connectDragPreview
+      connectDragPreview,
+      lastModified
 		} = this.props;
 		
 		const { isOpen } = this.state;
@@ -167,7 +168,10 @@ class Card extends Component {
 					<div className="card-toggle" onClick={this.toggleOpen}>
 						<i className="iconcss icon-line-arrow-up"></i>
 					</div>
-					{connectDragSource(<div className="card-title">{title}</div>)}
+					{connectDragSource(<div className="card-title">{title}<span className="last-edited">
+                                  {(lastModified != null) ? <i className="iconcss icon-last-modified"></i> : null}
+                                  <span>{lastModified}</span>
+                                </span></div>)}
 					<SlideDown isOpen={isOpen} duration={500}>
 						<div className="card-content">
 							{ this.props.children }

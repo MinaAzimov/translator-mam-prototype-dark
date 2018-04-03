@@ -24,6 +24,7 @@ import classNames from "classnames";
 import { getContentItems } from "../services/content";
 import { getUserData } from "../services/users";
 import TagsInput from "./form/TagsInput";
+import ExistingTitles from "./ExistingTitles";
 import moment from "moment";
 import axios from 'axios';
 
@@ -307,7 +308,7 @@ class RegisterContent extends Component {
 
     projectsData = this.state.projects.map((project, index) =>
           <div id={"test" + index} key={index} className={showCardBoard}>
-            <Card title={project.title} id={"project" + index}>
+            <Card title={project.title} id={"project" + index} lastModified={"Last Modified by " + this.props.client.user.name.split(' ').shift() + " on " + moment().format("MMM D")}>
               <div className="actions-header actions-header--right">
                 <div className="go-to-project" onClick={this.showDropzone.bind(this)}>
                   <i className="iconcss icon-upload"></i>
@@ -315,10 +316,10 @@ class RegisterContent extends Component {
                 </div>
               </div>
               <div className="actions-header actions-header--left">
-                <div className="last-edited">
-                  <i className="iconcss icon-last-modified"></i>
-                  <span>Last Modified by {this.props.client.user.name.split(' ').shift()} on {moment().format("MMM D")}</span>
-                </div>
+                {/*<div className="last-edited">
+                                  <i className="iconcss icon-last-modified"></i>
+                                  <span>Last Modified by {this.props.client.user.name.split(' ').shift()} on {moment().format("MMM D")}</span>
+                                </div>*/}
 
                 <div className="group-by">
                   <i className="iconcss icon-group-by"></i>
@@ -412,7 +413,7 @@ class RegisterContent extends Component {
 
     hiddenProjectsData = this.state.hiddenProjects.map((project, index) =>
           <div id={"test" + index} key={index} className={displayHiddenProject}>
-            <Card title={project.title} id={"project" + index} >
+            <Card title={project.title} id={"project" + index} lastModified={"Last Modified by " + this.props.client.user.name.split(' ').shift() + " on " + moment().format("MMM D")}>
               <CardSection>
 
               <div className="actions-header actions-header--right">
@@ -422,10 +423,10 @@ class RegisterContent extends Component {
                 </div>
               </div>
               <div className="actions-header actions-header--left">
-                <div className="last-edited">
-                    <i className="iconcss icon-last-modified"></i>
-                    <span>Last Modified by {this.props.client.user.name.split(' ').shift()} on {moment().format("MMM D")}</span>
-                </div>
+                {/*<div className="last-edited">
+                                    <i className="iconcss icon-last-modified"></i>
+                                    <span>Last Modified by {this.props.client.user.name.split(' ').shift()} on {moment().format("MMM D")}</span>
+                                </div>*/}
                 <div className="group-by">
                     <i className="iconcss icon-group-by"></i>
                     <span>Group By: File Type</span>
@@ -529,7 +530,8 @@ class RegisterContent extends Component {
                
               </div>
               <div className="library-filter-controls filters__controls">
-                <button className="apply" onClick={this.showDropzone.bind(this)}>New Project<i className="iconcss icon-plus"></i></button>
+                <ExistingTitles newTitle={this.showDropzone}/>
+                {/*<button className="apply" onClick={this.showDropzone.bind(this)}>New Project<i className="iconcss icon-plus"></i></button>*/}
               </div>
         </div>
          

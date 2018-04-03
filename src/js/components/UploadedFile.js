@@ -74,7 +74,7 @@ export default class UploadedFile extends Component {
 					<strong>{(size / 1024).toFixed(2)}</strong>KB
 					</span>
 					</div>
-					<div className="dz-remove" onClick={this.props.removeFile.bind(this, i)}>
+					<div className="dz-remove" onClick={this.props.deleteFilePrompt.bind(this, i)}>
 					<div>
 					<svg
 					style={{

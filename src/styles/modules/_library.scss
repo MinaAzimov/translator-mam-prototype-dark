@@ -383,10 +383,12 @@
 .library-header-item {
   position: relative;
   padding-bottom: 0;
-  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
   color: $color-grey-md;
   text-align: left;
-  font-weight: 400 !important;
+  font-weight: 300 !important;
   overflow: hidden;
   word-wrap: normal;
 
@@ -714,11 +716,22 @@
   }
 
   &--left {
-    top: -18px;
+    top: -9px;
     left: 24px;
   }
 
-  .go-to-project {
+  > * {
+    margin-right: 24px;
+  }
+
+  > * {
+    &:first-child {
+      margin: 0;
+    }
+  }
+}
+
+.go-to-project {
     cursor: pointer;
     display: flex;
     flex-direction: row;
@@ -727,6 +740,8 @@
     i {
       margin-right: 6px;
       font-size: 17px;
+      font-size: 21px;
+      color: $color-light-blue;
     }
 
     span {
@@ -737,12 +752,6 @@
     }
   }
 
-  .go-to-project {
-     i {
-        font-size: 21px;
-        color: $color-light-blue;
-     }
-  }
 
   .last-edited, .group-by {
     color: #999;
@@ -757,23 +766,18 @@
   }
 
 
-  div {
+  .last-edited {
+    margin-left: 12px;
   }
 
   .group-by {
     color: #000;
-  }
 
-  > * {
-    margin-right: 24px;
+    i {
+      font-size: 15px;
+      color: $color-light-blue;
+    } 
   }
-
-  > * {
-    &:first-child {
-      margin: 0;
-    }
-  }
-}
 
 .library-page-numbers {
   font-size: 14px;

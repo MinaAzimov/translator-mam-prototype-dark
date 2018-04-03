@@ -181,20 +181,58 @@ class Dropzone extends Component {
 
 
 	removeFile = (i) => {
-			var array = this.state.files;
-			var index = i;
-			console.log(index);
-			array.splice(index, 1);
-			this.setState({
-				files: array,
-				target: array,
-				selected: false
-			});
+		var array = this.state.files;
+		var index = i;
+		console.log(index);
+		array.splice(index, 1);
+		this.setState({
+			files: array,
+			target: array,
+			selected: false
+		});
 	}
 
-	deleteFilePrompt = (i) => {
-	    this.setState({
+	removeFileFromPrompt = () => {
+		let i = this.state.itemToDelete;
+		var array = this.state.files;
+		var index = i;
+		console.log(index);
+		array.splice(index, 1);
+		this.setState({
+			files: array,
+			target: array,
+			selected: false,
 	  		showDeletePrompt: !this.state.showDeletePrompt
+		});
+	}
+
+	// openPromptAndRemoveFile = (i) => {
+	// 	this.setState({
+	//   		showDeletePrompt: true,
+	// 	});
+
+	// 	var array = this.state.files;
+	// 	var index = i;
+	// 	console.log(index);
+	// 	array.splice(index, 1);
+	// 	this.setState({
+	// 		files: array,
+	// 		target: array,
+	// 		selected: false
+	// 	});
+
+	// setTimeout(function() {
+	// 	this.setState({
+	//   		showDeletePrompt: false,
+	// 	});
+	// }, 600);
+	// }
+
+	deleteFilePrompt = (i) => {
+		console.log(i);
+	    this.setState({
+	  		showDeletePrompt: !this.state.showDeletePrompt,
+	  		itemToDelete: i
 		});
 	}
 
@@ -776,7 +814,7 @@ selectAudioFiles() {
 	        <Prompt
 	          show={this.state.showDeletePrompt}
 	          onCancel={this.deleteFilePrompt}
-	          onSubmit={this.onPromptOk}
+	          onSubmit={this.removeFileFromPrompt}
 	          header={<h2 className="licensing-popup__title">Are you Sure?</h2>}
 	          cancelText="Nevermind"
 	          submitText="Yes, Delete"

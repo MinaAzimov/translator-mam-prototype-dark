@@ -130,7 +130,7 @@ $default-button-height: 30px;
 @mixin button-navy-pill {
   @include button;
   display: inline-flex;
-  border-radius: 21px;
+  border-radius: 2px;
   padding: 12px 24px;
   border: 1px solid $color-navy-dark;
   color: $color-navy-light;
@@ -145,7 +145,7 @@ $default-button-height: 30px;
 @mixin button-blue-pill {
   @include button;
   display: inline-flex;
-  border-radius: 21px;
+  border-radius: 2px;
   padding: 12px 24px;
   border: 1px solid $color-light-blue;
   color: $color-light-blue;
@@ -164,7 +164,7 @@ $default-button-height: 30px;
 @mixin button-gray-pill {
   @include button;
   display: inline-flex;
-  border-radius: 21px;
+  border-radius: 2px;
   font-size: 12px;
   padding: 8px 18px;
   border: 1px solid $color-border-grey;
