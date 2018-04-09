@@ -14,14 +14,15 @@ export default class ProjectItem extends Component {
 
 
 	render() {
-    const { name, subtitle, type, img, editExistingProject, editingLocalProject, readyForIngest, readyForService, searchOptimized } = this.props;
+    const { name, subtitle, type, img, editExistingItem, editingLocalItem, readyForIngest, readyForService, searchOptimized, key, id, item, project } = this.props;
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
+
 
     const iconClassnames = classNames({
       'iconcss': true,
-      'icon-type-video': type == 'video',
-      'icon-type-image': type == 'image',
-      'icon-type-audio': type == 'audio'
+      'icon-type-video': (type == 'video/mp4') || (type == 'video/avi'),
+      'icon-type-image': (type == 'image/jpeg') || (type == 'image/jpg') || ( type =='image/png') || ( type =='image/svg+xml'),
+      'icon-type-audio': type == 'audio/mp3'
     })
 		
     return (
@@ -34,7 +35,11 @@ export default class ProjectItem extends Component {
               <tbody>
                 <tr className="library-item-row" >
                   <td className="library-item">
-                    <img className="library-item-thumb" src={img}/>
+                  { 
+                  (type == 'video/mp4' || type == 'video/avi') ? (
+                    <img className="library-item-thumb" src={thumbSrc}/>) : (
+                    <img className="library-item-thumb" src={img}/>)
+                      }
                   </td>
                   <td className="library-item">
                     <div className="library-item-text">{name}</div>
@@ -54,9 +59,9 @@ export default class ProjectItem extends Component {
                       /> 
                     </div>
                   </td>
-                  <td className="library-item" onClick={this.callLocalEdit.bind(this)}>
+                  <td className="library-item" ref={project} value={key} key={item} onClick={this.props.editExistingItem.bind(this, key, project, item)}>
                     <div className="library-item-text">
-                      <i className="iconcss icon-edit"></i>  
+                      <i className="iconcss icon-edit" ></i>  
                     </div>
                   </td>
                 </tr>

@@ -5,4 +5,6 @@ export const EMAILS = [
   "syfy.pa-team@nbcuni.com",
   "bravo.pa@nbcuni.com",
   "bravo.pa-team@nbcuni.com",
+  "e.pa@nbcuni.com",
+  "e.pa-team@nbcuni.com",
 ];

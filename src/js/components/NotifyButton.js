@@ -9,7 +9,7 @@ export default class NotifyButton extends Component {
     super(props);
     this.state = {
       notifyOptionsShow: false, 
-      placeholder: "Notify By Email",
+      placeholder: "usa.pa@nbcuni.com",
       tags: [],
       // tags: [
       //   { id: 1, text: "enews.pa@nbcuni.com" }, 
@@ -39,6 +39,12 @@ export default class NotifyButton extends Component {
       this.setState({
         notifyOptionsShow: false
       });
+      if (this.props.drawer != null) {
+        this.setState({
+          tags: []
+        });
+        this.refs.notifyToggle.checked = false;
+      }
     }
   }
 
@@ -79,29 +85,41 @@ export default class NotifyButton extends Component {
 
   onSubmit() {
     this.setState({
-      placeholder: "Success!",
+      placeholder: "Sent Successfully.",
       tags: [],
-      notifyOptionsShow: false
+      notifyOptionsShow: false,
+      sendSuccess: true
     });
     setTimeout(()=>{
       this.setState({
-        placeholder: "Notify By Email",
+        placeholder: "usa.pa@nbcuni.com",
+        sendSuccess: false
       });
-    }, 3600);
+    }, 5000);
   }
 
   render() {
     const { placeholder, tags, suggestions } = this.state;
+    const { drawer } = this.props;
 
-    const notifyOptionsClassNames = classNames({
-      "notify-options": true,
-      "notify-options--show": this.state.notifyOptionsShow
+    const classnames = classNames({
+      "notify-button": true,
+      "notify-button--show-options": this.state.notifyOptionsShow,
+      "notify-button--send-success": this.state.sendSuccess,
+      "notify-button--drawer": drawer
     })
 
     return (
-      <div className="notify-button" ref="wrapper">
+      <div className={classnames} ref="wrapper">
+        <span>Notify By Email</span>
+        <input id="notify-toggle" type="checkbox" ref="notifyToggle"></input>
+        <label htmlFor="notify-toggle">
+          <i className="iconcss icon-bullhorn"></i>
+          <span>Email Notify</span>
+        </label>
+
         <ReactTags
-          placeholder={placeholder}
+          placeholder={(tags.length > 0) ? '' : placeholder}
           tags={tags}
           suggestions={suggestions}
           handleDelete={this.handleDelete}
@@ -110,18 +128,12 @@ export default class NotifyButton extends Component {
           handleTagClick={this.handleTagClick}
           removeComponent={RemoveComponent}
         />
-        <button onClick={this.openNotifyOptions}><i className="iconcss icon-bullhorn"></i></button>
-        <ul className={notifyOptionsClassNames}>
-          <li><a onClick={this.onSubmit}><i className="iconcss icon-bullhorn"></i>Notify Now</a></li>
-          <li><a onClick={this.onSubmit}><img src="/assets/img/icons/ready-for-ingest.svg"/><span>When Ready for Ingest</span></a></li>
-          <li><a onClick={this.onSubmit}><img src="/assets/img/icons/ready-for-service.svg"/><span>When Ready for Service</span></a></li>
-          <li><a onClick={this.onSubmit}><img src="/assets/img/icons/search-optimized.svg"/><span>When Search Optimized</span></a></li>
+        <button disabled={this.state.tags.length == 0} onClick={this.openNotifyOptions}><i className="iconcss icon-bullhorn"></i>
+        </button>
+        <svg className="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle className="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path className="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+        <ul className="notify-options">
+          <li><a onClick={this.onSubmit}><i className="iconcss icon-bullhorn"></i>Notify {this.state.tags.length} {this.state.tags.length == 1 ? 'Email' : 'Emails'} Now?</a></li>
         </ul>
-        <div className="scheduled-dots">
-          <span className="scheduled-dot scheduled-dot--ingest"></span>
-          <span className="scheduled-dot scheduled-dot--service"></span>
-          <span className="scheduled-dot scheduled-dot--optimized"></span>
-        </div>
       </div>
     );
   }

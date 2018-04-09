@@ -181,15 +181,15 @@ $default-button-height: 30px;
 @mixin button-no-pill {
   @include button;
   display: inline-flex;
-  font-size: 14px;
+  font-size: 17px;
   // padding: 9px 21px;
   border: none;
-  color: #ddd;
+  color: darken($color-border-grey, 3%);
 
   &:hover {
     // border-color: transparent;
     background: transparent;
-    color: #ddd;
+    color: darken($color-border-grey, 3%);
   }
 
   i {

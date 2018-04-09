@@ -471,12 +471,7 @@
 .library-filters {
   // border-bottom: 1px solid #DDD;
   background: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 18px 30px;
+  padding: 18px 0px;
   height: inherit;
   position: relative;
   transition: .2s ease-out;
@@ -487,6 +482,15 @@
 
   &--hide {
     display: none;
+  }
+
+  .centered {
+    padding: 0 35px;
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
 
 
@@ -645,6 +649,19 @@
       @include button-blue-pill;
       min-width: 80px;
       margin: 0 6px;
+
+      border-color: transparent;
+      @include background-image(linear-gradient(to bottom right, darken($color-light-blue, 3%) 0%, darken($color-light-blue, 0%) 100%));
+      color: $color-white;
+
+      &:hover {
+        border: 1px solid $color-light-blue;
+        // background-color: transparent;
+        // background-image: none;
+        @include background-image(linear-gradient(to bottom right, darken($color-light-blue, 6%) 0%, darken($color-light-blue, 3%) 100%));
+        color: $color-white;
+      }
+
     }
 
     &.reset {

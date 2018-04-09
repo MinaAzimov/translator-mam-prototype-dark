@@ -44,47 +44,56 @@ class BasicInfoCard extends Component {
 			"contentType": val
 		})
 		let element;
-		if ( val.title == "Event") {
-			element = (
-			    <div>
-			      <h1>Hello, world!</h1>
-			      <h2>It is {new Date().toLocaleTimeString()}.</h2>
-			    </div>
-			  );
-		}
-		// ReactDOM.render(element, document.getElementById('hiddenFields'));
+		(val) => this.props.updateContentType(val)
+		
 	};
 
 	render() {
 
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
-		const { closeFilesInformation, fields, target, selected, onSearchOptimizedSelect, onServiceSelect, onInjestSelect, selectedFilter, selectedFilterOptimezed, selectedFilterSevice, itemStatus } = this.props;
+		const { closeFilesInformation, fields, target, selected, onSearchOptimizedSelect, onServiceSelect, onInjestSelect, selectedFilter, selectedFilterOptimezed, selectedFilterSevice, itemStatus,
+		inputMediaType, inputMaterialType, inputSecondaryType, inputFrameRate, inputAspectRatio, updateMediaType, updateMaterialType, updateSecondaryType, updateAspectRatio, updateFrameRate,
+		updateShow, updateSeason, inputShow, inputSeason, updateContentType, inputContentType, localItem, editingLocalItem } = this.props;
 
 		return(
 
 			       <Card title="Basic Info" id="basic-info">
 					<CardSection>
 					<div>
+
+					<Selectbox
+					helpText=""
+					label="Media Type Class"
+					items={mediaTypeList}
+					inputPlaceholder="Type source"
+					value={this.props.inputMediaType} 
+					onChange={this.props.updateMediaType.bind(this)}
+					/>
+				
+					</div>
+					<div>
 					{(this.props.target.type == "video" || this.props.target.type == "video/mp4")  ? (
 					<div>
-						<Field field={fields[57]}>
-						<Selectbox
-						helpText=""
-						label="Material Type"
-						items={typeListVideo}
-						inputPlaceholder="Type source"
-						/>
-						</Field>
-						<Selectbox
-						helpText=""
-						label="Secondary Type"
-						items={secondaryTypeListVideo}
-						inputPlaceholder="Type source"
-						onChange={this.props.onInjestSelect}
-						value={this.props.selectedFilter}
-						required={true}
-						/>
-						<Selectbox
+				
+					<Selectbox
+					helpText=""
+					label="Material Type"
+					items={typeListVideo}
+					inputPlaceholder="Type source"
+					value={this.props.inputMaterialType} 
+					onChange={this.props.updateMaterialType.bind(this)}
+					/>
+				
+					<Selectbox
+					helpText=""
+					label="Secondary Type"
+					items={secondaryTypeListVideo}
+					inputPlaceholder="Type source"
+					value={this.props.inputSecondaryType} 
+					onChange={this.props.updateSecondaryType.bind(this)}
+					/>
+
+					<Selectbox
 						helpText=""
 						label="Content Type"
 						items={contentTypeList}
@@ -94,101 +103,78 @@ class BasicInfoCard extends Component {
 						required={true}
 						/>
 						<div style={{display: ((this.state.contentType != null) &&(this.state.contentType.title == "Show")) ? 'block' : 'none' }}>
-							<Field field={fields[64]}>
 							<Selectbox
 							helpText=""
 							label="Show"
 							items={showList}
+							value={this.props.inputShow} 
+							onChange={this.props.updateShow.bind(this)}
 							inputPlaceholder="Type source"
-							onChange={this.props.onSearchOptimizedSelect}
-							value={this.props.selectedFilterOptimezed}
-							required={true}
 							/>
-							</Field>
-							<Field field={fields[65]}>
+							
+							
 							<Selectbox
 							helpText=""
 							label="Season"
 							items={episodeList}
 							inputPlaceholder="Type source"
-							required={true}
+							value={this.props.inputSeason} 
+							onChange={this.props.updateSeason.bind(this)}
 							/>
-							</Field>
 							<FieldWidgets.Text label="Episode Number" />
 						</div>
 						<div style={{display: ((this.state.contentType != null) &&(this.state.contentType.title == "Promo")) ? 'block' : 'none' }}>
-							<Field field={fields[64]}>
 							<Selectbox
 							helpText=""
 							label="Show"
 							items={showList}
+							value={this.props.inputShow} 
+							onChange={this.props.updateShow.bind(this)}
 							inputPlaceholder="Type source"
-							required={true}
 							/>
-							</Field>
-							<Field field={fields[65]}>
+							
 							<Selectbox
 							helpText=""
 							label="Season"
 							items={episodeList}
 							inputPlaceholder="Type source"
-							required={true}
+							value={this.props.inputSeason} 
+							onChange={this.props.updateSeason.bind(this)}
 							/>
-							</Field>
 						</div>
-
-						<Field field={fields[61]}>
-						<Selectbox
-						helpText=""
-						label="Frame Rate"
-						items={frameRateList}
-						inputPlaceholder="Type source"
-						required={true}
-						/>
-						</Field>
-
-						<Selectbox
-						helpText=""
-						label="Aspect Ratio"
-						items={aspectRatioList}
-						inputPlaceholder="Type source"
-						onChange={this.props.onServiceSelect}
-						value={this.props.selectedFilterSevice}
-						/>
-
-						<FieldWidgets.Text 
-						label="Network" 
-						value={this.props.client.user.brand}
-						/>
-						<FieldWidgets.Text 
-						label="Uploader" 
-						value={"(You) " + this.props.client.user.name}
-						/>
-						<FieldWidgets.Text
-						label="Team"
-						value={this.props.client.user.team}
-						/>
+					
+					<Selectbox
+					helpText=""
+					label="Frame Rate"
+					items={frameRateList}
+					inputPlaceholder="Type source"
+					value={this.props.inputFrameRate} 
+					onChange={this.props.updateFrameRate.bind(this)}
+					/>
+				
 					</div>
 					) : ( 
 					<div>
-						<Field field={fields[74]}>
-						<Selectbox
-						helpText=""
-						label="Material Type"
-						items={typeListImage}
-						inputPlaceholder="Type source"
-						/>
-						</Field>
-						<Selectbox
-						helpText=""
-						label="Secondary Type"
-						items={secondaryTypeListImage}
-						inputPlaceholder="Type source"
-						onChange={this.props.onInjestSelect}
-						value={this.props.selectedFilter}
-						required={true}
-						/>
-						<Selectbox
+					
+					<Selectbox
+					helpText=""
+					label="Material Type"
+					items={typeListImage}
+					inputPlaceholder="Type source"
+					value={this.props.inputMaterialType} 
+					onChange={this.props.updateMaterialType.bind(this)}
+					/>
+				
+				 
+					<Selectbox
+					helpText=""
+					label="Secondary Type"
+					items={secondaryTypeListImage}
+					inputPlaceholder="Type source"
+					value={this.props.inputSecondaryType} 
+					onChange={this.props.updateSecondaryType.bind(this)}
+					/>
+					<Selectbox
 						helpText=""
 						label="Content Type"
 						items={contentTypeList}
@@ -198,24 +184,24 @@ class BasicInfoCard extends Component {
 						required={true}
 						/>
 						<div style={{display: ((this.state.contentType != null) &&(this.state.contentType.title == "Show")) ? 'block' : 'none' }}>
-							<Field field={fields[64]}>
 							<Selectbox
 							helpText=""
 							label="Show"
 							items={showList}
+							value={this.props.inputShow} 
+							onChange={this.props.updateShow.bind(this)}
 							inputPlaceholder="Type source"
-							required={true}
 							/>
-							</Field>
-							<Field field={fields[65]}>
+							
+							
 							<Selectbox
 							helpText=""
 							label="Season"
 							items={episodeList}
 							inputPlaceholder="Type source"
-							required={true}
+							value={this.props.inputSeason} 
+							onChange={this.props.updateSeason.bind(this)}
 							/>
-							</Field>
 							<FieldWidgets.Text label="Episode Number" />
 						</div>
 						<div style={{display: ((this.state.contentType != null) &&(this.state.contentType.title == "Promo")) ? 'block' : 'none' }}>
@@ -238,30 +224,33 @@ class BasicInfoCard extends Component {
 							/>
 							</Field>
 						</div>
-						<Selectbox
-						helpText=""
-						label="Aspect Ratio"
-						items={aspectRatioList}
-						inputPlaceholder="Type source"
-						onChange={this.props.onServiceSelect}
-						value={this.props.selectedFilterSevice}
-						/>
-						<FieldWidgets.Text 
-						label="Network" 
-						value={this.props.client.user.brand}
-						/>
-						<FieldWidgets.Text 
-						label="Uploader" 
-						value={"(You) " + this.props.client.user.name}
-						/>
-						<FieldWidgets.Text
-						label="Team"
-						value={this.props.client.user.team}
-						/>
+				 
 					</div>
 					)
 					}
 					</div>
+
+
+					<Selectbox
+					helpText=""
+					label="Aspect Ratio"
+					items={aspectRatioList}
+					inputPlaceholder="Type source"
+					value={this.props.inputAspectRatio} 
+					onChange={this.props.updateAspectRatio.bind(this)}
+					/>
+					<FieldWidgets.Text 
+						label="Network" 
+						value={this.props.client.user.brand}
+						/>
+						<FieldWidgets.Text 
+						label="Uploader" 
+						value={"(You) " + this.props.client.user.name}
+						/>
+						<FieldWidgets.Text
+						label="Team"
+						value={this.props.client.user.team}
+						/>
 					</CardSection>
 					</Card>
 		    	

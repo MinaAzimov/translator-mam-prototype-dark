@@ -294,7 +294,7 @@ else {
           containerClassName="modal-container-slider">
           <div className="modal-main">
             <div className="modal-top">
-              <h4 className="modal-title">Bulk Edit Items <span>({itemsForBulk.length})</span></h4>
+              <h4 className="modal-title">Bulk Edit Metadata <span>({itemsForBulk.length})</span></h4>
             </div>
               <div className="dz-container-1">
             <div className="filepicker dropzone dz-clickable">

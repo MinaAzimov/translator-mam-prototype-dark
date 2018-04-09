@@ -45,7 +45,11 @@ class FileInformationModal extends Component {
 	render() {
 
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
-		const { closeFilesInformation, fields, target, selected, onSearchOptimizedSelect, onServiceSelect, onInjestSelect, selectedFilter, selectedFilterOptimezed, selectedFilterSevice, itemStatus } = this.props;
+		const { closeFilesInformation, fields, target, selected, itemStatus, saveFilesInformation,
+		 updateHouseID, updateComposition, updateColor, updatePromoCode, updateShow, inputHouseID, inputComposition, inputColor, inputPromoCode, inputShow, inputSeason, inputDescription, inputUploader, inputKeywords, inputProductionType, 
+		 inputActors, inputNetwork, inputLanguage, inputCopyright, inputRestrictions, updateSeason, updateDescription, updateUploader, updateKeywords, updateProductionType, updateActors,
+		 updateNetwork, updateLanguage, updateCopyright, updateRestrictions, inputMediaType, inputMaterialType, inputSecondaryType, inputFrameRate, inputAspectRatio, updateMediaType,
+		 updateMaterialType, updateSecondaryType, updateAspectRatio, updateFrameRate, inputTitle, inputSubtitle, updateTitle, updateSubtitle, updateContentType, inputContentType, localItem, editingLocalItem } = this.props;
 
 		const classnames = classNames({
 			"files-information": true,
@@ -57,13 +61,20 @@ class FileInformationModal extends Component {
 		return (
 	   				<Card id="cards-wrapper">
 					<div className="files-information-close" onClick={this.props.closeFilesInformation}><i className="iconcss icon-close-thin"></i></div>
-					<Field addPencil={true} field={fields[71]}>
-					<FieldWidgets.Text />
-					</Field>
+					<button className="save-button" onClick={this.props.saveFilesInformation}><span>Save</span><i className="iconcss icon-save"></i></button>
+					<div className="field-text field-text--lg">
+				    <input className="field-text__input" value={this.props.inputTitle} onChange={this.props.updateTitle.bind(this)}/>
+				    <label className="field__label">
+				    Title
+				    </label>
+			        </div>
 
-					<Field addPencil={true} field={fields[70]}>
-					<FieldWidgets.Text />
-					</Field>
+					<div className="field-text field-text--lg">
+				    <input className="field-text__input" value={this.props.inputSubtitle} onChange={this.props.updateSubtitle.bind(this)}/>
+				    <label className="field__label">
+				    Description
+				    </label>
+			        </div>
 
 					<div className="filling-out-status">
 					<span>
@@ -83,19 +94,34 @@ class FileInformationModal extends Component {
 					<span><div className="swatch"></div>Detected Fields</span>
 					<span><div className="required-legend">*</div>Required Fields</span>
 					<div className="notify-others">
-						{/*<NotifyButton/>*/}
-						<span className="input input--chisato">
+						<NotifyButton/>
+						{/*<span className="input input--chisato">
 							<input className="input__field input__field--chisato" type="text" id="input-13"/>
 							<label className="input__label input__label--chisato" htmlFor="input-13">
 								<span className="input__label-content input__label-content--chisato" data-content="Email">Notify Others<i className="iconcss icon-bullhorn"></i></span>
 							</label>
-						</span>
+						</span>*/}
 					</div>
 	 
 					</div>
 
 					<CardSection id="files-info-cards-section">
 						<BasicInfoCard 
+						editingLocalItem={this.props.editingLocalItem}
+						localItem={this.props.localItem}
+						inputContentType={this.props.inputContentType}
+						updateContentType={this.props.updateContentType}
+						inputMediaType={this.props.inputMediaType}
+			            inputMaterialType={this.props.inputMaterialType}
+			            inputSecondaryType={this.props.inputSecondaryType}
+			            inputFrameRate={this.props.inputFrameRate}
+			            inputAspectRatio={this.props.inputAspectRatio}
+			            updateMediaType={this.props.updateMediaType}
+			            updateMaterialType={this.props.updateMaterialType}
+			            updateSecondaryType={this.props.updateSecondaryType}
+			            updateFrameRate={this.props.updateFrameRate}
+			            updateAspectRatio={this.props.updateAspectRatio}
+						saveFilesInformation={this.saveFilesInformation}
 						closeFilesInformation={this.props.closeFilesInformation}
 						target={this.props.target}
 						selected={this.props.selected}
@@ -106,9 +132,44 @@ class FileInformationModal extends Component {
 						selectedFilter={this.props.selectedFilter}
 						selectedFilterSevice={this.props.selectedFilterSevice}
 						itemStatus={this.props.itemStatus}
+						inputPromoCode={this.props.inputPromoCode}
+						inputShow={this.props.inputShow}
+						updateShow={this.props.updateShow}
+						inputSeason={this.props.inputSeason}
+						updateSeason={this.props.updateSeason}
 						/>
 
 						<AdditionalInfoCard
+						editingLocalItem={this.props.editingLocalItem}
+						localItem={this.props.localItem}
+						inputEpisodeNumber={this.props.inputEpisodeNumber}
+						inputDescription={this.props.inputDescription}
+						inputUploader={this.props.inputUploader}
+						inputKeywords={this.props.inputKeywords}
+						inputProductionType={this.props.inputProductionType}
+						inputActors={this.props.inputActors}
+						inputNetwork={this.props.inputNetwork}
+						inputLanguage={this.props.inputLanguage}
+						inputCopyright={this.props.inputCopyright}
+						inputRestrictions={this.props.inputRestrictions}
+						updateDescription={this.props.updateDescription}
+						updateUploader={this.props.updateUploader}
+						updateKeywords={this.props.updateKeywords}
+						updateProductionType={this.props.updateProductionType}
+						updateActors={this.props.updateActors}
+						updateNetwork={this.props.updateNetwork}
+						updateLanguage={this.props.updateLanguage}
+						updateCopyright={this.props.updateCopyright}
+						updateRestrictions={this.props.updateRestrictions}
+						updateEpisodeNumber={this.props.updateEpisodeNumber}
+						updateHouseID={this.props.updateHouseID}
+						updateComposition={this.props.updateComposition}
+						updateColor={this.props.updateColor}
+						updatePromoCode={this.props.updatePromoCode}
+						inputHouseID={this.props.inputHouseID}
+						inputComposition={this.props.inputComposition}
+						inputColor={this.props.inputColor}
+						saveFilesInformation={this.saveFilesInformation}
 						closeFilesInformation={this.props.closeFilesInformation}
 						target={this.props.target}
 						selected={this.props.selected}
@@ -122,6 +183,9 @@ class FileInformationModal extends Component {
 						/>
 
 						<DetectedMetadataCard
+						editingLocalItem={this.props.editingLocalItem}
+						localItem={this.props.localItem}
+						saveFilesInformation={this.saveFilesInformation}
 						closeFilesInformation={this.props.closeFilesInformation}
 						target={this.props.target}
 						selected={this.props.selected}

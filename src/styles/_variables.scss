@@ -19,6 +19,7 @@ $color-body-bg: #f2f2f2;
 $color-grey-md: #999999;
 $color-dark-text: #000;
 $color-orange: rgb(255, 103, 0);
+$color--green: #7ac142;
 $color-red: red;
 $color-red-dark: #920000;
 $color-white: #ffffff;
@@ -38,6 +39,9 @@ $color-gray: #B2B2B2;
 $color-detected: #EF767A;
 
 $color-required: #E4245A;
+
+$curve1: cubic-bezier(0.4, 0.0, 0.2, 1);
+$curve2: cubic-bezier(0.65, 0, 0.45, 1);
 
 
 $theme-colors: (

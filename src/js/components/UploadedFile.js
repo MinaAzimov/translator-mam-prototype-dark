@@ -15,8 +15,7 @@ export default class UploadedFile extends Component {
 	render() {
 
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
-		const { handleClick, file, updateFilesForBulkList, removeFile, deleteFilePrompt, type, src, name, size, i, selected, imageSelectionEnabled, videoSelectionEnabled, audioSelectionEnabled, multiSelect, files, target, id, setRef } = this.props;
-
+		const { handleClick, file, updateFilesForBulkList, removeFile, deleteFilePrompt, type, src, name, size, i, selected, imageSelectionEnabled, videoSelectionEnabled, audioSelectionEnabled, multiSelect, files, target, id, setRef, readyForIngest, readyForService, searchOptimized } = this.props;
 	const classnames = classNames({
 			"files-information": true,
 			"files-information--show": selected
@@ -57,13 +56,14 @@ export default class UploadedFile extends Component {
 
 		return (
 	   			<div key={i} className="dz-preview-new dz-processing dz-image-preview" >
-					<div className="dz-image" value={i} key={i} onClick={this.props.handleClick.bind(this, i, file)}>
+					<div className="dz-image" value={i} key={i} onClick={this.props.handleClick.bind(this, i, file)} id={file.name} >
 					<div>
 					{ 
 						(file.type == 'video/mp4') ? (
 							<img data-dz-thumbnail className="thumbnail" src={ thumbSrc }/>) : (
 							<img data-dz-thumbnail className="thumbnail" src={ src }/>)
 					}
+
 					<img key={i} data-dz-thumbnail className="thumbnail"
 					src={ src }/>
 					</div>
@@ -74,7 +74,7 @@ export default class UploadedFile extends Component {
 					<strong>{(size / 1024).toFixed(2)}</strong>KB
 					</span>
 					</div>
-					<div className="dz-remove" onClick={this.props.deleteFilePrompt.bind(this, i)}>
+					<div className="dz-remove" onClick={this.props.deleteFilePrompt.bind(this, i, file)}>
 					<div>
 					<svg
 					style={{
@@ -96,13 +96,14 @@ export default class UploadedFile extends Component {
 					<input 
 					key={file} 
 					type="checkbox"
+					checked="checked"
 					className={type}
 					onClick={this.props.updateFilesForBulkList.bind(this, i, file)}
 					/>
 					<div className={checkboxDisable} ref={id} value={i} key={i} onClick={this.props.updateFilesForBulkList.bind(this, i, file)}><i className="iconcss icon-checkmark"></i></div>
 					</div>
 
-					<span className="dz-title"><Truncate lines={1} ellipsis={"..." + name.slice(-12)}>
+					<span className="dz-title"><Truncate lines={1} ellipsis={"..." + name}>
 								{ name }
 						</Truncate></span>
 					<span className="dz-icon">
@@ -111,7 +112,10 @@ export default class UploadedFile extends Component {
 					{ (file.type == 'video/mp4') ? <i className="iconcss icon-type-video"></i> : null }
 					</span>
 					<span className="dz-status" id={name}>
-						<RegistrationStatus/>
+						<RegistrationStatus
+						isReadyForIngest={readyForIngest}
+                        isReadyForService={readyForService}
+                        isSearchOptimized={searchOptimized} />
 					</span>
 
 					<div className="dz-filename">
@@ -139,10 +143,6 @@ export default class UploadedFile extends Component {
 					</div>
 
 					<div className="dz-error-mark">
-					<span />
-					</div>
-
-					<div className="dz-edit" onClick={this.props.handleClick.bind(this, i, file)}>
 					<span />
 					</div>
 					</div>	

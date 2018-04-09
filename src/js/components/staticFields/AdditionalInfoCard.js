@@ -9,6 +9,7 @@ import moment from "moment";
 import Selectbox from "../form/Selectbox";
 import TextArea from "../form/TextArea";
 import FieldWidgets from "../form/FieldWidgets";
+import Text from "../form/Text";
 import Switch from "../form/Switch";
 import UploadedFile from "../UploadedFile";
 import Truncate from 'react-truncate';
@@ -32,10 +33,14 @@ const networkList=[{title:"Kb",id:0},{title:"Mb",id:1},{title:"Gb",id:2}];
 
 class AdditionalInfoCard extends Component {
 
+
 	render() {
 
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
-		const { closeFilesInformation, fields, target, selected, onSearchOptimizedSelect, onServiceSelect, onInjestSelect, selectedFilter, selectedFilterOptimezed, selectedFilterSevice, itemStatus } = this.props;
+		const { closeFilesInformation, fields, target, selected, onSearchOptimizedSelect, onServiceSelect, onInjestSelect, selectedFilter, selectedFilterOptimezed, selectedFilterSevice, itemStatus,
+		updateHouseID, updateComposition, updateColor, updatePromoCode, inputHouseID, inputComposition, inputColor, inputPromoCode, inputDescription, inputUploader, inputKeywords, inputProductionType, 
+		inputActors, inputNetwork, inputLanguage, inputCopyright, inputRestrictions, updateDescription, updateUploader, updateKeywords, updateProductionType, updateActors,
+		updateNetwork, updateLanguage, updateCopyright, updateRestrictions, localItem, editingLocalItem } = this.props;
 
 		return(
 
@@ -44,60 +49,163 @@ class AdditionalInfoCard extends Component {
 					id="additional"
 					classname="card"
 					>
+					 <form>
+
 					<CardSection>
 					 {(this.props.target.type == "video" || this.props.target.type == "video/mp4")  ? (
 						<div>
-							<Selectbox
-							helpText=""
-							label="Air Version Type"
-							items={airVersionList}
-							inputPlaceholder="Type source"
-							onChange={this.props.onSearchOptimizedSelect}
-							value={this.props.selectedFilterOptimezed}
-							/>
+					
+				    <div className="field-text">
+				    <label className="field__label">
+				    House ID
+				    </label>
+				    <input className="field-text__input" placeholder="HouseID" value={this.props.inputHouseID} onChange={this.props.updateHouseID.bind(this)}/>
+			        </div>
+					
 
-							<Field field={fields[76]}>
-							<Selectbox
-							helpText=""
-							label="Language"
-							items={languageList}
-							inputPlaceholder="Type source"
-							/>
-							</Field>
-						 
-							<FieldWidgets.Text label="House ID" />
-							<FieldWidgets.Text label="Keywords" />
-							<FieldWidgets.Text label="Production Type" />
-							<FieldWidgets.Text label="People" />
-							<FieldWidgets.Text label="Language" />
-							<FieldWidgets.Text label="Copyright" />
-							<FieldWidgets.Text label="Restrictions" />
-					</div> 
-					) : (
+				
+					<div className="field-text">
+				    <label className="field__label">
+				    Description
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputDescription} onChange={this.props.updateDescription.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Uploader
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputUploader} onChange={this.props.updateUploader.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Keywords
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputKeywords} onChange={this.props.updateKeywords.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Production Type
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputProductionType} onChange={this.props.updateProductionType.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Actors
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputActors} onChange={this.props.updateActors.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Network
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputNetwork} onChange={this.props.updateNetwork.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Language
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputLanguage} onChange={this.props.updateLanguage.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Copyright
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputCopyright} onChange={this.props.updateCopyright.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Restrictions
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputRestrictions} onChange={this.props.updateRestrictions.bind(this)}/>
+			        </div>
+					</div> ) : (
 
 					<div>
-						<Selectbox
-						helpText=""
-						label="Language"
-						items={languageList}
-						inputPlaceholder="Type source"
-						onChange={this.props.onSearchOptimizedSelect}
-						value={this.props.selectedFilterOptimezed}
-						/>
-						<FieldWidgets.Text label="House ID"/>
-						<FieldWidgets.Text label="Composition" />
-						<FieldWidgets.Text label="Color" />
-						<FieldWidgets.Text label="Color Format" />
-						<FieldWidgets.Text label="Promo Code" />
-						<FieldWidgets.Text label="Keywords" />
-						<FieldWidgets.Text label="Production Type" />
-						<FieldWidgets.Text label="People" />
-						<FieldWidgets.Text label="Copyright" />
-						<FieldWidgets.Text label="Restrictions" />
+					<div className="field-text">
+				    <label className="field__label">
+				    House ID
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputHouseID} onChange={this.props.updateHouseID.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Composition
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputComposition} onChange={this.props.updateComposition.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Color
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputColor} onChange={this.props.updateColor.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Promo Code
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputPromoCode} onChange={this.props.updatePromoCode.bind(this)}/>
+			        </div>
+
+					<div className="field-text">
+				    <label className="field__label">
+				    Description
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputDescription} onChange={this.props.updateDescription.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Uploader
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputUploader} onChange={this.props.updateUploader.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Keywords
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputKeywords} onChange={this.props.updateKeywords.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Production Type
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputProductionType} onChange={this.props.updateProductionType.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Actors
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputActors} onChange={this.props.updateActors.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Network
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputNetwork} onChange={this.props.updateNetwork.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Language
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputLanguage} onChange={this.props.updateLanguage.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Copyright
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputCopyright} onChange={this.props.updateCopyright.bind(this)}/>
+			        </div>
+					<div className="field-text">
+				    <label className="field__label">
+				    Restrictions
+				    </label>
+				    <input className="field-text__input"  value={this.props.inputRestrictions} onChange={this.props.updateRestrictions.bind(this)}/>
+			        </div>
+
 					</div>
 					)
 				}
 					</CardSection>
+					</form>
 					</Card>
 
 		    	

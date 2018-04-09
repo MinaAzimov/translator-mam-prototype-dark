@@ -28,6 +28,8 @@ import { SimpleReactDropzone } from "../lib/ui/SimpleReactDropzone"; //'simple-r
 import { defaultIcons } from "../lib/ui/DefaultIcons";
 import EditFileOverlay from './EditFileOverlay';
 
+import NotifyButton from './NotifyButton';
+
 
 const uploadIcon = defaultIcons.react.uploadIcon;
 let filesArray = [];
@@ -63,6 +65,7 @@ class MySimpleReactDropzone extends React.Component {
 		bytesPerStep = 100000;
 		let totalSteps;
 
+
 		dropzone.uploadFiles = function(files) {
 			let self = this;
 			for (let i = 0; i < files.length; i++) {
@@ -92,7 +95,6 @@ class MySimpleReactDropzone extends React.Component {
 									file.status = "success";
 									file.id = getNewFakeFileId();
 									filesArray.push(file);
-									console.log(filesArray);
 									self.emit("success", file, "success", null);
 									self.emit("complete", file);
 									self.processQueue();
@@ -145,7 +147,9 @@ class Dropzone extends Component {
 		this.state = {
 			showDeletePrompt: false,
 			files: [],
+			inputTextValue: ' ',
 			counter: 0,
+			targetID: 0,
 			percentage: 10,
 			selectedFilter: null,
 			resetToUploadMode: false,
@@ -175,9 +179,51 @@ class Dropzone extends Component {
 				hasPendingUpload: false
 			},
 			existingFiles: [],
-			existingFiles2: []
+			existingFiles2: [],
+			inputHouseID: '',
+			inputComposition: '',
+			inputColor: '',
+			inputPromoCode: '',
+			inputShow: '',
+			inputEpisodeNumber: '',
+			inputDescription: '',
+			inputUploader: '',
+			inputKeywords: '',
+			inputProductionType: '',
+			inputActors: '',
+			inputNetwork: '',
+			inputLanguage: '',
+			inputCopyright: '',
+			inputRestrictions: '',
+			inputSeason: '',
+			inputMediaType: '',
+			inputMaterialType: '',
+			inputSecondaryType: '',
+			inputFrameRate: '',
+			inputAspectRatio: '',
+			inputTitle: '',
+			inputSubtitle: '',
+			inputContentType: ''
+
 		};
 	}
+
+	componentWillReceiveProps(nextProps) {
+  if (nextProps.files !== this.props.localFiles && nextProps.editingLocalProject) {
+    this.setState({ files: nextProps.localFiles[0].items });
+  }
+
+  if (nextProps.files !== this.props.localFiles && nextProps.editingLocalProject && nextProps.editingLocalItem) {
+    this.setState({ files: nextProps.localFiles[0].items,
+                    selected: true,
+                    target: this.props.localItem});
+  }
+
+  if (nextProps.files !== this.props.localFiles && !nextProps.editingLocalProject) {
+    this.setState({ files: filesArray });
+  }
+  
+}
 
 
 	removeFile = (i) => {
@@ -193,17 +239,33 @@ class Dropzone extends Component {
 	}
 
 	removeFileFromPrompt = () => {
+
 		let i = this.state.itemToDelete;
 		var array = this.state.files;
 		var index = i;
 		console.log(index);
 		array.splice(index, 1);
+		
+		var name = this.props.client.user.name
+		var project = this.props.currentProject;
+
 		this.setState({
 			files: array,
 			target: array,
 			selected: false,
 	  		showDeletePrompt: !this.state.showDeletePrompt
-		});
+			});
+
+	if(this.props.editingLocalProject || this.props.editingLocalItem) {
+		var usersRef = firebase.database().ref('projects/'+ name+ '/' + project)
+	    var itemsRef = usersRef.child('items');
+		itemsRef.once('value', snapshot => {
+		let updates = {};
+		snapshot.forEach(snap => updates[snap.key] = null);
+		itemsRef.update(updates);
+		})    
+		}   
+
 	}
 
 	// openPromptAndRemoveFile = (i) => {
@@ -266,13 +328,18 @@ class Dropzone extends Component {
 
 	handleClick = (i, file) => {
 		let itemSize = 272;
+		if(this.state.target.length > 0) {
+			i = this.props.localItem.id;
+			file = this.props.localItem
+			this.handleClick(i, file)
+			return
+		}
 
 		if (!this.state.showGridView) {
 			itemSize = 99;
 		} 
 
-		 this.setState({ target: this.state.files[i], selected: true });
-		 console.log(this.state.files[i])
+		 this.setState({ target: this.state.files[i], selected: true});
 		 let scrollTo = document.getElementsByClassName('dz-preview-new')[i].offsetTop;
 		 this.smoothScrollTo(0,scrollTo + 5,600);
 		 document.getElementsByClassName('files-information')[0].style.top = scrollTo + itemSize;
@@ -301,60 +368,337 @@ class Dropzone extends Component {
 				if (document.getElementsByClassName('files-information')[0].classList.contains('callout-4')) { document.getElementsByClassName('files-information')[0].classList.remove('callout-4');}
 			}, 15);
 		}
+
+		if(!this.state.files[i].test) {
+			this.setState({
+            inputHouseID: '',
+			inputComposition: '',
+			inputColor: '',
+			inputPromoCode: '',
+			inputShow: '',
+			inputEpisodeNumber: '',
+			inputDescription: '',
+			inputUploader: '',
+			inputKeywords: '',
+			inputProductionType: '',
+			inputActors: '',
+			inputNetwork: '',
+			inputLanguage: '',
+			inputCopyright: '',
+			inputRestrictions: '',
+			inputSeason: '',
+			inputMediaType: '',
+			inputMaterialType: '',
+			inputSecondaryType: '',
+			inputFrameRate: '',
+			inputAspectRatio: '',
+			inputTitle: '',
+			inputSubtitle: '',
+			itemStatus: 'Needs Metadata',
+			inputContentType: ''
+          });
+		}
+
+		if(this.state.files[i].test == "edited") {
+			this.setState({
+            inputHouseID: this.state.files[i].inputHouseID,
+            inputComposition: this.state.files[i].inputComposition,
+            inputColor: this.state.files[i].inputColor,
+            inputPromoCode: this.state.files[i].inputPromoCode,
+            inputShow: this.state.files[i].inputShow,
+            inputEpisodeNumber:  this.state.files[i].inputEpisodeNumber,
+			inputDescription:  this.state.files[i].inputDescription,
+			inputUploader:  this.state.files[i].inputUploader,
+			inputKeywords:  this.state.files[i].inputKeywords,
+			inputProductionType:  this.state.files[i].inputProductionType,
+			inputActors:  this.state.files[i].inputActors,
+			inputNetwork:  this.state.files[i].inputNetwork,
+			inputLanguage:  this.state.files[i].inputLanguage,
+			inputCopyright:  this.state.files[i].inputCopyright,
+			inputRestrictions:  this.state.files[i].inputRestrictions,
+			inputSeason:  this.state.files[i].inputSeason,
+			inputMediaType: this.state.files[i].inputMediaType,
+			inputMaterialType: this.state.files[i].inputMaterialType,
+			inputSecondaryType: this.state.files[i].inputSecondaryType,
+			inputFrameRate: this.state.files[i].inputFrameRate,
+			inputAspectRatio: this.state.files[i].inputAspectRatio,
+			inputTitle: this.state.files[i].inputTitle,
+			inputSubtitle: this.state.files[i].inputSubtitle,
+			itemStatus: this.state.files[i].inputStatus,
+			inputContentType: this.state.files[i].inputContentType
+
+          });
+		}
+				    
 }
 
-onInjestSelect = val => {
-	this.setState({
-		selectedFilter: val
-	});
-	if (val) {
-		this.setState({
-			itemStatus: "Ready For Ingest"
-		});
-	} else {
+
+		saveFilesInformation = (i, file) => {
+			this.state.target.test = "edited";
+			this.state.target.inputHouseID = this.state.inputHouseID;
+			this.state.target.inputComposition = this.state.inputComposition;
+			this.state.target.inputColor = this.state.inputColor;
+			this.state.target.inputPromoCode = this.state.inputPromoCode;
+			this.state.target.inputShow = this.state.inputShow;
+			this.state.target.inputEpisodeNumber = this.state.inputEpisodeNumber;
+			this.state.target.inputDescription = this.state.inputDescription;
+			this.state.target.inputUploader = this.state.inputUploader;
+			this.state.target.inputKeywords = this.state.inputKeywords;
+			this.state.target.inputProductionType = this.state.inputProductionType;
+			this.state.target.inputActors = this.state.inputActors;
+			this.state.target.inputNetwork = this.state.inputNetwork;
+			this.state.target.inputLanguage = this.state.inputLanguage;
+			this.state.target.inputCopyright = this.state.inputCopyright;
+			this.state.target.inputRestrictions = this.state.inputRestrictions;
+			this.state.target.inputSeason = this.state.inputSeason;
+			this.state.target.inputMediaType = this.state.inputMediaType;
+			this.state.target.inputMaterialType = this.state.inputMaterialType;
+			this.state.target.inputSecondaryType = this.state.inputSecondaryType;
+			this.state.target.inputFrameRate = this.state.inputFrameRate;
+			this.state.target.inputAspectRatio = this.state.inputAspectRatio;
+			this.state.target.inputTitle = this.state.inputTitle;
+			this.state.target.inputSubtitle = this.state.inputSubtitle;
+			this.state.target.inputStatus = this.state.itemStatus;
+			this.state.target.inputContentType = this.state.inputContentType;
+
+			this.setState({
+	      itemStatus: this.state.target.inputStatus
+	    });
+			
+			console.log(this.state.target)
+			
+		}
+
+	updateTitle = (e) => {
+	    this.setState({
+	      inputTitle: e.target.value
+	    });
+	  }
+
+	 updateSubtitle = (e) => {
+	    this.setState({
+	      inputSubtitle: e.target.value
+	    });
+	  }
+
+    updateHouseID = (e) => {
+    this.setState({
+      inputHouseID: e.target.value
+    });
+  }
+
+    updateComposition = (e) => {
+    this.setState({
+      inputComposition: e.target.value
+    });
+  }
+
+    updateColor = (e) => {
+    this.setState({
+      inputColor: e.target.value
+    });
+  }
+
+    updatePromoCode = (e) => {
+    this.setState({
+      inputPromoCode: e.target.value
+    });
+  }
+
+   updateEpisodeNumber = (e) => {
+    this.setState({
+      inputEpisodeNumber: e.target.value
+    });
+  }
+
+  updateDescription = (e) => {
+    this.setState({
+      inputDescription: e.target.value
+    });
+  }
+
+    updateUploader = (e) => {
+    this.setState({
+      inputUploader: e.target.value
+    });
+  }
+
+   updateKeywords = (e) => {
+    this.setState({
+      inputKeywords: e.target.value
+    });
+  }
+
+    updateProductionType = (e) => {
+    this.setState({
+      inputProductionType: e.target.value
+    });
+  }
+
+  updateActors = (e) => {
+    this.setState({
+      inputActors: e.target.value
+    });
+  }
+
+   updateNetwork = (e) => {
+    this.setState({
+      inputNetwork: e.target.value
+    });
+  }
+
+    updateLanguage = (e) => {
+    this.setState({
+      inputLanguage: e.target.value
+    });
+  }
+
+   updateCopyright = (e) => {
+    this.setState({
+      inputCopyright: e.target.value
+    });
+  }
+
+  updateRestrictions = (e) => {
+    this.setState({
+      inputRestrictions: e.target.value
+    });
+  }
+
+  updateSeason = val => {
+    this.setState({
+      inputSeason: val
+    });
+  }
+
+    updateContentType = val => {
+    this.setState({
+      inputContentType: val
+    });
+  }
+
+  updateMediaType = val => {
+    this.setState({
+      inputMediaType: val
+    });
+
+    if (!val) {
 		this.setState({
 			itemStatus: "Needs Metadata"
 		});
-	}
- var selector = document.getElementById(this.state.target.name);
- selector.firstChild.firstChild.firstChild.firstChild.style.fill = "#F54E02";
-};
-
-onServiceSelect = val => {
-	this.setState({
-		selectedFilterSevice: val
-	});
-
-	if (val && this.state.itemStatus == "Ready For Ingest") {
-		this.setState({
-			itemStatus: "Ready For Service"
-		});
-	} else {
+		
+	} 
+	if (val && this.state.inputMaterialType) {
 		this.setState({
 			itemStatus: "Ready For Ingest"
 		});
-	}
-	var selector = document.getElementById(this.state.target.name);
-	selector.firstChild.firstChild.firstChild.childNodes[1].style.fill = "#7DCBC4";
-};
+		
+	} 
 
-onSearchOptimizedSelect = val => {
-	this.setState({
-		selectedFilterOptimezed: val
-	});
+	if (val && this.state.inputMaterialType && this.state.inputAspectRatio) {
+		this.setState({
+			itemStatus: "Ready For Service"
+		});
+		
+	} 
 
-	if (val && this.state.itemStatus == "Ready For Service") {
+	if (val && this.state.inputMaterialType && this.state.inputAspectRatio && this.state.inputShow) {
 		this.setState({
 			itemStatus: "Search Optimized"
 		});
-	} else {
+		
+	} 
+
+   
+  }
+
+  updateMaterialType = val => {
+    this.setState({
+      inputMaterialType: val
+    });
+	if (val && this.state.inputMediaType) {
+		this.setState({
+			itemStatus: "Ready For Ingest"
+		});
+		
+	} 
+	if (val && this.state.inputMediaType && this.state.inputAspectRatio) {
+		this.setState({
+			itemStatus: "Ready For Service"
+		});
+		
+	} 
+	if (val && this.state.inputMediaType && this.state.inputAspectRatio && this.state.inputShow) {
+		this.setState({
+			itemStatus: "Search Optimized" 
+		});
+		
+	} 
+	if(!val) {
+		
+		this.setState({
+			itemStatus: "Needs Metadata"
+		});
+	} 
+  }
+
+  updateAspectRatio = val => {
+    this.setState({
+      inputAspectRatio: val
+    });
+	if (val && this.state.inputMaterialType && this.state.inputMediaType) {
 		this.setState({
 			itemStatus: "Ready For Service"
 		});
 	}
-	 var selector = document.getElementById(this.state.target.name);
-	 selector.firstChild.firstChild.firstChild.childNodes[2].style.fill = "#3592bd";
-};
+
+	if (val && this.state.inputMaterialType && this.state.inputMediaType  && this.state.inputShow) {
+		this.setState({
+			itemStatus: "Search Optimized"
+		});
+	}
+
+	 if(!val && this.state.inputMaterialType && this.state.inputMediaType) {
+		
+	this.setState({
+			itemStatus: "Ready For Ingest"
+		});
+	}
+  }
+
+  updateShow = val => {
+    this.setState({
+      inputShow: val
+    });
+
+	if (val && this.state.inputMaterialType && this.state.inputMediaType && this.state.inputAspectRatio) {
+		this.setState({
+			itemStatus: "Search Optimized"
+		});
+	
+	} 
+	if (!val && this.state.inputMaterialType && this.state.inputMediaType && this.state.inputAspectRatio){
+		
+		 this.setState({
+			itemStatus: "Ready For Service"
+		});
+	}
+  }
+
+
+  updateSecondaryType = val => {
+    this.setState({
+      inputSecondaryType: val
+    });
+  }
+
+  updateFrameRate = val => {
+    this.setState({
+      inputFrameRate: val
+    });
+  }
+
+
 
 
 bulkEdit() {
@@ -454,57 +798,180 @@ updateFilesForBulkList = (i, file) => {
 	}
 
 removeDropzone() {
+	var downloadURL;
+	var name = this.props.client.user.name
+	var value = this.props.inputValue;
+	var project = this.props.currentProject;
+	filesArray = [];
 		this.props.hideDropzone();
-		this.setState({selected: false})
+		this.setState({selected: false, target: []})
 
-	for (var i = 0; i < this.state.files.length; i++) {
+
+		if(this.props.editingLocalProject) {
+		var rootRef = firebase.database().ref();
+         var usersRef = firebase.database().ref('projects/'+ name+ '/' + project)
+         var itemsRef = usersRef.child('items');
+	
+		for (var i = 0; i < this.state.files.length; i++) {
         var imageFile = this.state.files[i];
-        var metadata = {
-         accepted: "alex",
-         name: "aaa"
-      };
-        uploadImageAsPromise(imageFile, metadata);
+   		var index = i;
+   		console.log(i)
+		var data = {
+			        "projectName": project,
+                    "name": imageFile.name,
+                    "processing": imageFile.processing,
+					"subtitle": "This Sunday: Brand New",
+					"type": imageFile.type,
+					"lastEditedBy": "Lova Yazdani",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": imageFile.lastModified,
+					"previewTemplate" : {
+						"firstElementChild": {
+							firstChild: {
+								currentSrc: imageFile.previewTemplate.firstElementChild.firstChild.currentSrc,
+							}
+						}
+					},
+					"size": imageFile.size,
+					"img": imageFile.previewTemplate.firstElementChild.firstChild.currentSrc,
+					"src": imageFile.previewTemplate.firstElementChild.firstChild.currentSrc,
+					"height": "780",
+                    "width": "1280",
+                    "id": imageFile.id,
+                    "test": (imageFile.test ? imageFile.test : ''),
+                    "inputHouseID": (imageFile.inputHouseID ? imageFile.inputHouseID : ''),
+					"inputComposition": (imageFile.inputComposition ? imageFile.inputComposition : ''),
+					"inputColor": (imageFile.inputColor ? imageFile.inputColor : ''),
+					"inputPromoCode": (imageFile.inputPromoCode ? imageFile.inputPromoCode : ''),
+					"inputShow": (imageFile.inputShow ? imageFile.inputShow : ''),
+					"inputEpisodeNumber": (imageFile.inputEpisodeNumber ? imageFile.inputEpisodeNumber : ''),
+					"inputDescription": (imageFile.inputDescription ? imageFile.inputDescription : ''),
+					"inputUploader": (imageFile.inputUploader ? imageFile.inputUploader : ''),
+					"inputKeywords": (imageFile.inputKeywords ? imageFile.inputKeywords : ''),
+					"inputProductionType": (imageFile.inputProductionType ? imageFile.inputProductionType : ''),
+					"inputActors": (imageFile.inputActors ? imageFile.inputActors : ''),
+					"inputNetwork": (imageFile.inputNetwork ? imageFile.inputNetwork : ''),
+					"inputLanguage": (imageFile.inputLanguage ? imageFile.inputLanguage : ''),
+					"inputCopyright": (imageFile.inputCopyright ? imageFile.inputCopyright : ''),
+					"inputRestrictions": (imageFile.inputRestrictions ? imageFile.inputRestrictions : ''),
+					"inputSeason": (imageFile.inputSeason ? imageFile.inputSeason : ''),
+					"inputMediaType": (imageFile.inputMediaType ? imageFile.inputMediaType : ''),
+					"inputMaterialType": (imageFile.inputMaterialType ? imageFile.inputMaterialType : ''),
+					"inputSecondaryType": (imageFile.inputSecondaryType ? imageFile.inputSecondaryType : ''),
+					"inputFrameRate": (imageFile.inputFrameRate ? imageFile.inputFrameRate : ''),
+					"inputAspectRatio": (imageFile.inputAspectRatio ? imageFile.inputAspectRatio : ''),
+					"inputTitle": (imageFile.inputTitle ? imageFile.inputTitle : ''),
+					"inputSubtitle": (imageFile.inputSubtitle ? imageFile.inputSubtitle : ''),
+					"inputStatus": (imageFile.inputStatus ? imageFile.inputStatus : ''),
+					"inputContentType": (imageFile.inputContentType ? imageFile.inputContentType : '')
+			       }
+       var anotherItems = itemsRef.child(i).update(data)
+    }  
+}
+
+		if(!this.props.editingLocalProject) {
+		 var rootRef = firebase.database().ref();
+         var usersRef = firebase.database().ref('projects/'+ name+ '/' + value)
+         var itemsRef = usersRef.child('items');
+         var titleRef = usersRef.child('title').set(this.props.inputValue);
+
+	    for (var i = 0; i < this.state.files.length; i++) {
+        var imageFile = this.state.files[i];
+       // uploadImageAsPromise(imageFile);
+   		var index = i;
+		var data = {
+					"projectName": this.props.inputValue,
+                    "name": imageFile.name,
+                    "processing": imageFile.processing,
+					"subtitle": "This Sunday: Brand New",
+					"type": imageFile.type,
+					"lastEditedBy": "Lova Yazdani",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": imageFile.lastModified,
+					"previewTemplate" : {
+						"firstElementChild": {
+							firstChild: {
+								currentSrc: imageFile.previewTemplate.firstElementChild.firstChild.currentSrc,
+							}
+						}
+					},
+					"size": imageFile.size,
+					"img": imageFile.previewTemplate.firstElementChild.firstChild.currentSrc,
+					"src": imageFile.previewTemplate.firstElementChild.firstChild.currentSrc,
+					"height": "780",
+                    "width": "1280",
+                    "id": imageFile.id,
+                    "test": (imageFile.test ? imageFile.test : ''),
+                    "inputHouseID": (imageFile.inputHouseID ? imageFile.inputHouseID : ''),
+					"inputComposition": (imageFile.inputComposition ? imageFile.inputComposition : ''),
+					"inputColor": (imageFile.inputColor ? imageFile.inputColor : ''),
+					"inputPromoCode": (imageFile.inputPromoCode ? imageFile.inputPromoCode : ''),
+					"inputShow": (imageFile.inputShow ? imageFile.inputShow : ''),
+					"inputEpisodeNumber": (imageFile.inputEpisodeNumber ? imageFile.inputEpisodeNumber : ''),
+					"inputDescription": (imageFile.inputDescription ? imageFile.inputDescription : ''),
+					"inputUploader": (imageFile.inputUploader ? imageFile.inputUploader : ''),
+					"inputKeywords": (imageFile.inputKeywords ? imageFile.inputKeywords : ''),
+					"inputProductionType": (imageFile.inputProductionType ? imageFile.inputProductionType : ''),
+					"inputActors": (imageFile.inputActors ? imageFile.inputActors : ''),
+					"inputNetwork": (imageFile.inputNetwork ? imageFile.inputNetwork : ''),
+					"inputLanguage": (imageFile.inputLanguage ? imageFile.inputLanguage : ''),
+					"inputCopyright": (imageFile.inputCopyright ? imageFile.inputCopyright : ''),
+					"inputRestrictions": (imageFile.inputRestrictions ? imageFile.inputRestrictions : ''),
+					"inputSeason": (imageFile.inputSeason ? imageFile.inputSeason : ''),
+					"inputMediaType": (imageFile.inputMediaType ? imageFile.inputMediaType : ''),
+					"inputMaterialType": (imageFile.inputMaterialType ? imageFile.inputMaterialType : ''),
+					"inputSecondaryType": (imageFile.inputSecondaryType ? imageFile.inputSecondaryType : ''),
+					"inputFrameRate": (imageFile.inputFrameRate ? imageFile.inputFrameRate : ''),
+					"inputAspectRatio": (imageFile.inputAspectRatio ? imageFile.inputAspectRatio : ''),
+					"inputTitle": (imageFile.inputTitle ? imageFile.inputTitle : ''),
+					"inputSubtitle": (imageFile.inputSubtitle ? imageFile.inputSubtitle : ''),
+					"inputStatus": (imageFile.inputStatus ? imageFile.inputStatus : ''),
+					"inputContentType": (imageFile.inputContentType ? imageFile.inputContentType : '')
+					
+			       }
+      var anotherItems = itemsRef.child(i).set(data)
     }
 
 
-    function uploadImageAsPromise (imageFile) {
-    return new Promise(function (resolve, reject) {
-        var storageRef = firebase.storage().ref("/"+imageFile.name);
-        var metadata = {
-		  customMetadata: {
-		    'accepted': imageFile.accepted,
-		    'height': imageFile.height,
-		    'id': imageFile.id,
-		    'lastModified': imageFile.lastModified,
-		    'name': imageFile.name,
-		    'previewTemplate': imageFile.previewTemplate.firstElementChild.firstChild.currentSrc,
-		    'size': imageFile.size,
-		    'type': imageFile.type,
-		    'width': imageFile.width
-		  }
-		}
-        var task = storageRef.put(imageFile, metadata);
-        task.on('state_changed',
-            function progress(snapshot){
-                var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;  
-            },
-            function error(err){
-            },
-            function complete(){
-                var downloadURL = task.snapshot.downloadURL;
-                console.log(downloadURL)
-
-                var storageRef = firebase.storage().ref();
-                var forestRef = storageRef.child("/" + '3.png');
-				forestRef.getMetadata().then(function(metadata) {
-				  console.log(metadata)
-				}).catch(function(error) {
+    //function uploadImageAsPromise (imageFile) {
+    //return new Promise(function (resolve, reject) {
+        //var storageRef = firebase.storage().ref("/"+imageFile.name);
+        //var metadata = {
+		  //customMetadata: {
+		   // 'accepted': imageFile.accepted,
+		    //'height': imageFile.height,
+		   // 'id': imageFile.id,
+		   // 'lastModified': imageFile.lastModified,
+		    //'name': imageFile.name,
+		    //'previewTemplate': imageFile.previewTemplate.firstElementChild.firstChild.currentSrc,
+		    //'size': imageFile.size,
+		   // 'type': imageFile.type,
+		   // 'width': imageFile.width
+		 // }
+		//}
+        //var task = storageRef.put(imageFile, metadata);
+        //task.on('state_changed',
+           // function progress(snapshot){
+              //  var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;  
+           // },
+            //function error(err){
+           // },
+            //function complete(){
+            	//downloadURL = task.snapshot.downloadURL;
+                //console.log(downloadURL)
+               // var storageRef = firebase.storage().ref();
+                //var forestRef = storageRef.child("/" + imageFile.name);
+				//forestRef.getMetadata().then(function(metadata) {
+				//  console.log(metadata)
+				//}).catch(function(error) {
 				 
-				});
-            }
-        );
-    });
-  }
+				//});
+           // }
+        //);
+    //});
+  //}  
+		}
+		
 }
 
 			
@@ -651,25 +1118,11 @@ selectAudioFiles() {
 
 	render() {
 		const url = "None. Fake methods has being implemented for the demo. So there is no need of a server.";
-		let files = this.state.files;
-		const { target, selected, client, itemStatus, resetToUploadMode, multiSelect, isSelectedforBulk, itemsForBulk, imageSelectionEnabled, audioSelectionEnabled, videoSelectionEnabled } = this.state;
-		const { fields, localFiles, editingLocalProject, resetNewProject, hideDropzone } = this.props;
+		
+		const { target, selected, client, itemStatus, resetToUploadMode, multiSelect, isSelectedforBulk, itemsForBulk, imageSelectionEnabled, audioSelectionEnabled, videoSelectionEnabled, files, targetID } = this.state;
+		const { fields, localFiles, editingLocalProject, resetNewProject, hideDropzone, inputValue, currentProject, localItem, editingLocalItem, getFilesData} = this.props;
 		const projectName = "Project Name";
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
-
-		var s = new Set();
-		var result = [];
-		this.state.files.forEach(function(e) {
-			result.push(Object.assign({}, e));
-			s.add(e.id);
-		});
-		this.props.localFiles.forEach(function(e) {
-			if (!s.has(e.id)) {
-				var temp = Object.assign({}, e);
-				temp.position = null;
-				result.push(temp);
-			}
-		});
 
 		const classnames = classNames({
 			"files-information": true,
@@ -756,12 +1209,18 @@ selectAudioFiles() {
 				</div>
 			</div>
 			</div>
+			<hr></hr>
+            <NotifyButton
+            drawer={true}
+            />
 			</div>
 			<div>
+
 			<div className="above-bar">
 				<button className="back-to-projects" onClick={this.removeDropzone.bind(this)}><i className="material-icons">arrow_back</i>Back To All Projects</button>
 				<button className="save-button"><i className="iconcss icon-save"></i>Save</button>
 			</div>
+
 			<div
 			style={{
 				opacity: 0,
@@ -778,10 +1237,18 @@ selectAudioFiles() {
 			maxFiles={500}
 			onChange={e => {
 				console.log("*** onChange (delayedRemove)", e);
+				
 				this.setState({
-					uploadState: { ...e.newState },
-					files: filesArray
-				});
+                        files: filesArray })
+
+				if(this.props.editingLocalProject || this.props.editingLocalItem) {
+					this.setState({
+                        files: filesArray.concat(this.props.localFiles[0].items)})
+				}
+
+				
+			
+				
 				if (filesArray.length > 0) {
 					document.getElementsByClassName('dz-master-progress--bar-inner')[0].classList.add('dz-master-progress--bar-inner-animation');
 					document.getElementById('upload').style.marginLeft = '0%';
@@ -867,7 +1334,11 @@ selectAudioFiles() {
 						id={file.id} 
 						ref={file.id}
 						key={i}
+						readyForIngest={ (file.inputStatus == "Ready For Ingest" || file.inputStatus == "Ready For Service" || file.inputStatus == "Search Optimized") ? true : false }
+					    readyForService={ (file.inputStatus == "Ready For Service" || file.inputStatus == "Search Optimized") ? true : false }
+					    searchOptimized={ file.inputStatus == "Search Optimized" ? true : false }
 						/>
+
 						))
 			}
 				</div>
@@ -875,16 +1346,66 @@ selectAudioFiles() {
 
 					<div className={classnames}>
 						<FileInformationModal
+						editingLocalItem={this.props.editingLocalItem}
+						localItem={this.props.localItem}
+						inputTitle={this.state.inputTitle}
+						inputSubtitle={this.state.inputSubtitle}
+						updateTitle={this.updateTitle}
+						updateSubtitle={this.updateSubtitle}
+						inputContentType={this.state.inputContentType}
+						updateContentType={this.updateContentType}
+
+			            inputMediaType={this.state.inputMediaType}
+			            inputMaterialType={this.state.inputMaterialType}
+			            inputSecondaryType={this.state.inputSecondaryType}
+			            inputFrameRate={this.state.inputFrameRate}
+			            inputAspectRatio={this.state.inputAspectRatio}
+			            updateMediaType={this.updateMediaType}
+			            updateMaterialType={this.updateMaterialType}
+			            updateSecondaryType={this.updateSecondaryType}
+			            updateFrameRate={this.updateFrameRate}
+			            updateAspectRatio={this.updateAspectRatio}
+
+						inputSeason={this.state.inputSeason}
+						inputEpisodeNumber={this.state.inputEpisodeNumber}
+						inputDescription={this.state.inputDescription}
+						inputUploader={this.state.inputUploader}
+						inputKeywords={this.state.inputKeywords}
+						inputProductionType={this.state.inputProductionType}
+						inputActors={this.state.inputActors}
+						inputNetwork={this.state.inputNetwork}
+						inputLanguage={this.state.inputLanguage}
+						inputCopyright={this.state.inputCopyright}
+						inputRestrictions={this.state.inputRestrictions}
+						updateSeason={this.updateSeason}
+						updateDescription={this.updateDescription}
+						updateUploader={this.updateUploader}
+						updateKeywords={this.updateKeywords}
+						updateProductionType={this.updateProductionType}
+						updateActors={this.updateActors}
+						updateNetwork={this.updateNetwork}
+						updateLanguage={this.updateLanguage}
+						updateCopyright={this.updateCopyright}
+						updateRestrictions={this.updateRestrictions}
+						updateEpisodeNumber={this.updateEpisodeNumber}
+						updateHouseID={this.updateHouseID}
+						updateComposition={this.updateComposition}
+						updateColor={this.updateColor}
+						updatePromoCode={this.updatePromoCode}
+						updateShow={this.updateShow}
+						inputHouseID={this.state.inputHouseID}
+						inputComposition={this.state.inputComposition}
+						inputColor={this.state.inputColor}
+						inputPromoCode={this.state.inputPromoCode}
+						inputShow={this.state.inputShow}
+						saveFilesInformation={this.saveFilesInformation}
+						inputTextValue={this.state.inputTextValue}
+						updateTextValue={this.updateTextValue }
 						closeFilesInformation={this.closeFilesInformation}
 						target={this.state.target}
 						selected={this.state.selected}
-						onServiceSelect={this.onServiceSelect}
-						onInjestSelect={this.onInjestSelect}
-						onSearchOptimizedSelect={this.onSearchOptimizedSelect}
-						selectedFilterOptimezed={this.state.selectedFilterOptimezed}
-						selectedFilter={this.state.selectedFilter}
-						selectedFilterSevice={this.state.selectedFilterSevice}
-						itemStatus={this.state.itemStatus} />
+						itemStatus={this.state.itemStatus}
+					    />
 					</div>
 					</div>
 					</div>

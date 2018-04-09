@@ -36,7 +36,7 @@ class DetectedMetadataCard extends Component {
 	render() {
 
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
-		const { closeFilesInformation, fields, target, selected, onSearchOptimizedSelect, onServiceSelect, onInjestSelect, selectedFilter, selectedFilterOptimezed, selectedFilterSevice, itemStatus } = this.props;
+		const { closeFilesInformation, fields, target, selected, onSearchOptimizedSelect, onServiceSelect, onInjestSelect, selectedFilter, selectedFilterOptimezed, selectedFilterSevice, itemStatus, localItem, editingLocalItem } = this.props;
 
 		return(
 	      <Card title="Detected Technical Metadata" id="metadata">

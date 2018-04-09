@@ -445,7 +445,7 @@ class MediaOverlay extends Component {
   renderSection = ({title, items, page}) => {
 
 
-    console.log("OK so media overlay, these are the props", this.props);
+    //console.log("OK so media overlay, these are the props", this.props);
 
     if (items.length === 0) {
       return null;
