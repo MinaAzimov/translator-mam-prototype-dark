@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { EMAILS } from '../../../mock/emails.js';
 import { WithOutContext as ReactTags } from 'react-tag-input';
 import classNames from "classnames";
+import newId from '../actions/newid';
 
 
 export default class NotifyButton extends Component {
@@ -24,6 +25,10 @@ export default class NotifyButton extends Component {
     this.openNotifyOptions = this.openNotifyOptions.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.id = newId();
   }
 
   componentDidMount() {
@@ -95,6 +100,7 @@ export default class NotifyButton extends Component {
         placeholder: "usa.pa@nbcuni.com",
         sendSuccess: false
       });
+      (this.props.drawer) ? this.refs.notifyToggle.checked = false : null;
     }, 5000);
   }
 
@@ -111,9 +117,9 @@ export default class NotifyButton extends Component {
 
     return (
       <div className={classnames} ref="wrapper">
-        <span>Notify By Email</span>
-        <input id="notify-toggle" type="checkbox" ref="notifyToggle"></input>
-        <label htmlFor="notify-toggle">
+        {/*<span>Notify By Email</span>*/}
+        <input id={this.id} type="checkbox" ref="notifyToggle"></input>
+        <label htmlFor={this.id}>
           <i className="iconcss icon-bullhorn"></i>
           <span>Email Notify</span>
         </label>

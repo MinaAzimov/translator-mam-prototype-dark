@@ -9,7 +9,6 @@ import $ from "jquery";
 export default class Selectbox extends React.Component {
 
   static defaultProps = {
-    noneText: "- None -",
     hideMenuUntilType: false
   }
 
@@ -309,7 +308,7 @@ export default class Selectbox extends React.Component {
 	          selectOption={this.selectOption.bind(this)}
 	          showComplex={this.props.showComplex}
             disableNone={this.props.disableNone}
-            noneText={this.props.noneText}
+
 	          />
 	      </div>
       </div>
@@ -327,7 +326,6 @@ Selectbox.propTypes = {
   allowCustomText: PropTypes.bool,
   search: PropTypes.bool,
   showComplex: PropTypes.bool,
-  noneText: PropTypes.string,
   stealFocus: PropTypes.bool,
   hideMenuUntilType: PropTypes.bool
 }
@@ -370,7 +368,7 @@ const SelectList = class SelectList extends React.Component {
   }
 
   render() {
-    const {highlightedOption, selectedOption, selectOption, highlightOption, disableNone, noneText} = this.props;
+    const {highlightedOption, selectedOption, selectOption, highlightOption, disableNone} = this.props;
     return (
         <ul className="selectbox__list" ref="container">
           <li ref="offsetOrigin"></li>
@@ -380,7 +378,7 @@ const SelectList = class SelectList extends React.Component {
             onClick={selectOption.bind(this, null)}
             onMouseOver={highlightOption.bind(this, -1)}
           >
-            <div className={"selectbox__list-item-title"}>{noneText}</div>
+            <div className={"selectbox__list-item-title"}></div>
           </li>
           }
           {

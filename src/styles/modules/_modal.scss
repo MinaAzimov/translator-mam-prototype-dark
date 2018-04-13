@@ -258,6 +258,11 @@
       line-height: 0;
       color: #aaa;
       border-color: #aaa;
+
+      &:hover {
+        background: #aaa;
+        // color: #aaa;
+      }
     }
   }
   .modal-header {
@@ -319,6 +324,14 @@
       transform: scale(1.5);
       opacity: 0;
     }
+  }
+
+  #dz-custom-mesg-2 {
+    border-radius: 0px;
+    margin: 0;
+    background: transparent;
+    border: none;
+    margin-bottom: 0;
   }
 
   .overflow-scrolling {
@@ -441,7 +454,7 @@
 }
 
 .modal-open .modal {
-  background: rgba(30, 30, 32, 0.98);
+  background: rgba(30, 30, 32, 0.72);
 }
 
 .modal-body {
@@ -591,7 +604,8 @@ body > div:[aria-hidden="true"]:last-of-type {
       }
 
     }
-    .card--id-basic-info, .card--id-metadata, .card--id-additional {
+    .card--id-basic-info, .card--id-metadata, .card--id-additional, .card--id-admin,
+    .card--id-comments, .card--id-dates {
       max-width: 1233px;
       margin: 15px auto;
 

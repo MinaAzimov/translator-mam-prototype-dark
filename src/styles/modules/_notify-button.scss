@@ -24,7 +24,7 @@
 		right: 6px;
 		top: 3px;
 		stroke-miterlimit: 10;
-		box-shadow: inset 0px 0px 0px $color--green;
+		box-shadow: inset 0px 0px 0px $color-green;
 		animation: fill .4s $curve1 .4s forwards, scale .4s $curve1 .9s both;
 	}
 
@@ -33,7 +33,7 @@
 		stroke-dashoffset: 166;
 		stroke-width: 2;
 		stroke-miterlimit: 10;
-		stroke: $color--green;
+		stroke: $color-green;
 		fill: none;
 		animation: stroke .6s $curve2 forwards;
 	}
@@ -62,7 +62,7 @@
 
 	@keyframes fill {
 		100% {
-			box-shadow: inset 0px 0px 0px 30px $color--green;
+			box-shadow: inset 0px 0px 0px 30px $color-green;
 		}
 	}
 
@@ -131,6 +131,7 @@
 		height: 30px;
 		border: none;
 		display: flex;
+		visibility: visible;
 		justify-content: center;
 		align-items: center;
 
@@ -161,7 +162,7 @@
 		}
 
 		&:disabled {
-			opacity: 0.6;
+			opacity: 0.6 !important;
 			cursor: auto !important;	
 			animation: none !important;
 			&, i {
@@ -282,11 +283,14 @@
 		.checkmark {
 			display: block;     
 		}
-		button {
-			opacity: 0 !important;
+		.ReactTags__tags {
+			~ button {
+				transition: none !important;
+				opacity: 0 !important;
+			}
 		}
 	}
-	#notify-toggle {
+	input[id^="notify-toggle-"], input[id*=" notify-toggle-"] {
 		display: none;
 		~ label {
 			display: none;
@@ -294,7 +298,7 @@
 	}
 
 	&--drawer {
-		#notify-toggle {
+		input[id^="notify-toggle-"], input[id*=" notify-toggle-"] {
 			display: none;
 
 			~ label {
@@ -310,7 +314,7 @@
 					width: 43px;
 					border: solid 1px white;
 					border-radius: 50%;
-					font-size: 21px;
+					font-size: 19px;
 					-webkit-text-stroke: 0px white;
 					height: 43px;
 					display: flex;

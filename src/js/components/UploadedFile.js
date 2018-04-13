@@ -15,7 +15,7 @@ export default class UploadedFile extends Component {
 	render() {
 
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
-		const { handleClick, file, updateFilesForBulkList, removeFile, deleteFilePrompt, type, src, name, size, i, selected, imageSelectionEnabled, videoSelectionEnabled, audioSelectionEnabled, multiSelect, files, target, id, setRef, readyForIngest, readyForService, searchOptimized } = this.props;
+		const { handleClick, file, updateFilesForBulkList, removeFile, deleteFilePrompt, type, src, name, size, i, selected, imageSelectionEnabled, videoSelectionEnabled, audioSelectionEnabled, multiSelect, files, target, id, setRef, readyForIngest, readyForService, searchOptimized, test, inputTitle, currentProject } = this.props;
 	const classnames = classNames({
 			"files-information": true,
 			"files-information--show": selected
@@ -53,6 +53,8 @@ export default class UploadedFile extends Component {
 			"": false,
 			"hidden": !multiSelect
 		});
+		
+
 
 		return (
 	   			<div key={i} className="dz-preview-new dz-processing dz-image-preview" >
@@ -102,10 +104,35 @@ export default class UploadedFile extends Component {
 					/>
 					<div className={checkboxDisable} ref={id} value={i} key={i} onClick={this.props.updateFilesForBulkList.bind(this, i, file)}><i className="iconcss icon-checkmark"></i></div>
 					</div>
+                    <span className="dz-title">
+                    <Truncate lines={1} ellipsis={"..." + currentProject ? currentProject : 'untitled'}>
+								{  currentProject ? 
+											(file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png" && file.test !== "edited") ? 
+											"untitled" + "_" + file.width + "x" + file.height + "_" + i : 
+											"untitled" + "_" + "15min_" + i
+										 : 
+										(
+											(file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png" && file.test !== "edited") ? 
+											"untitled" + "_" + file.width + "x" + file.height + "_" + i : 
+											"untitled" + "_" + "15min_" + i
+										)
+								}
+						</Truncate>
+					<br></br><span className="dz-filename">{file.name}</span>
+					</span>
 
-					<span className="dz-title"><Truncate lines={1} ellipsis={"..." + name}>
-								{ name }
-						</Truncate></span>
+					<div className="dz-owner">
+						<span>{file.lastEditedBy}</span>
+					</div>
+
+					<div className="dz-uploaded">
+						<span>{moment(file.lastModified).format("MMM D")}</span>
+					</div>
+
+					<div className="dz-modified">
+						<span>{moment(file.lastModified).format("MMM D")}</span>
+					</div>
+					
 					<span className="dz-icon">
 					{ (file.type == 'image/jpeg') ? <i className="iconcss icon-type-image"></i> : null }
 					{ (file.type == 'image/png') ? <i className="iconcss icon-type-image"></i> : null }
@@ -124,8 +151,10 @@ export default class UploadedFile extends Component {
 					</a>
 					</div>
 
+					
 
-					<div className="dz-progress">
+
+					<div className={file.test ? "hide-progress" : "dz-progress" } >
 					<span
 					className="dz-upload"
 					
@@ -134,7 +163,7 @@ export default class UploadedFile extends Component {
 					</span>
 					</div>
 
-					<div className="dz-success-mark">
+					<div className={file.test ?  "hide-checkmark" : "dz-success-mark" }  >
 					<i className="iconcss icon-check-cutout"></i>
 					</div>
 

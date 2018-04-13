@@ -21,9 +21,13 @@ import RegistrationStatus from './RegistrationStatus';
 import { SimpleReactDropzone } from "../lib/ui/SimpleReactDropzone";
 import { defaultIcons } from "../lib/ui/DefaultIcons";
 import EditFileOverlay from './EditFileOverlay';
-import BasicInfoCard from './staticFields/BasicInfoCard';
-import AdditionalInfoCard from './staticFields/AdditionalInfoCard';
-import DetectedMetadataCard from './staticFields/DetectedMetadataCard';
+import EssentialsCard from './staticFields/EssentialsCard';
+import TechSpecsCard from './staticFields/TechSpecsCard';
+import AdminCard from './staticFields/AdminCard';
+import DatesCard from './staticFields/DatesCard';
+import DescriptiveInfoCard from './staticFields/DescriptiveInfoCard';
+import ReferenceIdCard from './staticFields/ReferenceIdCard';
+import CommentsCard from './staticFields/CommentsCard';
 import NotifyButton from './NotifyButton';
 
 const typeListVideo=[{title:"Promo",id:0},{title:"Episodic",id:1},{title:"Theatrical",id:2},{title:"Footage",id:3},{title:"Short",id:4}];
@@ -42,35 +46,94 @@ const networkList=[{title:"Kb",id:0},{title:"Mb",id:1},{title:"Gb",id:2}];
 
 class FileInformationModal extends Component {
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			value: '',
+			isDetected: true,
+			target: ''
+		}
+	}
+
+
+  static defaultProps = {
+    onChange: () => {},
+    onStartEdit: () => {},
+    onStopEdit: () => {}
+  };
+
+  onChange = (e) => {
+		let newVal = e.target.value;
+		this.setState({
+			value: newVal
+		});
+		if (this.props.onChange) {
+			this.props.onChange(newVal);
+		}
+	};
+
+	onFocus = (e) => {
+		this.setState({ 
+			focused: true,
+			isDetected: false,
+			target: e.target.id
+		});
+		if (this.props.onStartEdit) {
+			this.props.onStartEdit();
+		}
+	};
+
+
+	onBlur = (e) => {
+		this.setState({ focused: false });
+		if (this.props.onStopEdit) {
+			this.props.onStopEdit();
+		}
+	};
+
 	render() {
 
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
 		const { closeFilesInformation, fields, target, selected, itemStatus, saveFilesInformation,
 		 updateHouseID, updateComposition, updateColor, updatePromoCode, updateShow, inputHouseID, inputComposition, inputColor, inputPromoCode, inputShow, inputSeason, inputDescription, inputUploader, inputKeywords, inputProductionType, 
-		 inputActors, inputNetwork, inputLanguage, inputCopyright, inputRestrictions, updateSeason, updateDescription, updateUploader, updateKeywords, updateProductionType, updateActors,
+		 inputActors, inputLanguage, inputCopyright, inputRestrictions, updateSeason, updateDescription, updateUploader, updateKeywords, updateProductionType, updateActors,
 		 updateNetwork, updateLanguage, updateCopyright, updateRestrictions, inputMediaType, inputMaterialType, inputSecondaryType, inputFrameRate, inputAspectRatio, updateMediaType,
-		 updateMaterialType, updateSecondaryType, updateAspectRatio, updateFrameRate, inputTitle, inputSubtitle, updateTitle, updateSubtitle, updateContentType, inputContentType, localItem, editingLocalItem } = this.props;
+		 updateMaterialType, updateSecondaryType, updateAspectRatio, updateFrameRate, inputTitle, inputSubtitle, updateTitle, updateSubtitle, updateContentType, inputContentType, localItem, editingLocalItem, bulkEditOpen, inputFileName, onInputChange, onDropDownChange,
+		 inputAssosiations, inputEpisode, inputVersionType, inputText, inputAirVersion, inputNetwork, inputProducer, inputCreative, inputStorageLocation, inputAcSource, inputUserDescription, inputPeople, inputUserComments  } = this.props;
 
 		const classnames = classNames({
 			"files-information": true,
 			"files-information--show": selected
 		});
 
+		const classnamesInputTitle  = classNames({
+			'field-text field-text--lg': true,
+			'field__not-empty': inputTitle,
+			'field__focused': this.state.focused && this.state.target == "title"
+		});
+
+		const classnamesInputSubtitle = classNames({
+			'field-text field-text--lg': true,
+			'field__not-empty': inputSubtitle,
+			'field__focused': this.state.focused && this.state.target == "desc"
+		});
+
+		
 		
 
 		return (
 	   				<Card id="cards-wrapper">
 					<div className="files-information-close" onClick={this.props.closeFilesInformation}><i className="iconcss icon-close-thin"></i></div>
 					<button className="save-button" onClick={this.props.saveFilesInformation}><span>Save</span><i className="iconcss icon-save"></i></button>
-					<div className="field-text field-text--lg">
-				    <input className="field-text__input" value={this.props.inputTitle} onChange={this.props.updateTitle.bind(this)}/>
+					<div className={classnamesInputTitle}>
+				    <input className="field-text__input" onBlur={this.onBlur} id="title" onFocus={this.onFocus} value={this.props.inputTitle} onChange={this.props.updateTitle.bind(this)}/>
 				    <label className="field__label">
 				    Title
 				    </label>
 			        </div>
 
-					<div className="field-text field-text--lg">
-				    <input className="field-text__input" value={this.props.inputSubtitle} onChange={this.props.updateSubtitle.bind(this)}/>
+					<div className={classnamesInputSubtitle}>
+				    <input className="field-text__input" id="desc" value={this.props.inputSubtitle} onBlur={this.onBlur} onFocus={this.onFocus} onChange={this.props.updateSubtitle.bind(this)}/>
 				    <label className="field__label">
 				    Description
 				    </label>
@@ -94,33 +157,40 @@ class FileInformationModal extends Component {
 					<span><div className="swatch"></div>Detected Fields</span>
 					<span><div className="required-legend">*</div>Required Fields</span>
 					<div className="notify-others">
-						<NotifyButton/>
-						{/*<span className="input input--chisato">
-							<input className="input__field input__field--chisato" type="text" id="input-13"/>
-							<label className="input__label input__label--chisato" htmlFor="input-13">
-								<span className="input__label-content input__label-content--chisato" data-content="Email">Notify Others<i className="iconcss icon-bullhorn"></i></span>
-							</label>
-						</span>*/}
+						<NotifyButton
+						drawer={true}/>
 					</div>
 	 
 					</div>
 
+
+
 					<CardSection id="files-info-cards-section">
-						<BasicInfoCard 
-						editingLocalItem={this.props.editingLocalItem}
-						localItem={this.props.localItem}
-						inputContentType={this.props.inputContentType}
-						updateContentType={this.props.updateContentType}
+						<EssentialsCard 
+						onInputChange={this.props.onInputChange}
+						onDropDownChange={this.props.onDropDownChange}
+						inputFileName={this.props.inputFileName}
+						inputAssosiations={this.props.inputAssosiations}
+						inputEpisode={this.props.inputEpisode}
+						inputVersionType={this.props.inputVersionType}
+						inputText={this.props.inputText}
+						inputAirVersion={this.props.inputAirVersion}
+						inputNetwork={this.props.inputNetwork}
+						inputKeywords={this.props.inputKeywords}
+						inputPromoCode={this.props.inputPromoCode}
+						inputShow={this.props.inputShow}
+						inputSeason={this.props.inputSeason}
 						inputMediaType={this.props.inputMediaType}
 			            inputMaterialType={this.props.inputMaterialType}
 			            inputSecondaryType={this.props.inputSecondaryType}
 			            inputFrameRate={this.props.inputFrameRate}
 			            inputAspectRatio={this.props.inputAspectRatio}
-			            updateMediaType={this.props.updateMediaType}
-			            updateMaterialType={this.props.updateMaterialType}
-			            updateSecondaryType={this.props.updateSecondaryType}
-			            updateFrameRate={this.props.updateFrameRate}
-			            updateAspectRatio={this.props.updateAspectRatio}
+			            inputContentType={this.props.inputContentType}
+			            inputLanguage={this.props.inputLanguage}
+			            inputProductionType={this.props.inputProductionType}
+						bulkEditOpen={this.props.bulkEditOpen}
+						editingLocalItem={this.props.editingLocalItem}
+						localItem={this.props.localItem}
 						saveFilesInformation={this.saveFilesInformation}
 						closeFilesInformation={this.props.closeFilesInformation}
 						target={this.props.target}
@@ -132,43 +202,21 @@ class FileInformationModal extends Component {
 						selectedFilter={this.props.selectedFilter}
 						selectedFilterSevice={this.props.selectedFilterSevice}
 						itemStatus={this.props.itemStatus}
-						inputPromoCode={this.props.inputPromoCode}
-						inputShow={this.props.inputShow}
-						updateShow={this.props.updateShow}
-						inputSeason={this.props.inputSeason}
-						updateSeason={this.props.updateSeason}
 						/>
 
-						<AdditionalInfoCard
+						<TechSpecsCard
 						editingLocalItem={this.props.editingLocalItem}
 						localItem={this.props.localItem}
 						inputEpisodeNumber={this.props.inputEpisodeNumber}
 						inputDescription={this.props.inputDescription}
-						inputUploader={this.props.inputUploader}
 						inputKeywords={this.props.inputKeywords}
-						inputProductionType={this.props.inputProductionType}
 						inputActors={this.props.inputActors}
 						inputNetwork={this.props.inputNetwork}
 						inputLanguage={this.props.inputLanguage}
-						inputCopyright={this.props.inputCopyright}
-						inputRestrictions={this.props.inputRestrictions}
-						updateDescription={this.props.updateDescription}
-						updateUploader={this.props.updateUploader}
-						updateKeywords={this.props.updateKeywords}
-						updateProductionType={this.props.updateProductionType}
-						updateActors={this.props.updateActors}
-						updateNetwork={this.props.updateNetwork}
-						updateLanguage={this.props.updateLanguage}
-						updateCopyright={this.props.updateCopyright}
-						updateRestrictions={this.props.updateRestrictions}
-						updateEpisodeNumber={this.props.updateEpisodeNumber}
-						updateHouseID={this.props.updateHouseID}
-						updateComposition={this.props.updateComposition}
-						updateColor={this.props.updateColor}
-						updatePromoCode={this.props.updatePromoCode}
 						inputHouseID={this.props.inputHouseID}
 						inputComposition={this.props.inputComposition}
 						inputColor={this.props.inputColor}
+						inputPromoCode={this.props.inputPromoCode}
 						saveFilesInformation={this.saveFilesInformation}
 						closeFilesInformation={this.props.closeFilesInformation}
 						target={this.props.target}
@@ -182,7 +230,50 @@ class FileInformationModal extends Component {
 						itemStatus={this.props.itemStatus}
 						/>
 
-						<DetectedMetadataCard
+						<AdminCard
+						editingLocalItem={this.props.editingLocalItem}
+						localItem={this.props.localItem}
+						saveFilesInformation={this.saveFilesInformation}
+						closeFilesInformation={this.props.closeFilesInformation}
+						target={this.props.target}
+						selected={this.props.selected}
+						onServiceSelect={this.props.onServiceSelect}
+						onInjestSelect={this.props.onInjestSelect}
+						onSearchOptimizedSelect={this.props.onSearchOptimizedSelect}
+						selectedFilterOptimezed={this.props.selectedFilterOptimezed}
+						selectedFilter={this.props.selectedFilter}
+						selectedFilterSevice={this.props.selectedFilterSevice}
+						itemStatus={this.props.itemStatus}
+						inputProducer={this.props.inputProducer}
+						inputUploader={this.props.inputUploader}
+						inputCreative={this.props.inputCreative}
+						inputCopyright={this.props.inputCopyright}
+						inputRestrictions={this.props.inputRestrictions}
+						inputStorageLocation={this.props.inputStorageLocation}
+						inputAcSource={this.props.inputAcSource}
+						onInputChange={this.props.onInputChange}
+						/>
+
+						<DescriptiveInfoCard
+						editingLocalItem={this.props.editingLocalItem}
+						localItem={this.props.localItem}
+						saveFilesInformation={this.saveFilesInformation}
+						closeFilesInformation={this.props.closeFilesInformation}
+						target={this.props.target}
+						selected={this.props.selected}
+						onServiceSelect={this.props.onServiceSelect}
+						onInjestSelect={this.props.onInjestSelect}
+						onSearchOptimizedSelect={this.props.onSearchOptimizedSelect}
+						selectedFilterOptimezed={this.props.selectedFilterOptimezed}
+						selectedFilter={this.props.selectedFilter}
+						selectedFilterSevice={this.props.selectedFilterSevice}
+						itemStatus={this.props.itemStatus}
+						inputUserDescription={this.props.inputUserDescription}
+						onInputChange={this.props.onInputChange}
+						inputPeople={this.props.inputPeople}
+						/>
+
+						<DatesCard
 						editingLocalItem={this.props.editingLocalItem}
 						localItem={this.props.localItem}
 						saveFilesInformation={this.saveFilesInformation}
@@ -197,6 +288,42 @@ class FileInformationModal extends Component {
 						selectedFilterSevice={this.props.selectedFilterSevice}
 						itemStatus={this.props.itemStatus}
 						/>
+
+						<ReferenceIdCard
+						editingLocalItem={this.props.editingLocalItem}
+						localItem={this.props.localItem}
+						saveFilesInformation={this.saveFilesInformation}
+						closeFilesInformation={this.props.closeFilesInformation}
+						target={this.props.target}
+						selected={this.props.selected}
+						onServiceSelect={this.props.onServiceSelect}
+						onInjestSelect={this.props.onInjestSelect}
+						onSearchOptimizedSelect={this.props.onSearchOptimizedSelect}
+						selectedFilterOptimezed={this.props.selectedFilterOptimezed}
+						selectedFilter={this.props.selectedFilter}
+						selectedFilterSevice={this.props.selectedFilterSevice}
+						itemStatus={this.props.itemStatus}
+						/>
+
+						<CommentsCard
+						editingLocalItem={this.props.editingLocalItem}
+						localItem={this.props.localItem}
+						saveFilesInformation={this.saveFilesInformation}
+						closeFilesInformation={this.props.closeFilesInformation}
+						target={this.props.target}
+						selected={this.props.selected}
+						onServiceSelect={this.props.onServiceSelect}
+						onInjestSelect={this.props.onInjestSelect}
+						onSearchOptimizedSelect={this.props.onSearchOptimizedSelect}
+						selectedFilterOptimezed={this.props.selectedFilterOptimezed}
+						selectedFilter={this.props.selectedFilter}
+						selectedFilterSevice={this.props.selectedFilterSevice}
+						itemStatus={this.props.itemStatus}
+						onInputChange={this.props.onInputChange}
+						inputUserComments={this.props.inputUserComments}
+						/>
+
+
 
 					</CardSection>
 					</Card>

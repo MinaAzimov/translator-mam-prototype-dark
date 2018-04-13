@@ -1,11 +1,11 @@
 .button_style_outline-accent {
   background-color: transparent;
   min-width: 80px;
-  border: 1px solid $color-orange;
-  color: $color-orange;
+  border: 1px solid $color-light-blue;
+  color: $color-light-blue;
 
   &:hover {
-    background: $color-orange;
+    background: $color-light-blue;
     color: $color-white;
   }
 }

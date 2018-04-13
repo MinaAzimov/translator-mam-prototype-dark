@@ -10,7 +10,6 @@ import classNames from "classnames";
 import { getContentItems } from "../services/content";
 import { getUserData } from "../services/users";
 import moment from "moment";
-import Selectbox from "./form/Selectbox";
 import TextArea from "./form/TextArea";
 import FieldWidgets from "./form/FieldWidgets";
 import Switch from "./form/Switch";
@@ -18,6 +17,8 @@ import Svg from "./staticFields/Svg";
 import UploadedFile from "./UploadedFile";
 import FileInformationModal from "./FileInformationModal";
 import axios from 'axios';
+import NumericInput from 'react-numeric-input';
+
 
 import Truncate from 'react-truncate';
 import $ from "jquery";
@@ -29,6 +30,8 @@ import { defaultIcons } from "../lib/ui/DefaultIcons";
 import EditFileOverlay from './EditFileOverlay';
 
 import NotifyButton from './NotifyButton';
+import ListViewHeader from './ListViewHeader';
+import DropzoneFilter from './DropzoneFilter';
 
 
 const uploadIcon = defaultIcons.react.uploadIcon;
@@ -89,7 +92,8 @@ class MySimpleReactDropzone extends React.Component {
 									"uploadprogress",
 									file,
 									file.upload.progress,
-									file.upload.bytesSent
+									file.upload.bytesSent,
+
 									);
 								if (file.upload.progress === 100) {
 									file.status = "success";
@@ -145,7 +149,16 @@ class Dropzone extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			shellCreate: {
+				video: 0,
+				image: 0,
+				audio: 0
+			},
 			showDeletePrompt: false,
+			showCreateShellPrompt: false,
+			notifyWhenUploadComplete: false,
+	        uploadDropzoneShow: true,
+			bulkEditOpen: false,
 			files: [],
 			inputTextValue: ' ',
 			counter: 0,
@@ -180,6 +193,7 @@ class Dropzone extends Component {
 			},
 			existingFiles: [],
 			existingFiles2: [],
+			targetedInput: '',
 			inputHouseID: '',
 			inputComposition: '',
 			inputColor: '',
@@ -203,8 +217,20 @@ class Dropzone extends Component {
 			inputAspectRatio: '',
 			inputTitle: '',
 			inputSubtitle: '',
-			inputContentType: ''
-
+			inputContentType: '',
+			inputFileName: '',
+			inputAssosiations: '',
+			inputEpisode: '',
+			inputVersionType: '',
+			inputText: '',
+			inputAirVersion: '',
+			inputProducer: '',
+			inputCreative: '',
+			inputStorageLocation: '',
+			inputAcSource: '',
+			inputUserDescription: '',
+			inputPeople: '',
+			inputUserComments: ''
 		};
 	}
 
@@ -224,6 +250,19 @@ class Dropzone extends Component {
   }
   
 }
+
+  clickNotifyMe = () => {
+    this.setState({
+      notifyWhenUploadComplete: !this.state.notifyWhenUploadComplete 
+    });
+  }
+
+  clickUploadToggle = () => {
+    this.setState({
+      uploadDropzoneShow: !this.state.uploadDropzoneShow 
+    });
+  }
+
 
 
 	removeFile = (i) => {
@@ -295,6 +334,12 @@ class Dropzone extends Component {
 	    this.setState({
 	  		showDeletePrompt: !this.state.showDeletePrompt,
 	  		itemToDelete: i
+		});
+	}
+
+	createShellPrompt = (i) => {
+	    this.setState({
+	  		showCreateShellPrompt: !this.state.showCreateShellPrompt,
 		});
 	}
 
@@ -371,63 +416,86 @@ class Dropzone extends Component {
 
 		if(!this.state.files[i].test) {
 			this.setState({
-            inputHouseID: '',
-			inputComposition: '',
-			inputColor: '',
-			inputPromoCode: '',
-			inputShow: '',
-			inputEpisodeNumber: '',
-			inputDescription: '',
-			inputUploader: '',
-			inputKeywords: '',
-			inputProductionType: '',
-			inputActors: '',
-			inputNetwork: '',
-			inputLanguage: '',
-			inputCopyright: '',
-			inputRestrictions: '',
-			inputSeason: '',
-			inputMediaType: '',
-			inputMaterialType: '',
-			inputSecondaryType: '',
-			inputFrameRate: '',
-			inputAspectRatio: '',
-			inputTitle: '',
-			inputSubtitle: '',
-			itemStatus: 'Needs Metadata',
-			inputContentType: ''
+             inputHouseID: this.state.files[i].inputHouseID ? this.state.files[i].inputHouseID : '',
+            inputComposition: this.state.files[i].inputComposition ? this.state.files[i].inputComposition : '',
+            inputColor: this.state.files[i].inputColor ? this.state.files[i].inputColor : '',
+            inputPromoCode: this.state.files[i].inputPromoCode ? this.state.files[i].inputPromoCode : '',
+            inputShow: this.state.files[i].inputShow ? this.state.files[i].inputShow : '',
+            inputEpisode:  this.state.files[i].inputEpisode ? this.state.files[i].inputEpisode : '',
+			inputDescription:  this.state.files[i].inputDescription ? this.state.files[i].inputDescription : '',
+			inputUploader:  this.state.files[i].inputUploader ? this.state.files[i].inputUploader : '',
+			inputKeywords:  this.state.files[i].inputKeywords ? this.state.files[i].inputKeywords : '',
+			inputProductionType:  this.state.files[i].inputProductionType ? this.state.files[i].inputProductionType : '',
+			inputActors:  this.state.files[i].inputActors ? this.state.files[i].inputActors : '',
+			inputNetwork:  this.state.files[i].inputNetwork ? this.state.files[i].inputNetwork : '',
+			inputLanguage:  this.state.files[i].inputLanguage ? this.state.files[i].inputLanguage : '',
+			inputCopyright:  this.state.files[i].inputCopyright ? this.state.files[i].inputCopyright : '',
+			inputRestrictions:  this.state.files[i].inputRestrictions ? this.state.files[i].inputRestrictions : '',
+			inputSeason:  this.state.files[i].inputSeason ? this.state.files[i].inputSeason : '',
+			inputMediaType: this.state.files[i].inputMediaType ? this.state.files[i].inputMediaType : '',
+			inputMaterialType: this.state.files[i].inputMaterialType ? this.state.files[i].inputMaterialType : '',
+			inputSecondaryType: this.state.files[i].inputSecondaryType ? this.state.files[i].inputSecondaryType : '',
+			inputFrameRate: this.state.files[i].inputFrameRate ? this.state.files[i].inputFrameRate : '',
+			inputAspectRatio: this.state.files[i].inputAspectRatio ? this.state.files[i].inputAspectRatio : '',
+			inputTitle: this.state.files[i].inputTitle ? this.state.files[i].inputTitle : '',
+			inputSubtitle: this.state.files[i].inputSubtitle ? this.state.files[i].inputSubtitle : '',
+			itemStatus: this.state.files[i].inputStatus ? this.state.files[i].inputStatus : '',
+			inputContentType: this.state.files[i].inputContentType ? this.state.files[i].inputContentType : '',
+			inputFileName: this.state.files[i].inputFileName ? this.state.files[i].inputFileName : '',
+			inputAssosiations: this.state.files[i].inputAssosiations ? this.state.files[i].inputAssosiations : '',
+			inputVersionType: this.state.files[i].inputVersionType ? this.state.files[i].inputVersionType : '',
+			inputProducer: this.state.files[i].inputProducer ? this.state.files[i].inputProducer : '',
+			inputCreative: this.state.files[i].inputCreative ? this.state.files[i].inputCreative : '',
+			inputStorageLocation: this.state.files[i].inputStorageLocation ? this.state.files[i].inputStorageLocation : '',
+			inputAcSource: this.state.files[i].inputAcSource ? this.state.files[i].inputAcSource : '',
+			inputUserDescription: this.state.files[i].inputUserDescription ? this.state.files[i].inputUserDescription : '',
+			inputPeople: this.state.files[i].inputPeople ? this.state.files[i].inputPeople : '',
+			inputUserComments: this.state.files[i].inputUserComments ? this.state.files[i].inputUserComments : ''
+
           });
+			console.log(this.state.files[i])
 		}
 
 		if(this.state.files[i].test == "edited") {
 			this.setState({
-            inputHouseID: this.state.files[i].inputHouseID,
-            inputComposition: this.state.files[i].inputComposition,
-            inputColor: this.state.files[i].inputColor,
-            inputPromoCode: this.state.files[i].inputPromoCode,
-            inputShow: this.state.files[i].inputShow,
-            inputEpisodeNumber:  this.state.files[i].inputEpisodeNumber,
-			inputDescription:  this.state.files[i].inputDescription,
-			inputUploader:  this.state.files[i].inputUploader,
-			inputKeywords:  this.state.files[i].inputKeywords,
-			inputProductionType:  this.state.files[i].inputProductionType,
-			inputActors:  this.state.files[i].inputActors,
-			inputNetwork:  this.state.files[i].inputNetwork,
-			inputLanguage:  this.state.files[i].inputLanguage,
-			inputCopyright:  this.state.files[i].inputCopyright,
-			inputRestrictions:  this.state.files[i].inputRestrictions,
-			inputSeason:  this.state.files[i].inputSeason,
-			inputMediaType: this.state.files[i].inputMediaType,
-			inputMaterialType: this.state.files[i].inputMaterialType,
-			inputSecondaryType: this.state.files[i].inputSecondaryType,
-			inputFrameRate: this.state.files[i].inputFrameRate,
-			inputAspectRatio: this.state.files[i].inputAspectRatio,
-			inputTitle: this.state.files[i].inputTitle,
-			inputSubtitle: this.state.files[i].inputSubtitle,
-			itemStatus: this.state.files[i].inputStatus,
-			inputContentType: this.state.files[i].inputContentType
+            inputHouseID: this.state.files[i].inputHouseID ? this.state.files[i].inputHouseID : '',
+            inputComposition: this.state.files[i].inputComposition ? this.state.files[i].inputComposition : '',
+            inputColor: this.state.files[i].inputColor ? this.state.files[i].inputColor : '',
+            inputPromoCode: this.state.files[i].inputPromoCode ? this.state.files[i].inputPromoCode : '',
+            inputShow: this.state.files[i].inputShow ? this.state.files[i].inputShow : '',
+            inputEpisode:  this.state.files[i].inputEpisode ? this.state.files[i].inputEpisode : '',
+			inputDescription:  this.state.files[i].inputDescription ? this.state.files[i].inputDescription : '',
+			inputUploader:  this.state.files[i].inputUploader ? this.state.files[i].inputUploader : '',
+			inputKeywords:  this.state.files[i].inputKeywords ? this.state.files[i].inputKeywords : '',
+			inputProductionType:  this.state.files[i].inputProductionType ? this.state.files[i].inputProductionType : '',
+			inputActors:  this.state.files[i].inputActors ? this.state.files[i].inputActors : '',
+			inputNetwork:  this.state.files[i].inputNetwork ? this.state.files[i].inputNetwork : '',
+			inputLanguage:  this.state.files[i].inputLanguage ? this.state.files[i].inputLanguage : '',
+			inputCopyright:  this.state.files[i].inputCopyright ? this.state.files[i].inputCopyright : '',
+			inputRestrictions:  this.state.files[i].inputRestrictions ? this.state.files[i].inputRestrictions : '',
+			inputSeason:  this.state.files[i].inputSeason ? this.state.files[i].inputSeason : '',
+			inputMediaType: this.state.files[i].inputMediaType ? this.state.files[i].inputMediaType : '',
+			inputMaterialType: this.state.files[i].inputMaterialType ? this.state.files[i].inputMaterialType : '',
+			inputSecondaryType: this.state.files[i].inputSecondaryType ? this.state.files[i].inputSecondaryType : '',
+			inputFrameRate: this.state.files[i].inputFrameRate ? this.state.files[i].inputFrameRate : '',
+			inputAspectRatio: this.state.files[i].inputAspectRatio ? this.state.files[i].inputAspectRatio : '',
+			inputTitle: this.state.files[i].inputTitle ? this.state.files[i].inputTitle : '',
+			inputSubtitle: this.state.files[i].inputSubtitle ? this.state.files[i].inputSubtitle : '',
+			itemStatus: this.state.files[i].inputStatus ? this.state.files[i].inputStatus : '',
+			inputContentType: this.state.files[i].inputContentType ? this.state.files[i].inputContentType : '',
+			inputFileName: this.state.files[i].inputFileName ? this.state.files[i].inputFileName : '',
+			inputAssosiations: this.state.files[i].inputAssosiations ? this.state.files[i].inputAssosiations : '',
+			inputVersionType: this.state.files[i].inputVersionType ? this.state.files[i].inputVersionType : '',
+			inputProducer: this.state.files[i].inputProducer ? this.state.files[i].inputProducer : '',
+			inputCreative: this.state.files[i].inputCreative ? this.state.files[i].inputCreative : '',
+			inputStorageLocation: this.state.files[i].inputStorageLocation ? this.state.files[i].inputStorageLocation : '',
+			inputAcSource: this.state.files[i].inputAcSource ? this.state.files[i].inputAcSource : '',
+			inputUserDescription: this.state.files[i].inputUserDescription ? this.state.files[i].inputUserDescription : '',
+			inputPeople: this.state.files[i].inputPeople ? this.state.files[i].inputPeople : '',
+			inputUserComments: this.state.files[i].inputUserComments ? this.state.files[i].inputUserComments : ''
 
           });
+			console.log(this.state.files[i])
 		}
 				    
 }
@@ -440,7 +508,7 @@ class Dropzone extends Component {
 			this.state.target.inputColor = this.state.inputColor;
 			this.state.target.inputPromoCode = this.state.inputPromoCode;
 			this.state.target.inputShow = this.state.inputShow;
-			this.state.target.inputEpisodeNumber = this.state.inputEpisodeNumber;
+			this.state.target.inputEpisode = this.state.inputEpisode;
 			this.state.target.inputDescription = this.state.inputDescription;
 			this.state.target.inputUploader = this.state.inputUploader;
 			this.state.target.inputKeywords = this.state.inputKeywords;
@@ -460,12 +528,21 @@ class Dropzone extends Component {
 			this.state.target.inputSubtitle = this.state.inputSubtitle;
 			this.state.target.inputStatus = this.state.itemStatus;
 			this.state.target.inputContentType = this.state.inputContentType;
+			this.state.target.inputFileName = this.state.inputFileName;
+			this.state.target.inputAssosiations = this.state.inputAssosiations;
+			this.state.target.inputVersionType = this.state.inputVersionType;
+			this.state.target.inputProducer = this.state.inputProducer;
+			this.state.target.inputCreative = this.state.inputCreative;
+			this.state.target.inputStorageLocation = this.state.inputStorageLocation;
+			this.state.target.inputAcSource = this.state.inputAcSource;
+			this.state.target.inputUserDescription = this.state.inputUserDescription;
+			this.state.target.inputPeople = this.state.inputPeople;
+			this.state.target.inputUserComments = this.state.inputUserComments;
 
 			this.setState({
 	      itemStatus: this.state.target.inputStatus
 	    });
 			
-			console.log(this.state.target)
 			
 		}
 
@@ -481,229 +558,270 @@ class Dropzone extends Component {
 	    });
 	  }
 
-    updateHouseID = (e) => {
-    this.setState({
-      inputHouseID: e.target.value
-    });
+    onInputChange = (e) => {
+    if(e.target.id == "filename") {
+   			this.setState({
+      			inputFileName: e.target.value
+    		});
+   		}
+   	if(e.target.id == "keywords") {
+   			this.setState({
+      			inputKeywords: e.target.value
+    		});
+   		}
+   	if(e.target.id == "uploader") {
+   			this.setState({
+      			inputUploader: e.target.value
+    		});
+   		}
+   	if(e.target.id == "producer") {
+   			this.setState({
+      			inputProducer: e.target.value
+    		});
+   		}
+   	if(e.target.id == "creative") {
+   			this.setState({
+      			inputCreative: e.target.value
+    		});
+   		}
+   	if(e.target.id == "copyrights") {
+   			this.setState({
+      			inputCopyright: e.target.value
+    		});
+   		}
+   	if(e.target.id == "restrictions") {
+   			this.setState({
+      			inputRestrictions: e.target.value
+    		});
+   		}
+   	if(e.target.id == "storage") {
+   			this.setState({
+      			inputStorageLocation: e.target.value
+    		});
+   		}
+   	if(e.target.id == "acSource") {
+   			this.setState({
+      			inputAcSource: e.target.value
+    		});
+   		}
+   	if(e.target.id == "area") {
+   			this.setState({
+      			inputUserDescription: e.target.value
+    		});
+   		}
+   	if(e.target.id == "people") {
+   			this.setState({
+      			inputPeople: e.target.value
+    		});
+   		}
+   	if(e.target.id == "commentscard") {
+   			this.setState({
+      			inputUserComments: e.target.value
+    		});
+   		}
   }
 
-    updateComposition = (e) => {
-    this.setState({
-      inputComposition: e.target.value
-    });
-  }
 
-    updateColor = (e) => {
-    this.setState({
-      inputColor: e.target.value
-    });
-  }
+   onDropDownChange = val => {
 
-    updatePromoCode = (e) => {
-    this.setState({
-      inputPromoCode: e.target.value
-    });
-  }
+   		if(val.dropdown == "MediaType") {
+   			this.setState({
+      			inputMediaType: val
+    		});
+   		}
 
-   updateEpisodeNumber = (e) => {
-    this.setState({
-      inputEpisodeNumber: e.target.value
-    });
-  }
+   			if(val.dropdown == "Season") {
+   			this.setState({
+		      inputSeason: val
+		    });
+   		}
 
-  updateDescription = (e) => {
-    this.setState({
-      inputDescription: e.target.value
-    });
-  }
+   			if(val.dropdown == "Network") {
+   			this.setState({
+		      inputNetwork: val
+		    });
+   		}
 
-    updateUploader = (e) => {
-    this.setState({
-      inputUploader: e.target.value
-    });
-  }
+   		if(val.dropdown == "Language") {
+   			this.setState({
+		      inputLanguage: val
+		    });
+   		}
 
-   updateKeywords = (e) => {
-    this.setState({
-      inputKeywords: e.target.value
-    });
-  }
+   		if(val.dropdown == "MaterialType") {
+   			this.setState({
+		      inputMaterialType: val
+		    });
 
-    updateProductionType = (e) => {
-    this.setState({
-      inputProductionType: e.target.value
-    });
-  }
+				if (val.title !== "-None-") {
+					this.setState({
+						itemStatus: "Ready For Ingest"
+					});
+					
+				} 
+				if (val.title !== "-None-" && (this.state.inputAspectRatio && this.state.inputAspectRatio !== "-None-")) {
+					this.setState({
+						itemStatus: "Ready For Service"
+					});
+					
+				} 
+				if (val.title !== "-None-" && ((this.state.inputAspectRatio && this.state.inputShow) && (this.state.inputAspectRatio !== "-None-" && this.state.inputShow !== "-None-"))) {
+					this.setState({
+						itemStatus: "Search Optimized" 
+					});
+					
+				} 
+				if(val.title == "-None-") {
+					
+					this.setState({
+						itemStatus: "Needs Metadata"
+					});
+				} 
+   		}
 
-  updateActors = (e) => {
-    this.setState({
-      inputActors: e.target.value
-    });
-  }
+   		if(val.dropdown == "ProductionType") {
+   			this.setState({
+		      inputProductionType: val
+		    });
+   		}
 
-   updateNetwork = (e) => {
-    this.setState({
-      inputNetwork: e.target.value
-    });
-  }
+   		if(val.dropdown == "Assosiations") {
+   			this.setState({
+		      inputAssosiations: val
+		    });
+   		}
 
-    updateLanguage = (e) => {
-    this.setState({
-      inputLanguage: e.target.value
-    });
-  }
 
-   updateCopyright = (e) => {
-    this.setState({
-      inputCopyright: e.target.value
-    });
-  }
+   		if(val.dropdown == "Series") {
+   			this.setState({
+		      inputShow: val
+		    });
 
-  updateRestrictions = (e) => {
-    this.setState({
-      inputRestrictions: e.target.value
-    });
-  }
-
-  updateSeason = val => {
-    this.setState({
-      inputSeason: val
-    });
-  }
-
-    updateContentType = val => {
-    this.setState({
-      inputContentType: val
-    });
-  }
-
-  updateMediaType = val => {
-    this.setState({
-      inputMediaType: val
-    });
-
-    if (!val) {
-		this.setState({
-			itemStatus: "Needs Metadata"
-		});
-		
-	} 
-	if (val && this.state.inputMaterialType) {
-		this.setState({
-			itemStatus: "Ready For Ingest"
-		});
-		
-	} 
-
-	if (val && this.state.inputMaterialType && this.state.inputAspectRatio) {
-		this.setState({
-			itemStatus: "Ready For Service"
-		});
-		
-	} 
-
-	if (val && this.state.inputMaterialType && this.state.inputAspectRatio && this.state.inputShow) {
-		this.setState({
-			itemStatus: "Search Optimized"
-		});
-		
-	} 
-
-   
-  }
-
-  updateMaterialType = val => {
-    this.setState({
-      inputMaterialType: val
-    });
-	if (val && this.state.inputMediaType) {
-		this.setState({
-			itemStatus: "Ready For Ingest"
-		});
-		
-	} 
-	if (val && this.state.inputMediaType && this.state.inputAspectRatio) {
-		this.setState({
-			itemStatus: "Ready For Service"
-		});
-		
-	} 
-	if (val && this.state.inputMediaType && this.state.inputAspectRatio && this.state.inputShow) {
-		this.setState({
-			itemStatus: "Search Optimized" 
-		});
-		
-	} 
-	if(!val) {
-		
-		this.setState({
-			itemStatus: "Needs Metadata"
-		});
-	} 
-  }
-
-  updateAspectRatio = val => {
-    this.setState({
-      inputAspectRatio: val
-    });
-	if (val && this.state.inputMaterialType && this.state.inputMediaType) {
-		this.setState({
-			itemStatus: "Ready For Service"
-		});
-	}
-
-	if (val && this.state.inputMaterialType && this.state.inputMediaType  && this.state.inputShow) {
-		this.setState({
-			itemStatus: "Search Optimized"
-		});
-	}
-
-	 if(!val && this.state.inputMaterialType && this.state.inputMediaType) {
-		
-	this.setState({
-			itemStatus: "Ready For Ingest"
-		});
-	}
-  }
-
-  updateShow = val => {
-    this.setState({
-      inputShow: val
-    });
-
-	if (val && this.state.inputMaterialType && this.state.inputMediaType && this.state.inputAspectRatio) {
-		this.setState({
-			itemStatus: "Search Optimized"
-		});
+		    if (val.title !== "-None-" && ((this.state.inputMaterialType !== "-None-" && this.state.inputAspectRatio !== "-None-") && (this.state.inputMaterialType && this.state.inputAspectRatio))) {
+				this.setState({
+					itemStatus: "Search Optimized"
+				});
 	
-	} 
-	if (!val && this.state.inputMaterialType && this.state.inputMediaType && this.state.inputAspectRatio){
+			} 
+			if (val.title == "-None-" && ((this.state.inputMaterialType !== "-None-" && this.state.inputAspectRatio !== "-None-") && (this.state.inputMaterialType && this.state.inputAspectRatio))) {
+				
+				 this.setState({
+					itemStatus: "Ready For Service"
+				});
+			}
+
+				if(((!this.state.target.test || this.state.target.test !== "edited") && this.state.target.editedInBulk !== "edited") && (this.state.target.type == "image/jpeg" || this.state.target.type == "image/jpg" || this.state.target.type == "image/png")) {
+						this.state.target.inputTitle = val.title + "_" + this.state.target.width + "x" + this.state.target.height;
+						this.state.target.test = "edited";
+						this.setState({
+				           inputTitle: val.title + "_" + this.state.target.width + "x" + this.state.target.height
+			          });
+								
+
+					}
+				if(((!this.state.target.test || this.state.target.test !== "edited") && this.state.target.editedInBulk !== "edited") && (this.state.target.type == "video/avi" || this.state.target.type == "video/mp4")) {
+					this.state.target.inputTitle = val.title + "_" + this.state.target.width + "x" + this.state.target.height + "_";
+					this.state.target.test = "edited";
+					this.setState({
+			           inputTitle: val.title + "_" + "15min"
+		          });
+					}
+				
+   		}
+
+   		if(val.dropdown == "Season") {
+   			this.setState({
+		      inputSeason: val
+		    });
+   		}
+
+   		if(val.dropdown == "Episode") {
+   			this.setState({
+		      inputEpisode: val
+		    });
+   		}
+
+   		if(val.dropdown == "VersionType") {
+   			this.setState({
+		      inputVersionType: val
+		    });
+   		}
+
+   		if(val.dropdown == "Text") {
+   			this.setState({
+		      inputText: val
+		    });
+   		}
+
+   		if(val.dropdown == "AspectRatio") {
+   			this.setState({
+		      inputAspectRatio: val
+		    });
+
+		        if (val.title !== "-None-" && (this.state.inputMaterialType && this.state.inputMaterialType !== "-None-")) {
+					this.setState({
+						itemStatus: "Ready For Service"
+					});
+				}
+
+				if (val.title !== "-None-" && ((this.state.inputMaterialType && this.state.inputShow) && (this.state.inputMaterialType !== "-None-" && this.state.inputShow !== "-None-"))) {
+					this.setState({
+						itemStatus: "Search Optimized"
+					});
+				}
+
+				 if(val.title == "-None-" && (this.state.inputMaterialType && this.state.inputMaterialType  !== "-None-")) {
+					
+				this.setState({
+						itemStatus: "Ready For Ingest"
+					});
+				}
+   		}
+
+   		if(val.dropdown == "Air Version") {
+   			this.setState({
+		      inputAirVersion: val
+		    });
+   		}
+
+
+
+   }
+
+    //if (!val) {
+		//this.setState({
+			//itemStatus: "Needs Metadata"
+		//});
 		
-		 this.setState({
-			itemStatus: "Ready For Service"
-		});
-	}
-  }
+	//} 
+	//if (val && this.state.inputMaterialType) {
+		//this.setState({
+			//itemStatus: "Ready For Ingest"
+		//});
+		
+	//} 
 
+	//if (val && this.state.inputMaterialType && this.state.inputAspectRatio) {
+		//this.setState({
+			//itemStatus: "Ready For Service"
+		//});
+		
+	//} 
 
-  updateSecondaryType = val => {
-    this.setState({
-      inputSecondaryType: val
-    });
-  }
-
-  updateFrameRate = val => {
-    this.setState({
-      inputFrameRate: val
-    });
-  }
+	//if (val && this.state.inputMaterialType && this.state.inputAspectRatio && this.state.inputShow) {
+		//this.setState({
+			//itemStatus: "Search Optimized"
+		//});
+		
+	//} 
 
 
 
 
 bulkEdit() {
 	this.setState({
-		showModal: true
+		showModal: true,
+		bulkEditOpen: true,
 	});
 }
 
@@ -712,12 +830,13 @@ closeModal = () => {
 		showModal: false,
 		imageSelectionEnabled: false,
 		videoSelectionEnabled: false,
-		audioSelectionEnabled: false
+		audioSelectionEnabled: false,
+
 	});
 
 		this.state.files.forEach((file, b) => {
-			 this.refs[b + 1].refs[b + 1].firstElementChild.classList.remove('icon-last-modified');
-			 this.refs[b + 1].refs[b + 1].firstElementChild.classList.add('icon-checkmark');
+			 this.refs[file.id].refs[file.id].firstElementChild.classList.remove('icon-last-modified');
+			 this.refs[file.id].refs[file.id].firstElementChild.classList.add('icon-checkmark');
 			 var elements = document.getElementsByClassName("image/jpeg--show");
 			 var elementsJpg = document.getElementsByClassName("image/jpg--show");
 			 var elementsPng = document.getElementsByClassName("image/png--show");
@@ -759,6 +878,7 @@ disableBulkEdit = val =>  {
 }
 
 updateFilesForBulkList = (i, file) => {
+	console.log(this, this.refs, i, file, this.state.itemsForBulk)
 	var array = this.state.itemsForBulk;
 	if(this.state.itemsForBulk.includes(file)) {
 			var index = i;
@@ -766,22 +886,22 @@ updateFilesForBulkList = (i, file) => {
 			this.setState({
 				 itemsForBulk: array
 			});
-			console.log(this, i, file, this.refs, this.state.itemsForBulk)
+			
 	} else {
 		 this.setState({
 				itemsForBulk: this.state.itemsForBulk.concat([file])
 			})
  }
  
-  if(this.refs[i + 1].refs[i + 1].firstElementChild.classList.contains('icon-checkmark')) {
-  	this.refs[i + 1].refs[i + 1].firstElementChild.classList.remove('icon-checkmark');
-  	this.refs[i + 1].refs[i + 1].firstElementChild.classList.add('icon-last-modified');
-    this.refs[i + 1].refs[i + 1].classList.add('empty-circle');
+  if(this.refs[file.id].refs[file.id].firstElementChild.classList.contains('icon-checkmark')) {
+  	this.refs[file.id].refs[file.id].firstElementChild.classList.remove('icon-checkmark');
+  	this.refs[file.id].refs[file.id].firstElementChild.classList.add('icon-last-modified');
+    this.refs[file.id].refs[file.id].classList.add('empty-circle');
   }
  else {
-  	this.refs[i + 1].refs[i + 1].firstElementChild.classList.add('icon-checkmark');
-  	this.refs[i + 1].refs[i + 1].firstElementChild.classList.remove('icon-last-modified');
-  	this.refs[i + 1].refs[i + 1].classList.remove('empty-circle');	 
+  	this.refs[file.id].refs[file.id].firstElementChild.classList.add('icon-checkmark');
+  	this.refs[file.id].refs[file.id].firstElementChild.classList.remove('icon-last-modified');
+  	this.refs[file.id].refs[file.id].classList.remove('empty-circle');	 
   }
 			
 }
@@ -807,10 +927,11 @@ removeDropzone() {
 		this.setState({selected: false, target: []})
 
 
-		if(this.props.editingLocalProject) {
+		if(this.props.editingLocalProject || this.props.editingLocalItem) {
 		var rootRef = firebase.database().ref();
          var usersRef = firebase.database().ref('projects/'+ name+ '/' + project)
          var itemsRef = usersRef.child('items');
+
 	
 		for (var i = 0; i < this.state.files.length; i++) {
         var imageFile = this.state.files[i];
@@ -838,13 +959,13 @@ removeDropzone() {
 					"height": "780",
                     "width": "1280",
                     "id": imageFile.id,
-                    "test": (imageFile.test ? imageFile.test : ''),
+                    "test": (imageFile.test ? imageFile.test : 'edited'),
                     "inputHouseID": (imageFile.inputHouseID ? imageFile.inputHouseID : ''),
 					"inputComposition": (imageFile.inputComposition ? imageFile.inputComposition : ''),
 					"inputColor": (imageFile.inputColor ? imageFile.inputColor : ''),
 					"inputPromoCode": (imageFile.inputPromoCode ? imageFile.inputPromoCode : ''),
 					"inputShow": (imageFile.inputShow ? imageFile.inputShow : ''),
-					"inputEpisodeNumber": (imageFile.inputEpisodeNumber ? imageFile.inputEpisodeNumber : ''),
+					"inputEpisode": (imageFile.inputEpisode ? imageFile.inputEpisode : ''),
 					"inputDescription": (imageFile.inputDescription ? imageFile.inputDescription : ''),
 					"inputUploader": (imageFile.inputUploader ? imageFile.inputUploader : ''),
 					"inputKeywords": (imageFile.inputKeywords ? imageFile.inputKeywords : ''),
@@ -863,7 +984,17 @@ removeDropzone() {
 					"inputTitle": (imageFile.inputTitle ? imageFile.inputTitle : ''),
 					"inputSubtitle": (imageFile.inputSubtitle ? imageFile.inputSubtitle : ''),
 					"inputStatus": (imageFile.inputStatus ? imageFile.inputStatus : ''),
-					"inputContentType": (imageFile.inputContentType ? imageFile.inputContentType : '')
+					"inputContentType": (imageFile.inputContentType ? imageFile.inputContentType : ''),
+					"inputFileName": (imageFile.inputFileName ? imageFile.inputFileName : ''),
+					"inputAssosiations": (imageFile.inputAssosiations ? imageFile.inputAssosiations : ''),
+					"inputVersionType": (imageFile.inputVersionType ? imageFile.inputVersionType : ''),
+					"inputProducer": (imageFile.inputProducer ? imageFile.inputProducer : ''),
+					"inputCreative": (imageFile.inputCreative ? imageFile.inputCreative : ''),
+					"inputStorageLocation": (imageFile.inputStorageLocation ? imageFile.inputStorageLocation : ''),
+					"inputAcSource": (imageFile.inputAcSource ? imageFile.inputAcSource : ''),
+					"inputUserDescription": (imageFile.inputUserDescription ? imageFile.inputUserDescription : ''),
+					"inputPeople": (imageFile.inputPeople ? imageFile.inputPeople : ''),
+					"inputUserComments": (imageFile.inputUserComments ? imageFile.inputUserComments : '')
 			       }
        var anotherItems = itemsRef.child(i).update(data)
     }  
@@ -901,13 +1032,13 @@ removeDropzone() {
 					"height": "780",
                     "width": "1280",
                     "id": imageFile.id,
-                    "test": (imageFile.test ? imageFile.test : ''),
+                    "test": (imageFile.test ? imageFile.test : 'edited'),
                     "inputHouseID": (imageFile.inputHouseID ? imageFile.inputHouseID : ''),
 					"inputComposition": (imageFile.inputComposition ? imageFile.inputComposition : ''),
 					"inputColor": (imageFile.inputColor ? imageFile.inputColor : ''),
 					"inputPromoCode": (imageFile.inputPromoCode ? imageFile.inputPromoCode : ''),
 					"inputShow": (imageFile.inputShow ? imageFile.inputShow : ''),
-					"inputEpisodeNumber": (imageFile.inputEpisodeNumber ? imageFile.inputEpisodeNumber : ''),
+					"inputEpisode": (imageFile.inputEpisode ? imageFile.inputEpisode : ''),
 					"inputDescription": (imageFile.inputDescription ? imageFile.inputDescription : ''),
 					"inputUploader": (imageFile.inputUploader ? imageFile.inputUploader : ''),
 					"inputKeywords": (imageFile.inputKeywords ? imageFile.inputKeywords : ''),
@@ -926,8 +1057,18 @@ removeDropzone() {
 					"inputTitle": (imageFile.inputTitle ? imageFile.inputTitle : ''),
 					"inputSubtitle": (imageFile.inputSubtitle ? imageFile.inputSubtitle : ''),
 					"inputStatus": (imageFile.inputStatus ? imageFile.inputStatus : ''),
-					"inputContentType": (imageFile.inputContentType ? imageFile.inputContentType : '')
-					
+					"inputContentType": (imageFile.inputContentType ? imageFile.inputContentType : ''),
+					"inputFileName": (imageFile.inputFileName ? imageFile.inputFileName : ''),
+					"inputAssosiations": (imageFile.inputAssosiations ? imageFile.inputAssosiations : ''),
+					"inputVersionType": (imageFile.inputVersionType ? imageFile.inputVersionType : ''),
+					"inputProducer": (imageFile.inputProducer ? imageFile.inputProducer : ''),
+					"inputCreative": (imageFile.inputCreative ? imageFile.inputCreative : ''),
+					"inputStorageLocation": (imageFile.inputStorageLocation ? imageFile.inputStorageLocation : ''),
+					"inputAcSource": (imageFile.inputAcSource ? imageFile.inputAcSource : ''),
+					"inputUserDescription": (imageFile.inputUserDescription ? imageFile.inputUserDescription : ''),
+					"inputPeople": (imageFile.inputPeople ? imageFile.inputPeople : ''),
+					"inputUserComments": (imageFile.inputUserComments ? imageFile.inputUserComments : '')
+			
 			       }
       var anotherItems = itemsRef.child(i).set(data)
     }
@@ -1116,10 +1257,36 @@ selectAudioFiles() {
 		})
 	}
 
+	setVideoShellCreateValues = (n) => {
+        this.setState(prevState => ({
+        	shellCreate: {
+        		...prevState.shellCreate,
+		        video: n
+        	}
+        }));
+    }
+	setImageShellCreateValues = (n) => {
+        this.setState(prevState => ({
+        	shellCreate: {
+        		...prevState.shellCreate,
+		        image: n
+        	}
+        }));
+    }
+	setAudioShellCreateValues = (n) => {
+        this.setState(prevState => ({
+        	shellCreate: {
+        		...prevState.shellCreate,
+		        audio: n
+        	}
+        }));
+    }
+
+
 	render() {
 		const url = "None. Fake methods has being implemented for the demo. So there is no need of a server.";
 		
-		const { target, selected, client, itemStatus, resetToUploadMode, multiSelect, isSelectedforBulk, itemsForBulk, imageSelectionEnabled, audioSelectionEnabled, videoSelectionEnabled, files, targetID } = this.state;
+		const { target, selected, client, itemStatus, resetToUploadMode, multiSelect, isSelectedforBulk, itemsForBulk, imageSelectionEnabled, audioSelectionEnabled, videoSelectionEnabled, files, targetID, bulkEditOpen } = this.state;
 		const { fields, localFiles, editingLocalProject, resetNewProject, hideDropzone, inputValue, currentProject, localItem, editingLocalItem, getFilesData} = this.props;
 		const projectName = "Project Name";
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
@@ -1171,6 +1338,24 @@ selectAudioFiles() {
 			"list-view": !this.state.showGridView 
 		});
 
+	    const notifyButtonclassnames = classNames({
+	      'apply': true,
+	      'notify-upload-complete-btn': true,
+	      'notify-upload-complete-btn--checked': this.state.notifyWhenUploadComplete
+	    })
+
+	    const toggleUploadClassnames = classNames({
+	      'apply': true,
+	      'toggle-upload-btn': true,
+	      'toggle-upload-btn--checked': this.state.uploadDropzoneShow
+	    })
+
+	    const uploadModeClassnames = classNames({
+	      'upload-mode': true,
+	      'upload-mode--open': this.state.uploadDropzoneShow
+	    })
+
+
 		return (
 			<div>
 			<div className="bulk-editing-menu">
@@ -1221,6 +1406,27 @@ selectAudioFiles() {
 				<button className="save-button"><i className="iconcss icon-save"></i>Save</button>
 			</div>
 
+			<div id="upload" className="uploading-content-col">
+              <div className="dz-master-progress">
+                <button className="apply toggle-upload-btn create-shell-btn" onClick={this.createShellPrompt}>Create Shell<i className="iconcss icon-shell"></i></button>
+                <div>
+	                <button className={toggleUploadClassnames} onClick={this.clickUploadToggle}>Upload<i className="iconcss icon-cloud"></i></button>
+	                <div className="dz-master-progress--text">
+		                <span className="dz-master-progress--text-lg">Uploaded 8 of 8</span>
+		                <span className="dz-master-progress--text-sm"><i className="iconcss icon-last-modified"></i>3/22/18</span>
+	                </div>
+	            </div>
+              </div>
+                <div className="uploading-content-row">
+                  <button className={notifyButtonclassnames} onClick={this.clickNotifyMe}>Notify When Complete<i className="iconcss icon-bullhorn"></i></button>
+                  <span className="dz-upload">
+                    <div className="dz-master-progress--bar">
+                    <div className="dz-master-progress--bar-inner"></div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+
 			<div
 			style={{
 				opacity: 0,
@@ -1238,16 +1444,43 @@ selectAudioFiles() {
 			onChange={e => {
 				console.log("*** onChange (delayedRemove)", e);
 				
-				this.setState({
-                        files: filesArray })
+				if(!this.props.editingLocalProject && !this.props.editingLocalItem) {
+					this.setState({files: filesArray, selected: false})
+					this.state.files.forEach((file, i) => {
+				if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png")) {
+					file.inputTitle = "untitled" + "_" + file.width + "x" + file.height + "_" + i;
+					file.inputStatus = "Needs Metadata"
+
+					}
+				if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "video/avi" || file.type == "video/mp4")) {
+					file.inputTitle = "untitled" + "_" + "15min_" + i;
+					file.inputStatus = "Needs Metadata"
+					}
+				})
+					
+				}
 
 				if(this.props.editingLocalProject || this.props.editingLocalItem) {
 					this.setState({
-                        files: filesArray.concat(this.props.localFiles[0].items)})
-				}
+                        files: filesArray.concat(this.props.localFiles[0].items),
+                    	selected: false })
+					
+					this.state.files.forEach((file, i) => {
+					if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png")) {
+					file.inputTitle = "untitled" + "_" + file.width + "x" + file.height + "_" + i;
+					file.inputStatus = "Needs Metadata";
+					file.lastEditedBy =  this.props.client.user.name;
 
-				
-			
+					}
+					if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "video/avi" || file.type == "video/mp4")) {
+						file.inputTitle = "untitled" + "_" + "15min_" + i;
+						file.inputStatus = "Needs Metadata"
+						file.lastEditedBy =  this.props.client.user.name;
+						}
+					
+				})
+				}	
+
 				
 				if (filesArray.length > 0) {
 					document.getElementsByClassName('dz-master-progress--bar-inner')[0].classList.add('dz-master-progress--bar-inner-animation');
@@ -1255,21 +1488,7 @@ selectAudioFiles() {
 					document.getElementById('upload').getElementsByClassName('uploading-content-row')[0].style.transform = 'translateX(0%)';
 					document.getElementsByClassName('dz-master-progress--text-lg')[0].innerHTML = this.state.files.length + " Uploaded";
 				}
-				setTimeout(function() { 
-					var elements = document.getElementsByClassName("dz-progress");
-					var elementsCheckmark = document.getElementsByClassName("dz-success-mark"); 
-					var masterBar = document.getElementsByClassName("dz-master-progress--bar-inner-animation"); 
-					for(var i = 0; i < elements.length; i++){
-				    	elements[i].className = "hide-progress"; 
-					} 
-				    for(var i = 0; i < elementsCheckmark.length; i++){
-						elementsCheckmark[i].className = "hide-checkmark"; 
-					}
-				    for(var i = 0; i < masterBar.length; i++) {
-						masterBar[i].className = "dz-master-progress--bar-inner";
-						document.getElementsByClassName('dz-master-progress--bar-inner')[0].style.width = '100%'; 
-					} 
-				}, 10000); 
+	
 				setTimeout(function() { 
 					document.getElementById('upload').getElementsByClassName('uploading-content-row')[0].style.transform = 'translateX(100%)';
 				}, 10000); 
@@ -1277,6 +1496,31 @@ selectAudioFiles() {
 
 			/>
 			</div>
+
+	        <Prompt
+	          show={this.state.showCreateShellPrompt}
+	          onCancel={this.createShellPrompt}
+	          onSubmit={this.createShellPrompt}
+	          header={<h2 className="licensing-popup__title">Create Content Shell</h2>}
+	          cancelText="Nevermind"
+	          submitText="Create Shell(s)"
+	        >
+	          <h3 className="licensing-popup__info">How many content shells would you like to create?</h3>
+		        <div className="shell-creation-wrapper">
+		         	<div className="shell-creation-item">
+				        <NumericInput min={0} max={100} value={this.state.shellCreate.video} onChange={(e) => this.setVideoShellCreateValues(e)}/>
+				        <div><i className="iconcss icon-type-video"></i>Video</div>
+		         	</div>
+		         	<div className="shell-creation-item">
+				        <NumericInput min={0} max={100} value={this.state.shellCreate.image} onChange={(e) => this.setImageShellCreateValues(e)}/>
+				        <div><i className="iconcss icon-type-image"></i>Image</div>
+		         	</div>
+		         	<div className="shell-creation-item">
+				        <NumericInput min={0} max={100} value={this.state.shellCreate.audio} onChange={(e) => this.setAudioShellCreateValues(e)}/>
+				        <div><i className="iconcss icon-type-audio"></i>Audio</div>
+		         	</div>
+		        </div>
+	        </Prompt>
 
 	        <Prompt
 	          show={this.state.showDeletePrompt}
@@ -1296,19 +1540,28 @@ selectAudioFiles() {
 			disableBulkEdit={this.disableBulkEdit}
 			editingLocalProject={this.props.editingLocalProject}
 			updateFilesForBulkList={this.updateFilesForBulkList}
-			removeFileFromOverlay={this.removeFileFromOverlay} />
+			removeFileFromOverlay={this.removeFileFromOverlay}
+			type={this.state.itemsForBulk} />
+
+
 
 			<div className="dz-container-1">
 			  <div className="filepicker dropzone dz-clickable">
 			    <div className="dz-clickable" id="dz-custom-mesg-2" >
-			       <div>
+			       <div className={uploadModeClassnames}>
+			       	 <i onClick={this.clickUploadToggle} className="iconcss icon-close-thin"></i>
 			         <Svg />
 			         <div>Drag and drop files here or click here!</div>
 			    </div>
 			</div>
+			<DropzoneFilter/>
+			{
+				(!this.state.showGridView) ? (<ListViewHeader/>) : null
+			}
 			<div className="dz-default dz-message">
-			  <span />
+			  <span></span>
 			</div>
+
 			<div className={gridListViewClassnames}>
 
 			{
@@ -1323,7 +1576,10 @@ selectAudioFiles() {
 						src={file.previewTemplate.firstElementChild.firstChild.currentSrc}
 						name={file.name}
 						size={file.size}
+						test={file.test}
 						i={i}
+						currentProject={this.props.currentProject}
+						inputTitle={file.inputTitle}
 						selected={this.state.selected}
 						imageSelectionEnabled={this.state.imageSelectionEnabled}
 						videoSelectionEnabled={this.state.videoSelectionEnabled}
@@ -1346,10 +1602,29 @@ selectAudioFiles() {
 
 					<div className={classnames}>
 						<FileInformationModal
-						editingLocalItem={this.props.editingLocalItem}
-						localItem={this.props.localItem}
+						
+						onInputChange={this.onInputChange}
+						onDropDownChange={this.onDropDownChange}
+						inputFileName={this.state.inputFileName}
+						inputAssosiations={this.state.inputAssosiations}
+						inputEpisode={this.state.inputEpisode}
+						inputVersionType={this.state.inputVersionType}
+						inputText={this.state.inputText}
+						inputAirVersion={this.state.inputAirVersion}
+						inputNetwork={this.state.inputNetwork}
 						inputTitle={this.state.inputTitle}
 						inputSubtitle={this.state.inputSubtitle}
+						inputProducer={this.state.inputProducer}
+						inputCreative={this.state.inputCreative}
+						inputStorageLocation={this.state.inputStorageLocation}
+						inputAcSource={this.state.inputAcSource}
+						inputUserDescription={this.state.inputUserDescription}
+						inputPeople={this.state.inputPeople}
+						bulkEditOpen={this.state.bulkEditOpen}
+						inputUserComments={this.state.inputUserComments}
+						editingLocalItem={this.props.editingLocalItem}
+						localItem={this.props.localItem}
+						
 						updateTitle={this.updateTitle}
 						updateSubtitle={this.updateSubtitle}
 						inputContentType={this.state.inputContentType}

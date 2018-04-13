@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var defaultTranslation = exports.defaultTranslation = {
+  
   dictDefaultMessage: '',
   // dictDefaultMessage: renderToStaticMarkup(reactDictDefaultMessage),
   dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",

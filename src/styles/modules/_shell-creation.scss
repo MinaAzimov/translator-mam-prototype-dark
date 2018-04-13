@@ -1,0 +1,90 @@
+.shell-creation-wrapper {
+	padding: 24px 18px;
+	display: flex;
+	justify-content: space-around;
+
+	.shell-creation-item {
+		display: flex;
+		flex-direction: column;
+
+		> div {
+			display: flex;
+			align-items: center;
+			font-size: 13px;
+			letter-spacing: 0.1em;
+			margin-top: 8px;
+			text-transform: uppercase;
+
+			i {
+				font-size: 14px;
+				margin-right: 6px;
+			}
+		}
+	}
+
+	.react-numeric-input {
+		max-width: 72px !important;
+
+		input {
+			transition: all 0.6s $curve1;
+			max-width: 72px !important;
+			outline: none;
+			border: none !important;
+			font-size: 32px !important;
+			font-weight: 100;
+			border-radius: 0px !important;
+		    padding: 0px !important;
+		    min-width: 72px;
+		    // text-decoration: underline;
+		    min-height: 72px;
+		    text-align: center;
+		    margin-right: 12px !important;
+		    border-radius: 50% !important;
+			border: solid 1px $color-light-blue !important;
+			color: $color-light-blue;
+			// text-shadow: 0 0 0 #2196f3 !important;
+			background: none !important;
+
+			&:focus {
+				// border-width: 2px !important;
+				outline: none !important;
+				// box-shadow: 0 1px 0 0 $color-light-blue;
+			}
+		}
+
+		b {
+			cursor: pointer !important;
+			background: none !important;
+			border: none !important;
+			opacity: 0.8;
+			box-shadow: none !important;
+			text-align: right !important;
+			height: 12px !important;
+			width: 12px !important;
+			transition: all 0.6s $curve1;
+
+			&:hover {
+				opacity: 1;
+			}
+
+
+			i {
+				font-size: 13px;
+				// color: mix(black, $color-grey-md, 50%);
+			}
+
+			&:first-of-type {
+				transform: translate(21px, 24px);
+				i {
+					border-color: transparent transparent mix(black, $color-grey-md, 50%) !important;
+				}
+			}
+			&:last-of-type {
+				transform: translate(21px, 0);
+				i {
+					border-color: mix(black, $color-grey-md, 50%) transparent transparent !important;					
+				}
+			}
+		}
+	}
+}

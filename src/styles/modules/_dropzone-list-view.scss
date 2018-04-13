@@ -37,6 +37,7 @@
 			    min-width: auto;
 			    position: absolute;
 			    left: auto;
+			    padding: 0 24px;
 			    right: 0;
 			}
 
@@ -60,15 +61,38 @@
 				right: 0;
 			}
 
+			.dz-modified, .dz-uploaded, .dz-owner {
+				display: block;
+				// margin-right: 30px;
+			}
+
 			.dz-title {
 				// margin: 0 60px 0 24px;
+				min-width: 360px;
 				margin: 0 48px 0 24px;
 				font-size: 19px;
 				font-size: 17px;
+
+				.dz-filename {
+					margin-top: 3px;
+					display: block;
+					font-size: 15px;
+					color: #999;
+				}
+			}
+
+			.dz-owner {
+		        width: 9%;
+		        margin-left: -6px;
+			}
+
+			.dz-modified, .dz-uploaded {
+		        width: 9%;
 			}
 
 			.dz-size {
 				margin-bottom: 0;
+				margin-right: 18px;
 				align-items: center;
 
 				span {
@@ -76,7 +100,7 @@
 			}
 
 			.dz-icon {
-				margin-right: 30px;
+		        width: 6%;
 				font-size: 19px;
 				left: auto;
 				bottom: auto;
@@ -87,8 +111,17 @@
 				position: relative;
 				top: auto;
 				right: 0;
+				text-decoration: none;
+
+				&:before {
+					@include iconcss;
+					content: '\EA46';
+					color: mix(black, $color-grey-md);
+					font-size: 21px;
+				}
 				svg {
-					fill: black !important;
+					display: none;
+					// fill: black !important;
 				}
 			}
 			&:hover {

@@ -127,7 +127,7 @@ export default class ExistingTitles extends Component {
 
     return (
     	<div ref="wrapper" className={classnames}>
-	    	<button onClick={this.openDropdown} className="apply">Project<i className="iconcss icon-plus"></i></button>
+	    	<button onClick={this.openDropdown} className="apply">New Project<i className="iconcss icon-plus"></i></button>
 	    	<ul className="dropdown">
 		    	<button onClick={newTitle.bind(this)} className="dropdown-button">New Title<i className="iconcss icon-plus"></i></button>
 		    	<button onClick={this.openSearch} className="dropdown-button">Existing Title<i className="iconcss icon-plus"></i></button>

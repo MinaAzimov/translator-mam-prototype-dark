@@ -4,6 +4,8 @@ import BaseLayout from './BaseLayout';
 import Field from './Field';
 import ProjectItem from './ProjectItem';
 import ProjectCardHeader from './ProjectCardHeader';
+import ProjectSection from './ProjectSection';
+import GroupByToggle from './GroupByToggle';
 import TaskList from './TaskList';
 import TaskCreator from './TaskCreator';
 import SelectRepeater from './form/SelectRepeater';
@@ -89,7 +91,7 @@ class RegisterContent extends Component {
           localItem: [],
           projectName: "Project Name",
           inputValue: '',
-          notifyWhenUploadComplete: false
+          groupByStatus: false
         }
        this.rootRef = firebase.database().ref('/projects/' + this.props.client.user.name)
     }
@@ -130,6 +132,7 @@ this.setState({ projects: this.state.projects.concat(newArray)})
                   this.setState({ projects: this.state.projects.filter(project => project.name !== project.name).concat(newArray)})
                   this.rootRef.off()
                   })
+       
 
   }
 
@@ -140,12 +143,11 @@ this.setState({ projects: this.state.projects.concat(newArray)})
 
   }
 
-  clickNotifyMe = () => {
+  toggleGroupBy = () => {
     this.setState({
-      notifyWhenUploadComplete: !this.state.notifyWhenUploadComplete 
+      groupByStatus: !this.state.groupByStatus
     });
   }
-
 
 
   editExistingProject = (key, item) => {
@@ -191,17 +193,22 @@ fireClick = (node) => {
     console.log(this.state.editingLocalItem)
 
     setTimeout(()=> { this.showDropzone()
-     this.fireClick(document.getElementById(this.state.localItem.name)) }, 500);
+     this.fireClick(document.getElementById(this.state.localItem.name)) 
+
+
+
+   }, 500);
 
 
     
   }
 
   updateInputValue = (e) => {
+
     this.setState({
       inputValue: e.target.value
     });
-    console.log(this.state.inputValue)
+  
   }
 
 
@@ -212,12 +219,6 @@ fireClick = (node) => {
 
     const { dropZoneShow, cardBoardShow, libraryFiltersHide, showHiddenProject } = this.state;
     const { fields, lockedBy, client } = this.props;
-
-    const notifyButtonclassnames = classNames({
-      'apply': true,
-      'notify-upload-complete-btn': true,
-      'notify-upload-complete-btn--checked': this.state.notifyWhenUploadComplete
-    })
 
     const classnames = classNames({
       'edit-content': true,
@@ -257,116 +258,85 @@ fireClick = (node) => {
                   <span>Go To Project</span>
                 </div>
               </div>
+
               <div className="actions-header actions-header--left">
-
-                <div className="group-by">
-                  <i className="iconcss icon-group-by"></i>
-                  <span>Group By: File Type</span>
-                </div>
-
+                <GroupByToggle 
+                toggle={this.toggleGroupBy}
+                groupByStatus={this.state.groupByStatus}
+                />
               </div>
+
               <CardSection ref={project.title}>
-                { (project.items.filter((obj) => obj.type == 'video').length > 0) ? 
-                (
-                  <ProjectCardHeader type='Video'/>
-                ) : null
-                }
-                { 
-                  project.items
-                    .filter((obj) =>
-                      obj.type == 'video/mp4' || obj.type == 'video/avi'
-                    )
-                    .map((item, index) =>
-                      <ProjectItem
-                      editingLocalItem={this.state.editingLocalItem}
-                      editExistingItem={this.editExistingItem}
-                      localItem={this.state.localItem}
-                      key={index}
-                      id={item.id}
-                      name={item.name}
-                      subtitle={item.subtitle}
-                      type={item.type}
-                      img={item.img}
-                      item={item}
-                      project={project}
-                      ref={project}
-                      readyForIngest={(item.inputStatus == "Ready For Ingest" || item.inputStatus == "Ready For Service" || item.inputStatus == "Search Optimized") ? true : false }
-                      readyForService={ (item.inputStatus == "Ready For Service" || item.inputStatus == "Search Optimized") ? true : false }
-                      searchOptimized={ item.inputStatus == "Search Optimized" ? true : false }
-                      />
-                    )
-                }
-                { (project.items.filter((obj) => obj.type == 'image/jpeg' || obj.type == 'image/jpg' || obj.type == 'image/png' || obj.type == 'image/svg+xml').length > 0) ? 
-                (
-                  <ProjectCardHeader type='Image'/>
-                ) : null
-                }
-                { 
-                  project.items
-                    .filter((obj) =>
-                      obj.type == 'image/jpeg' || obj.type == 'image/jpg' || obj.type == 'image/png' || obj.type == 'image/svg+xml'
-                    )
-                    .map((item, index) =>
-                      <ProjectItem
-                      editingLocalItem={this.state.editingLocalItem}
-                      editExistingItem={this.editExistingItem}
-                      localItem={this.state.localItem}
-                      key={index}
-                      id={item.id}
-                      name={item.name}
-                      subtitle={item.subtitle}
-                      type={item.type}
-                      img={item.img}
-                      item={item}
-                      project={project}
-                      ref={project}
-                      readyForIngest={(item.inputStatus == "Ready For Ingest" || item.inputStatus == "Ready For Service" || item.inputStatus == "Search Optimized") ? true : false }
-                      readyForService={ (item.inputStatus == "Ready For Service" || item.inputStatus == "Search Optimized") ? true : false }
-                      searchOptimized={ item.inputStatus == "Search Optimized" ? true : false }
-                      />
-                    )
-                }
-                { (project.items.filter((obj) => obj.type == 'audio').length > 0) ? 
-                (
-                  <ProjectCardHeader type='Audio'/>
-                ) : null
-                }
-                { 
-                  project.items
-                    .filter((obj) =>
-                      (obj.type == 'audio' || obj.type == 'audio/mp3')
-                    )
-                    .map((item, index) =>
-                      <ProjectItem
-                      editingLocalItem={this.state.editingLocalItem}
-                      editExistingItem={this.editExistingItem}
-                      localItem={this.state.localItem}
-                      key={index}
-                      id={item.id}
-                      name={item.name}
-                      subtitle={item.subtitle}
-                      type={item.type}
-                      img={item.img}
-                      item={item}
-                      project={project}
-                        ref={project}
-                      readyForIngest={(item.inputStatus == "Ready For Ingest" || item.inputStatus == "Ready For Service" || item.inputStatus == "Search Optimized") ? true : false }
-                      readyForService={ (item.inputStatus == "Ready For Service" || item.inputStatus == "Search Optimized") ? true : false }
-                      searchOptimized={ item.inputStatus == "Search Optimized" ? true : false }
-                      />
-                    )
-                }
+                {(!this.state.groupByStatus) ? (
+                  <div>
+                    <ProjectSection
+                    user={client.user}
+                    type="video"
+                    project={project}
+                    editingLocalItem={this.state.editingLocalItem}
+                    editExistingItem={this.editExistingItem}
+                    localItem={this.state.localItem}
+                    />
+                    <ProjectSection
+                    user={client.user}
+                    type="image"
+                    project={project}
+                    editingLocalItem={this.state.editingLocalItem}
+                    editExistingItem={this.editExistingItem}
+                    localItem={this.state.localItem}
+                    />
+                    <ProjectSection
+                    user={client.user}
+                    type="audio"
+                    project={project}
+                    editingLocalItem={this.state.editingLocalItem}
+                    editExistingItem={this.editExistingItem}
+                    localItem={this.state.localItem}
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <ProjectSection
+                    user={client.user}
+                    type="needs metadata"
+                    project={project}
+                    editingLocalItem={this.state.editingLocalItem}
+                    editExistingItem={this.editExistingItem}
+                    localItem={this.state.localItem}
+                    />
+                    <ProjectSection
+                    user={client.user}
+                    type="ready for ingest"
+                    project={project}
+                    editingLocalItem={this.state.editingLocalItem}
+                    editExistingItem={this.editExistingItem}
+                    localItem={this.state.localItem}
+                    />
+                    <ProjectSection
+                    user={client.user}
+                    type="ready for service"
+                    project={project}
+                    editingLocalItem={this.state.editingLocalItem}
+                    editExistingItem={this.editExistingItem}
+                    localItem={this.state.localItem}
+                    />
+                    <ProjectSection
+                    user={client.user}
+                    type="search optimized"
+                    project={project}
+                    editingLocalItem={this.state.editingLocalItem}
+                    editExistingItem={this.editExistingItem}
+                    localItem={this.state.localItem}
+                    />
+                  </div>
+                )}
               </CardSection>
             </Card>
           </div>
     );
 
 
-    
-
-
-    
-
+  
     const lockerEditor = lockedBy !== null ? getUserData(this.props.lockedBy) : null;
 
     return (
@@ -416,23 +386,17 @@ fireClick = (node) => {
                     <label class="field__label">
                       <span class="field__label_required"></span>
                     </label>*/}
-                    <input value={this.state.inputValue} label={this.state.projectName} onChange={this.updateInputValue}></input>
+
+                    { 
+                      this.state.editingLocalProject || this.props.editExistingItem ? 
+                      <input value={this.state.inputValue ? this.state.inputValue : this.state.currentProject }  label={this.state.currentProject} onChange={this.updateInputValue}></input>
+                        : 
+                      <input value={this.state.inputValue} label={this.state.projectName} onChange={this.updateInputValue}></input>
+                      
+                    }
+                    
                   {/*</div>*/}
                   </div>          
-                  <div id="upload" className="uploading-content-col">
-                  <div className="dz-master-progress">
-                    <span className="dz-master-progress--text-lg">Uploaded 8 of 8</span>
-                    <span className="dz-master-progress--text-sm"><i className="iconcss icon-last-modified"></i>3/22/18</span>
-                  </div>
-                    <div className="uploading-content-row">
-                      <button className={notifyButtonclassnames} onClick={this.clickNotifyMe}>Notify When Complete<i className="iconcss icon-bullhorn"></i></button>
-                      <span className="dz-upload">
-                        <div className="dz-master-progress--bar">
-                        <div className="dz-master-progress--bar-inner"></div>
-                        </div>
-                      </span>
-                    </div>
-                  </div>
                 </div>
   
                 <CardSection>

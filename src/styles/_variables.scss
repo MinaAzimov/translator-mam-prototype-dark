@@ -19,7 +19,7 @@ $color-body-bg: #f2f2f2;
 $color-grey-md: #999999;
 $color-dark-text: #000;
 $color-orange: rgb(255, 103, 0);
-$color--green: #7ac142;
+$color-green: #7ac142;
 $color-red: red;
 $color-red-dark: #920000;
 $color-white: #ffffff;
@@ -33,6 +33,8 @@ $color-navy-light: #054480;
 $color-blue-codrops: #056495;
 
 $color-light-blue: #009eda;
+
+$select-input-border-focus: $color-light-blue !default;
 
 $color-gray: #B2B2B2;
 

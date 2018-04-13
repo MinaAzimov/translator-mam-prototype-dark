@@ -1,0 +1,128 @@
+// .header__filters {
+//     position: relative;
+//     box-sizing: border-box;
+//     width: 100%;
+
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: nowrap;
+//     align-items: center;
+// }
+
+// .c-Header-controls.header__controls--filter.is-open .header__filters {
+//     @media (max-width: @width-screen-s) {
+//         flex-direction: column;
+//         justify-content: center;
+//     }
+// }
+
+// .filters__title {
+//     margin-top: 10px;
+
+//     &::after {
+//         content: ':';
+//     }
+
+//     @media (max-width: @width-screen-s) {
+//         &::after {
+//             content: '';
+//         }
+//     }
+// }
+
+// .filters__wrapper {
+//     position: relative;
+//     box-sizing: border-box;
+//     min-width: 100px;
+
+//     flex-grow: 1;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     align-content: flex-start;
+// }
+
+// .c-Header-controls.header__controls--filter.is-open .filters__wrapper {
+//     @media (max-width: @width-screen-s) {
+//         flex-direction: column;
+//         width: 100%;
+//         margin-top: 20px;
+//         padding: 0 40px 80px 40px;
+//     }
+// }
+
+// .filters__item {
+//     position: relative;
+//     box-sizing: border-box;
+//     min-width: 0;
+//     margin: 10px 6px 10px 6px;
+
+//     flex-grow: 1;
+//     flex-shrink: 0;
+//     flex-basis: 100px;
+// }
+
+// .filters__item:nth-child(1) {
+//     flex-basis: 50px;
+// }
+// .filters__item:nth-child(3) {
+//     flex-basis: 30px;
+// }
+// .filters__item:nth-child(4) {
+//     flex-basis: 30px;
+// }
+
+// .filters__item--checkbox {
+//     padding-top: 7px;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: nowrap;
+//     align-items: center;
+// }
+
+// .filters__item-label--checkbox {
+//     overflow: hidden;
+//     white-space: nowrap;
+//     word-wrap: break-word;
+//     text-overflow: ellipsis;
+// }
+
+// .c-Header-controls.header__controls--filter.is-open .filters__item {
+//     @media (max-width: @width-screen-s) {
+//         flex-basis: auto;
+//         width: 100%;
+//         margin: 20px 0;
+//     }
+// }
+
+// .filters__close {
+//     display: none;
+//     @media (max-width: @width-screen-s) {
+//         display: block;
+//         position: fixed;
+//         z-index: @z-index-modalClose;
+//         top: 20px;
+//         right: 20px;
+//         width: 22px;
+//         height: 22px;
+//         background-image: url(img/icons/close-modal.svg);
+//         background-position: center;
+//         background-repeat: repeat;
+//         background-size: cover;
+
+//         .t-style & {
+//             opacity: 0.5;
+
+//             &:hover {
+//                 opacity: 0.8;
+//             }
+//             &:active {
+//                 opacity: 1;
+//             }
+//         }
+//         .t-animation {
+//             transition: @transition-basic;
+//         }
+//     }
+
+// }

@@ -1,0 +1,268 @@
+$color-font-light: #999999;
+$font-size-small: 12px;
+$font-size-basic: 14px;
+$transition-basic: 0.3s ease-out;
+$size-menuWidth: 220px;
+$z-index-modalClose: 120;
+$z-index-modalControls: 110;
+
+.content-index {
+    .library-filters {
+        background: transparent;
+        box-shadow: none;
+        padding: 0 15px;
+
+        .Select-multi-value-wrapper {
+            min-width: 175px;
+            width: 175px;
+            overflow: hidden;
+            overflow-x: scroll;            
+        }
+
+        .Select--multi .Select-value {
+            background: transparent;
+            border: solid 1px $color-grey-md;
+            border-radius: 2px;
+            // border: none;
+            color: #000;
+            font-size: 12px;
+            margin: 1px 4px 0px 0px;
+        }
+        .selectbox__placeholder {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 95%;
+        }
+        .Select--multi.is-open .Select-control {
+            border-color: $color-light-blue lighten($color-light-blue, 5%) lighten($color-light-blue, 5%);
+            box-shadow: 0 1px 0 0 $color-light-blue;
+        }
+        .is-focused:not(.is-open) > .Select-control {
+            border-color: $color-light-blue lighten($color-light-blue, 5%) lighten($color-light-blue, 5%);
+            // box-shadow: $select-input-border-focus;
+        }
+        .Select-arrow {
+            opacity: 0.8;
+            border-color: $color-grey-md transparent transparent;
+        }
+        .selectbox__down-icon {
+            border: solid 1px;
+            opacity: 0.8;
+            border-width: 5px 5px 2px;
+            border-color: $color-grey-md transparent transparent;
+            bottom: 4px;
+            top: auto;
+        }
+        .library-filter-controls {
+            display: flex;
+            align-items: center;
+
+            button {
+                padding: 6px 9px;
+                display: flex;
+                font-size: 15px;
+                justify-content: center;
+                margin-bottom: 1px;
+
+                &.apply {
+                    border: solid 1px $color-light-blue;
+                    color: $color-light-blue;
+                    background: transparent;
+
+                    // @include button-blue-pill;
+                }
+                &.reset {
+                    // @include button-gray-pill;
+                }
+            }
+        }
+        .field__label, .selectbox__label {
+            color: $color-grey-md;
+        }
+        .library-filter-item {
+            margin: 10px 9px 10px 9px;
+        }
+        .library-filter-label {
+            display: flex;
+            align-items: center;
+            margin-right: 3px;
+            color: $color-grey-md;
+            letter-spacing: 0.08em;
+            font-size: 13px;
+            padding-bottom: 3px;
+            text-transform: uppercase;
+
+            i {
+                margin-right: 3px;
+            }
+        }
+    }
+}
+
+
+.header__filters {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.c-Header-controls.header__controls--filter.is-open .header__filters {
+    @media (max-width: $bp-small) {
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.filters__title {
+    margin-top: 10px;
+
+    &::after {
+        content: ':';
+    }
+
+    @media (max-width: $bp-small) {
+        &::after {
+            content: '';
+        }
+    }
+}
+
+.filters__wrapper {
+    position: relative;
+    box-sizing: border-box;
+    min-width: 100px;
+
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.c-Header-controls.header__controls--filter.is-open .filters__wrapper {
+    @media (max-width: $bp-small) {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 20px;
+        padding: 0 40px 80px 40px;
+    }
+}
+
+
+.filters__item {
+    position: relative;
+    box-sizing: border-box;
+    min-width: 0;
+    margin: 10px 6px 10px 6px;
+
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 100px;
+}
+
+.filters__item:nth-child(1) {
+    flex-basis: 50px;
+}
+.filters__item:nth-child(3) {
+    flex-basis: 30px;
+}
+.filters__item:nth-child(4) {
+    flex-basis: 30px;
+}
+
+.filters__item--checkbox {
+    padding-top: 7px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.filters__item-label--checkbox {
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
+.c-Header-controls.header__controls--filter.is-open .filters__item {
+    @media (max-width: $bp-small) {
+        flex-basis: auto;
+        width: 100%;
+        margin: 20px 0;
+    }
+}
+
+.filters__close {
+    display: none;
+    @media (max-width: $bp-small) {
+        display: block;
+        position: fixed;
+        z-index: $z-index-modalClose;
+        top: 20px;
+        right: 20px;
+        width: 22px;
+        height: 22px;
+        background-image: url(img/icons/close-modal.svg);
+        background-position: center;
+        background-repeat: repeat;
+        background-size: cover;
+
+        .t-style & {
+            opacity: 0.5;
+
+            &:hover {
+                opacity: 0.8;
+            }
+            &:active {
+                opacity: 1;
+            }
+        }
+        .t-animation {
+            transition: $transition-basic;
+        }
+    }
+
+}
+
+.filters__controls {
+
+}
+.c-Header-controls.header__controls--filter.is-open .filters__controls {
+    @media (max-width: $bp-small) {
+        position: fixed;
+        z-index: $z-index-modalControls;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+
+        background-color: #ffffff;
+        border-top: 1px solid #eeeeee;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.filters__icon {
+    margin-right: 8px;
+    @media (max-width: $bp-small) {
+        display: none;
+    }
+}
+
+.filters__toggle {
+    display: none!important;
+
+    @media (max-width: $bp-small) {
+        display: inline-block!important;
+        font-size: 18px!important;
+    }
+}
