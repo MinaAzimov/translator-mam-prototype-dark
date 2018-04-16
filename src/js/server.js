@@ -53,6 +53,6 @@ app.get('*', function(req, res) {
 
 
 
-http.listen(PORT, function(){
+http.listen(process.env.PORT || PORT, function(){
   console.log('listening on *:' + PORT);
 });
