@@ -36,7 +36,7 @@ const itemList = (
 						<img src="/assets/img/library/skin.png" />
 					</div>
 					<div className="activity-copy">
-						<div className="activity-text"><span>Allen Kim published the Skin:</span> <span className="activity-content-title">Renewable Energy Skin</span></div>
+						<div className="activity-text"><span>Allen Kim published the Skin:</span> <span className="activity-content-title">Renewabl Energy Skin</span></div>
 						<div className="activity-time">few seconds ago</div>
 					</div>
 				</div>
