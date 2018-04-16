@@ -31,7 +31,7 @@ import { defaultIcons } from "../lib/ui/DefaultIcons";
 import EditFileOverlay from './EditFileOverlay';
 
 import NotifyButton from './NotifyButton';
-import ListViewHeader from './ListViewHeader';
+import ListHeader from './ListHeader';
 import DropzoneFilter from './DropzoneFilter';
 
 
@@ -1825,7 +1825,7 @@ selectAudioFiles() {
 			</div>
 			<DropzoneFilter/>
 			{
-				(!this.state.showGridView) ? (<ListViewHeader/>) : null
+				(!this.state.showGridView) ? (<ListHeader/>) : null
 			}
 			<div className="dz-default dz-message">
 			  <span></span>

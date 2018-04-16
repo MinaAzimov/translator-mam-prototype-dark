@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { EMAILS } from '../../../mock/emails.js';
 import { WithOutContext as ReactTags } from 'react-tag-input';
 import classNames from "classnames";
-import newId from '../actions/newid';
+import createid from '../actions/createid';
 
 
 export default class NotifyButton extends Component {
@@ -28,7 +28,7 @@ export default class NotifyButton extends Component {
   }
 
   componentWillMount() {
-    this.id = newId();
+    this.id = createid();
   }
 
   componentDidMount() {
