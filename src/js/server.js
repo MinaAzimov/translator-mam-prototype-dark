@@ -6,6 +6,7 @@ var path = require('path');
 
 import reducers from "./reducers"
 import socketInit from './lib/socketInit'
+import firebase from './components/firebase.js'
 import { createStore } from 'redux'
 import session from 'express-session'
 import Twig from 'twig';
