@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
 import classNames from "classnames";
+import { connect } from 'react-redux';
 
 
-export default class ListViewHeader extends Component {
+class ListViewHeader extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -57,3 +58,13 @@ export default class ListViewHeader extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+  return {
+    users: state.users
+  }
+}
+
+
+
+export default connect(mapStateToProps)(ListViewHeader);

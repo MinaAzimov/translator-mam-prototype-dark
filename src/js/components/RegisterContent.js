@@ -51,7 +51,6 @@ import projectsHiddenReed from '../../../mock/hiddenProjects/reedHidden.json';
 
 import projects from '../../../mock/projects.json';
 
-import DropzoneComponent from 'react-dropzone-component';
 
 import { ReduxFormFieldSimpleReactDropzone } from 'simple-react-dropzone';
 
