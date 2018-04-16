@@ -794,6 +794,7 @@ else {
                         { (file.type == 'image/jpeg') ? <i className="iconcss icon-type-image"></i> : null }
                         { (file.type == 'image/png') ? <i className="iconcss icon-type-image"></i> : null }
                         { (file.type == 'video/mp4') ? <i className="iconcss icon-type-video"></i> : null }
+                        { (file.shellType == 'shell') ? <i className="iconcss icon-shell"></i> : null }
                       </span>
 
                       <div className="dz-checkbox">

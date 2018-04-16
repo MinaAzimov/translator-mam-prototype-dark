@@ -2,7 +2,7 @@
   "_args": [
     [
       "react-dropzone-component@2.0.0",
-      "/Users/oleksandr206534448/Desktop/cnbc-poc-master"
+      "/Users/eric206534453/repos/translator-mam-prototype"
     ]
   ],
   "_from": "react-dropzone-component@2.0.0",
@@ -26,7 +26,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/react-dropzone-component/-/react-dropzone-component-2.0.0.tgz",
   "_spec": "2.0.0",
-  "_where": "/Users/oleksandr206534448/Desktop/cnbc-poc-master",
+  "_where": "/Users/eric206534453/repos/translator-mam-prototype",
   "bugs": {
     "url": "https://github.com/felixrieseberg/React-Dropzone/issues"
   },

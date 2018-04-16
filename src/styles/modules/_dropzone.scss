@@ -391,7 +391,7 @@
 .bulk-editing-menu {
 	position: fixed;
 	top: 0;
-	height: 102px;
+	height: 104px;
 	display: flex;
 	align-items: center;
 	// margin-right: 12px;
@@ -929,7 +929,7 @@
 			transition: all 0.3s cubic-bezier(.77, 0, .175, 1);
 		}
 	}
-	.image\/jpeg--show, .image\/jpeg--show, .image\/jpeg--show, .image\/svg\+xml--show, .image\/png--show, .image\/gif--show, .video\/mp4--show, .audio\/mp3--show {
+	.image\/jpeg--show, .image\/jpeg--show, .image\/jpeg--show, .image\/svg\+xml--show, .image\/png--show, .image\/gif--show, .video\/mp4--show, .audio\/mp3--show, .shell {
 		opacity: 0;
 
 		~ .check {  
@@ -1166,6 +1166,15 @@
 			}
 		}
 	}
+
+	.card--id-cards-wrapper {
+		border-radius: 0;
+		box-shadow: 0 -2px 0 0 #009eda, 
+					0 1px 4px 0 rgba(0, 0, 0, 0.12), 
+					0 -5px 5px 0 rgba(0, 0, 0, 0.03);
+	}
+
+
 	.card--id-dropzone {
 		background: transparent;
 		box-shadow: none;
@@ -1566,7 +1575,7 @@
 
 	&:before {
 		content: '';
-		margin-top: 3px;
+		margin-top: 4px;
 		position: absolute;
 		width: 0; 
 		height: 0; 
@@ -1576,7 +1585,7 @@
 		border-bottom: 12px solid white;
 		transform: translateX(-18px);  
 		margin-left: -42.5%;
-		filter: drop-shadow(0px -3px 1px rgba(0,0,0,0.03));
+		filter: drop-shadow(0px -3px 0px $color-light-blue);
 	}
 
 	&.callout-1 {
@@ -1611,6 +1620,15 @@
 	&--show {
 		display: block;
 	}
+
+	.card--id-descriptive {
+
+		.disabled {
+			text-align: left;
+		}
+	}
+
+
 
 	.card--id-comments, .card--id-admin, .card--id-tech, .card--id-dates, .card--id-descriptive,
 	.card--id-essentials, .card--id-reference {

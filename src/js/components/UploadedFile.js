@@ -15,6 +15,7 @@ export default class UploadedFile extends Component {
 	render() {
 
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
+		const shellSrc = "/assets/img/icons/shell-placeholder.jpg";
 		const { handleClick, file, updateFilesForBulkList, removeFile, deleteFilePrompt, type, src, name, size, i, selected, imageSelectionEnabled, videoSelectionEnabled, audioSelectionEnabled, multiSelect, files, target, id, setRef, readyForIngest, readyForService, searchOptimized, test, inputTitle, currentProject } = this.props;
 	const classnames = classNames({
 			"files-information": true,
@@ -61,13 +62,12 @@ export default class UploadedFile extends Component {
 					<div className="dz-image" value={i} key={i} onClick={this.props.handleClick.bind(this, i, file)} id={file.name} >
 					<div>
 					{ 
-						(file.type == 'video/mp4') ? (
-							<img data-dz-thumbnail className="thumbnail" src={ thumbSrc }/>) : (
-							<img data-dz-thumbnail className="thumbnail" src={ src }/>)
+						file.type == 'video/mp4' && file.shellType !== 'shell'  ? <img data-dz-thumbnail className="thumbnail" src={ thumbSrc }/> :
+						file.shellType == 'shell' ? <img data-dz-thumbnail className="thumbnail" src={ shellSrc }/> :
+						<img data-dz-thumbnail className="thumbnail" src={ src }/>			
 					}
 
-					<img key={i} data-dz-thumbnail className="thumbnail"
-					src={ src }/>
+
 					</div>
 					</div>
 					<div className="dz-details">
@@ -106,16 +106,15 @@ export default class UploadedFile extends Component {
 					</div>
                     <span className="dz-title">
                     <Truncate lines={1} ellipsis={"..." + currentProject ? currentProject : 'untitled'}>
-								{  currentProject ? 
-											(file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png" && file.test !== "edited") ? 
-											"untitled" + "_" + file.width + "x" + file.height + "_" + i : 
-											"untitled" + "_" + "15min_" + i
-										 : 
-										(
-											(file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png" && file.test !== "edited") ? 
-											"untitled" + "_" + file.width + "x" + file.height + "_" + i : 
-											"untitled" + "_" + "15min_" + i
-										)
+								{  
+										((file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png") && (file.test !== "edited" && file.editedInBulk !== "edited") && file.shellType !== "shell") ? 
+										("untitled" + "_" + file.width + "x" + file.height + "_" + i) :
+										((file.type == "video/mp4" || file.type == "video/avi") && (file.test !== "edited" && file.editedInBulk !== "edited")  && file.shellType !== "shell") ?
+										("untitled" + "_" + "15min_" + i) :
+										((file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png") && (file.editedInBulk !== "edited" && file.test !== "edited") && file.shellType == "shell") ? 
+										"shell_item" + "_" + i: 
+										((file.type == "video/mp4" || file.type == "video/avi") && (file.test !== "edited" && file.editedInBulk !== "edited") && file.shellType == "shell") ? 
+										"shell_item" + "_" + i : file.inputTitle
 								}
 						</Truncate>
 					<br></br><span className="dz-filename">{file.name}</span>
@@ -137,6 +136,7 @@ export default class UploadedFile extends Component {
 					{ (file.type == 'image/jpeg') ? <i className="iconcss icon-type-image"></i> : null }
 					{ (file.type == 'image/png') ? <i className="iconcss icon-type-image"></i> : null }
 					{ (file.type == 'video/mp4') ? <i className="iconcss icon-type-video"></i> : null }
+					{ (file.shellType == 'shell') ? <i className="iconcss icon-shell"></i> : null }
 					</span>
 					<span className="dz-status" id={name}>
 						<RegistrationStatus

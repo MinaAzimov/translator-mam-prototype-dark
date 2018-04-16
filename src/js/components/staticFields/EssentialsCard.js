@@ -30,8 +30,8 @@ const seasonList=[{title:"-None-",id:0, dropdown: "Season"},{title:"Season 1",id
 const episodeList=[{title:"-None-",id:0, dropdown: "Episode"},{title:"Episode 1",id:1, dropdown: "Episode"},{title:"Episode 2",id:2, dropdown: "Episode"},{title:"Episode 3",id:3, dropdown: "Episode"},{title:"Episode 4",id:4, dropdown: "Episode"}];
 const networkList=[{title:"-None-",id:0, dropdown: "Network"},{title:"Bravo",id:1, dropdown: "Network"},{title:"E!",id:2, dropdown: "Network"},{title:"USA",id:3, dropdown: "Network"},{title:"SyFy",id:4, dropdown: "Network"},{title:"Universal Kids",id:5, dropdown: "Network"},{title:"Oxygen",id:6, dropdown: "Network"}];
 const contentTypeList=[{title:"Show",id:0, },{title:"Event",id:1},{title:"Promo",id:2},{title:"Uncategorized",id:3}];
-
 const versionTypeList=[{title:"-None-",id:0, dropdown: "VersionType"},{title:"International Broadcast Master",id:1, dropdown: "VersionType"},{title:"Domestic Broadcast Master",id:2, dropdown: "VersionType"},{title:"International [Territory] OFCOM Compliant",id:3, dropdown: "VersionType"},{title:"Broadcast Master",id:4, dropdown: "VersionType"},{title:"Uncensored Master",id:5, dropdown: "VersionType"},{title:"Submaster",id:6, dropdown: "VersionType"}];
+
 const languageList=[{title:"-None-",id:0, dropdown: "Language"},{title:"English",id:1, dropdown: "Language"},{title:"German",id:2, dropdown: "Language"},{title:"Spanish",id:3, dropdown: "Language"},{title:"French",id:4, dropdown: "Language"}];
 
 const assosiationsList=[{title:"-None-",id:0, dropdown: "Assosiations"},{title:"Title",id:1, dropdown: "Assosiations"}];

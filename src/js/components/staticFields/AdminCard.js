@@ -149,7 +149,7 @@ class AdminCard extends Component {
 				    </label>
 				    <input className="field-text__input"  id="creative"  onBlur={this.onBlur} onFocus={this.onFocus}  value={this.props.inputCreative} onChange={this.props.onInputChange.bind(this)}/>
 			        </div>
-					<label> Legal </label>
+					<label className="admin-label"> Legal </label>
 			        <div className={Copyrights}>
 					<label className="field__label">
 				    Copyrights
@@ -163,7 +163,7 @@ class AdminCard extends Component {
 				    </label>
 				    <input className="field-text__input"  id="restrictions"  onBlur={this.onBlur} onFocus={this.onFocus}  value={this.props.inputRestrictions} onChange={this.props.onInputChange.bind(this)}/>
 			        </div>
-					<label> Sources </label>
+					<label className="admin-label"> Sources </label>
 
 					<div className={Storage}>
 					<label className="field__label">
@@ -171,6 +171,10 @@ class AdminCard extends Component {
 				    </label>
 				    <input className="field-text__input"  id="storage"  onBlur={this.onBlur} onFocus={this.onFocus}  value={this.props.inputStorageLocation} onChange={this.props.onInputChange.bind(this)}/>
 			        </div>
+
+			        <FieldWidgets.Text
+						label="Storage Location"
+					/>
 
 			        <div className={AcSource}>
 					<label className="field__label">

@@ -1,6 +1,10 @@
 .dropzone .dz-message + div {
 	&.list-view {
+		width: 100% !important;
 		.dz-preview-new {
+			position: relative !important;
+			top: auto !important;
+			left: auto !important;
 			width: 100%;
 			display: flex;
 			// min-height: 132px;

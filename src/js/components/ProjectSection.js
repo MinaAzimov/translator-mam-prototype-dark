@@ -123,6 +123,7 @@ export default class ProjectSection extends Component {
           key={index}
           id={item.id}
           title={item.inputTitle}
+          shellType={item.shellType}
           name={item.name}
           lastModified={item.lastModified}
           subtitle={item.inputSubtitle}

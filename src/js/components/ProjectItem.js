@@ -17,8 +17,9 @@ export default class ProjectItem extends Component {
 
 
 	render() {
-    const { user, name, subtitle, type, img, editExistingItem, editingLocalItem, readyForIngest, readyForService, searchOptimized, key, id, item, project, title, size, lastModified } = this.props;
+    const { user, name, subtitle, type, img, editExistingItem, editingLocalItem, readyForIngest, readyForService, searchOptimized, key, id, item, project, title, size, lastModified, shellType } = this.props;
 		const thumbSrc = "/assets/img/icons/video-placeholder.jpg";
+    const shellSrc = "/assets/img/icons/shell-placeholder.jpg";
 
 
     const iconClassnames = classNames({
@@ -36,9 +37,10 @@ export default class ProjectItem extends Component {
               <tr className="library-item-row" >
                 <td className="library-item library-item--thumb">
                 { 
-                (type == 'video/mp4' || type == 'video/avi') ? (
-                  <img className="library-item-thumb" src={thumbSrc}/>) : (
-                  <img className="library-item-thumb" src={img}/>)
+                type == 'video/mp4' && shellType !== 'shell'  ? 
+                  <img className="library-item-thumb" src={thumbSrc}/> : 
+                  shellType == 'shell' ? <img className="library-item-thumb" src={shellSrc}/> :
+                  <img className="library-item-thumb" src={img}/>
                     }
                 </td>
                 <td className="library-item library-item--title">

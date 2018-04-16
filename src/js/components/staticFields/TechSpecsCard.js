@@ -218,7 +218,7 @@ class TechSpecsCard extends Component {
 					value={"64mm"}
 					/> 
 					<FieldWidgets.Text
-					label="Comprassion Mode"
+					label="Compression Mode"
 					value={"24p"}
 					/> 
 					<FieldWidgets.Text label="Model" value="Canon EOS 5D Mark III"/>

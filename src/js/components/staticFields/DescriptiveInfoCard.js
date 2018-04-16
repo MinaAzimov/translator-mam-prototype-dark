@@ -102,9 +102,9 @@ class DescriptiveInfoCard extends Component {
 					/>
 						
 					</div>
-
+					<br></br>
 					<div className={classnamesSecondArea}>
-					<label> User description </label>
+					<label className="descriptive-label"> User description </label>
 					<textarea
 						id="area"
 						value={inputUserDescription}

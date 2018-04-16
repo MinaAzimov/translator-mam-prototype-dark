@@ -18,6 +18,7 @@ import UploadedFile from "./UploadedFile";
 import FileInformationModal from "./FileInformationModal";
 import axios from 'axios';
 import NumericInput from 'react-numeric-input';
+import Bricks from 'bricks.js';
 
 
 import Truncate from 'react-truncate';
@@ -110,7 +111,7 @@ class MySimpleReactDropzone extends React.Component {
 						);
 				}
 			}
-		 
+			//this.instance.pack();
 		};
 	}
 
@@ -148,12 +149,14 @@ class MySimpleReactDropzone extends React.Component {
 class Dropzone extends Component {
 	constructor(props) {
 		super(props);
+		this.instance = {};
 		this.state = {
 			shellCreate: {
 				video: 0,
 				image: 0,
 				audio: 0
 			},
+			shellFiles: [],
 			showDeletePrompt: false,
 			showCreateShellPrompt: false,
 			notifyWhenUploadComplete: false,
@@ -234,19 +237,19 @@ class Dropzone extends Component {
 		};
 	}
 
-	componentWillReceiveProps(nextProps) {
+componentWillReceiveProps(nextProps) {
   if (nextProps.files !== this.props.localFiles && nextProps.editingLocalProject) {
-    this.setState({ files: nextProps.localFiles[0].items });
+    this.setState({ files: nextProps.localFiles[0].items, uploadDropzoneShow: false });
   }
 
   if (nextProps.files !== this.props.localFiles && nextProps.editingLocalProject && nextProps.editingLocalItem) {
     this.setState({ files: nextProps.localFiles[0].items,
                     selected: true,
-                    target: this.props.localItem});
+                    target: this.props.localItem, uploadDropzoneShow: false});
   }
 
   if (nextProps.files !== this.props.localFiles && !nextProps.editingLocalProject) {
-    this.setState({ files: filesArray });
+    this.setState({ files: filesArray, uploadDropzoneShow: true });
   }
   
 }
@@ -258,11 +261,12 @@ class Dropzone extends Component {
   }
 
   clickUploadToggle = () => {
+	// this.closeFilesInformation();
+  	this.smoothScrollTo(0,0,600);
     this.setState({
       uploadDropzoneShow: !this.state.uploadDropzoneShow 
     });
   }
-
 
 
 	removeFile = (i) => {
@@ -338,9 +342,23 @@ class Dropzone extends Component {
 	}
 
 	createShellPrompt = (i) => {
+
+		this.state.shellFiles.forEach((file, i) => {
+			file.inputTitle = 'shell_item' + "_" + i;
+			file.inputStatus = "Needs Metadata";
+
+		})
 	    this.setState({
 	  		showCreateShellPrompt: !this.state.showCreateShellPrompt,
+	  		files: this.state.files.concat(this.state.shellFiles),
+	  		shellFiles: [],
+	  		shellCreate: {
+				video: 0,
+				image: 0,
+				audio: 0
+			}
 		});
+
 	}
 
 	closeFilesInformation = () => {
@@ -385,33 +403,50 @@ class Dropzone extends Component {
 		} 
 
 		 this.setState({ target: this.state.files[i], selected: true});
+
+		 let scrollToContainer;
+		 if (this.state.showGridView) {
+			scrollToContainer = document.getElementsByClassName('masonry-grid-view')[0].offsetTop;
+		  }
+		  else {
+			scrollToContainer = document.getElementsByClassName('list-view')[0].offsetTop;
+		 }
+
+		 console.log(this.state.files[i]);
+		 console.log(i);
+
+		 let filesInformation = document.getElementsByClassName('files-information')[0];
+
 		 let scrollTo = document.getElementsByClassName('dz-preview-new')[i].offsetTop;
-		 this.smoothScrollTo(0,scrollTo + 5,600);
-		 document.getElementsByClassName('files-information')[0].style.top = scrollTo + itemSize;
-		 if (document.getElementsByClassName('files-information')[0].classList.contains('callout-1')) { document.getElementsByClassName('files-information')[0].classList.remove('callout-1');}
-		 if (document.getElementsByClassName('files-information')[0].classList.contains('callout-2')) { document.getElementsByClassName('files-information')[0].classList.remove('callout-2');}
-		 if (document.getElementsByClassName('files-information')[0].classList.contains('callout-3')) { document.getElementsByClassName('files-information')[0].classList.remove('callout-3');}
-		 if (document.getElementsByClassName('files-information')[0].classList.contains('callout-4')) { document.getElementsByClassName('files-information')[0].classList.remove('callout-4');}
-		 if ((this.state.files[i].id - 1) % 4 == 0) {
-			setTimeout(function() { document.getElementsByClassName('files-information')[0].classList.add('callout-1'); }, 10);
+		 let itemHeight = document.getElementsByClassName('dz-preview-new')[i].offsetHeight;
+
+		 filesInformation.style.top = scrollToContainer + scrollTo + itemHeight;
+		 setTimeout(() => { this.smoothScrollTo(0, (scrollToContainer + scrollTo) - 7, 600) }, 0);
+		 if (filesInformation.classList.contains('callout-1')) { filesInformation.classList.remove('callout-1');}
+		 if (filesInformation.classList.contains('callout-2')) { filesInformation.classList.remove('callout-2');}
+		 if (filesInformation.classList.contains('callout-3')) { filesInformation.classList.remove('callout-3');}
+		 if (filesInformation.classList.contains('callout-4')) { filesInformation.classList.remove('callout-4');}
+
+		 if (document.getElementsByClassName('dz-preview-new')[i].offsetLeft <= 12) {
+			setTimeout(() => { filesInformation.classList.add('callout-1'); }, 0);
 		}
-		if ((this.state.files[i].id - 1) % 4 == 1) {
-			setTimeout(function() { document.getElementsByClassName('files-information')[0].classList.add('callout-2'); }, 10);
+		else if (document.getElementsByClassName('dz-preview-new')[i].offsetLeft <= 324) {
+			setTimeout(() => { filesInformation.classList.add('callout-2'); }, 0);
 		}
-		if ((this.state.files[i].id - 1) % 4 == 2) {
-			setTimeout(function() { document.getElementsByClassName('files-information')[0].classList.add('callout-3'); }, 10);
+		else if (document.getElementsByClassName('dz-preview-new')[i].offsetLeft <= 636) {
+			setTimeout(() => { filesInformation.classList.add('callout-3'); }, 0);
 		}
-		if ((this.state.files[i].id - 1) % 4 == 3) {
-			setTimeout(function() { document.getElementsByClassName('files-information')[0].classList.add('callout-4'); }, 10);
+		else if (document.getElementsByClassName('dz-preview-new')[i].offsetLeft <= 948) {
+			setTimeout(() => { filesInformation.classList.add('callout-4'); }, 0);
 		}
 
 		if (!this.state.showGridView) {
-			setTimeout(function() { 
+			setTimeout(() => { 
 				if (document.getElementsByClassName('files-information')[0].classList.contains('callout-1')) { document.getElementsByClassName('files-information')[0].classList.remove('callout-1');}
 				if (document.getElementsByClassName('files-information')[0].classList.contains('callout-2')) { document.getElementsByClassName('files-information')[0].classList.remove('callout-2');}
 				if (document.getElementsByClassName('files-information')[0].classList.contains('callout-3')) { document.getElementsByClassName('files-information')[0].classList.remove('callout-3');}
 				if (document.getElementsByClassName('files-information')[0].classList.contains('callout-4')) { document.getElementsByClassName('files-information')[0].classList.remove('callout-4');}
-			}, 15);
+			}, 5);
 		}
 
 		if(!this.state.files[i].test) {
@@ -924,7 +959,7 @@ removeDropzone() {
 	var project = this.props.currentProject;
 	filesArray = [];
 		this.props.hideDropzone();
-		this.setState({selected: false, target: []})
+		this.setState({selected: false, target: [], uploadDropzoneShow: true})
 
 
 		if(this.props.editingLocalProject || this.props.editingLocalItem) {
@@ -994,7 +1029,8 @@ removeDropzone() {
 					"inputAcSource": (imageFile.inputAcSource ? imageFile.inputAcSource : ''),
 					"inputUserDescription": (imageFile.inputUserDescription ? imageFile.inputUserDescription : ''),
 					"inputPeople": (imageFile.inputPeople ? imageFile.inputPeople : ''),
-					"inputUserComments": (imageFile.inputUserComments ? imageFile.inputUserComments : '')
+					"inputUserComments": (imageFile.inputUserComments ? imageFile.inputUserComments : ''),
+					"shellType": (imageFile.shellType ? imageFile.shellType : '')
 			       }
        var anotherItems = itemsRef.child(i).update(data)
     }  
@@ -1067,7 +1103,8 @@ removeDropzone() {
 					"inputAcSource": (imageFile.inputAcSource ? imageFile.inputAcSource : ''),
 					"inputUserDescription": (imageFile.inputUserDescription ? imageFile.inputUserDescription : ''),
 					"inputPeople": (imageFile.inputPeople ? imageFile.inputPeople : ''),
-					"inputUserComments": (imageFile.inputUserComments ? imageFile.inputUserComments : '')
+					"inputUserComments": (imageFile.inputUserComments ? imageFile.inputUserComments : ''),
+					"shellType": (imageFile.shellType ? imageFile.shellType : '')
 			
 			       }
       var anotherItems = itemsRef.child(i).set(data)
@@ -1255,8 +1292,15 @@ selectAudioFiles() {
 		this.setState({
 			showGridView: !this.state.showGridView
 		})
+		if (this.state.showGridView) {
+			setTimeout(() => {
+				this.instance.pack();
+			}, 0); 
+		}
 	}
 
+
+	
 	setVideoShellCreateValues = (n) => {
         this.setState(prevState => ({
         	shellCreate: {
@@ -1264,6 +1308,73 @@ selectAudioFiles() {
 		        video: n
         	}
         }));
+
+        var shell = {
+					"projectName": "newnew",
+                    "name": "shellItem",
+                    "processing": "",
+					"subtitle": "",
+					"type": "video/mp4",
+					"lastEditedBy": "Lova Yazdani",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1521252628000,
+					"previewTemplate" : {
+						"firstElementChild": {
+							firstChild: {
+								currentSrc: "/assets/img/icons/shell-placeholder.jpg",
+							}
+						}
+					},
+					"size": "",
+					"img": "/assets/img/icons/shell-placeholder.jpg",
+					"src": "/assets/img/icons/shell-placeholder.jpg",
+					"height": "780",
+                    "width": "1280",
+                    "id": getNewFakeFileId(),
+                    "test": "",
+                    "inputHouseID": "",
+					"inputComposition": "",
+					"inputColor": "",
+					"inputPromoCode": "",
+					"inputShow": "",
+					"inputEpisode": "",
+					"inputDescription": "",
+					"inputUploader": "",
+					"inputKeywords": "",
+					"inputProductionType": "",
+					"inputActors": "",
+					"inputNetwork": "",
+					"inputLanguage": "",
+					"inputCopyright": "",
+					"inputRestrictions": "",
+					"inputSeason": "",
+					"inputMediaType": "",
+					"inputMaterialType": "",
+					"inputSecondaryType": "",
+					"inputFrameRate": "",
+					"inputAspectRatio": "",
+					"inputTitle": "",
+					"inputSubtitle": "",
+					"inputStatus": "",
+					"inputContentType": "",
+					"inputFileName": "",
+					"inputAssosiations": "",
+					"inputVersionType": "",
+					"inputProducer": "",
+					"inputCreative": "",
+					"inputStorageLocation": "",
+					"inputAcSource": "",
+					"inputUserDescription": "",
+					"inputPeople": "",
+					"inputUserComments": "",
+					"shellType": "shell"
+			
+			       }
+       this.setState({
+       	shellFiles: this.state.shellFiles.concat(shell)
+       })
+      
+        
     }
 	setImageShellCreateValues = (n) => {
         this.setState(prevState => ({
@@ -1272,6 +1383,72 @@ selectAudioFiles() {
 		        image: n
         	}
         }));
+
+        var shell = {
+					"projectName": "newnew",
+                    "name": "shellItem",
+                    "processing": "",
+					"subtitle": "",
+					"type": "image/jpeg",
+					"lastEditedBy": "Lova Yazdani",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1521252628000,
+					"previewTemplate" : {
+						"firstElementChild": {
+							firstChild: {
+								currentSrc: "/assets/img/icons/shell-placeholder.jpg",
+							}
+						}
+					},
+					"size": "",
+					"img": "/assets/img/icons/shell-placeholder.jpg",
+					"src": "/assets/img/icons/shell-placeholder.jpg",
+					"height": "780",
+                    "width": "1280",
+                    "id": getNewFakeFileId(),
+                    "test": "",
+                    "inputHouseID": "",
+					"inputComposition": "",
+					"inputColor": "",
+					"inputPromoCode": "",
+					"inputShow": "",
+					"inputEpisode": "",
+					"inputDescription": "",
+					"inputUploader": "",
+					"inputKeywords": "",
+					"inputProductionType": "",
+					"inputActors": "",
+					"inputNetwork": "",
+					"inputLanguage": "",
+					"inputCopyright": "",
+					"inputRestrictions": "",
+					"inputSeason": "",
+					"inputMediaType": "",
+					"inputMaterialType": "",
+					"inputSecondaryType": "",
+					"inputFrameRate": "",
+					"inputAspectRatio": "",
+					"inputTitle": "",
+					"inputSubtitle": "",
+					"inputStatus": "",
+					"inputContentType": "",
+					"inputFileName": "",
+					"inputAssosiations": "",
+					"inputVersionType": "",
+					"inputProducer": "",
+					"inputCreative": "",
+					"inputStorageLocation": "",
+					"inputAcSource": "",
+					"inputUserDescription": "",
+					"inputPeople": "",
+					"inputUserComments": "",
+					"shellType": "shell"
+			
+			       }
+       this.setState({
+       	shellFiles: this.state.shellFiles.concat(shell)
+       })
+      
     }
 	setAudioShellCreateValues = (n) => {
         this.setState(prevState => ({
@@ -1280,6 +1457,72 @@ selectAudioFiles() {
 		        audio: n
         	}
         }));
+
+        var shell = {
+					"projectName": "newnew",
+                    "name": "shellItem",
+                    "processing": "",
+					"subtitle": "",
+					"type": "audio/mp3",
+					"lastEditedBy": "Lova Yazdani",
+					"lastEditedOn": "03/15/18 at 02:15 PM",
+					"lastModified": 1521252628000,
+					"previewTemplate" : {
+						"firstElementChild": {
+							firstChild: {
+								currentSrc: "/assets/img/icons/shell-placeholder.jpg",
+							}
+						}
+					},
+					"size": "",
+					"img": "/assets/img/icons/shell-placeholder.jpg",
+					"src": "/assets/img/icons/shell-placeholder.jpg",
+					"height": "780",
+                    "width": "1280",
+                    "id": getNewFakeFileId(),
+                    "test": "",
+                    "inputHouseID": "",
+					"inputComposition": "",
+					"inputColor": "",
+					"inputPromoCode": "",
+					"inputShow": "",
+					"inputEpisode": "",
+					"inputDescription": "",
+					"inputUploader": "",
+					"inputKeywords": "",
+					"inputProductionType": "",
+					"inputActors": "",
+					"inputNetwork": "",
+					"inputLanguage": "",
+					"inputCopyright": "",
+					"inputRestrictions": "",
+					"inputSeason": "",
+					"inputMediaType": "",
+					"inputMaterialType": "",
+					"inputSecondaryType": "",
+					"inputFrameRate": "",
+					"inputAspectRatio": "",
+					"inputTitle": "",
+					"inputSubtitle": "",
+					"inputStatus": "",
+					"inputContentType": "",
+					"inputFileName": "",
+					"inputAssosiations": "",
+					"inputVersionType": "",
+					"inputProducer": "",
+					"inputCreative": "",
+					"inputStorageLocation": "",
+					"inputAcSource": "",
+					"inputUserDescription": "",
+					"inputPeople": "",
+					"inputUserComments": "",
+					"shellType": "shell"
+			
+			       }
+       this.setState({
+       	shellFiles: this.state.shellFiles.concat(shell)
+       })
+      
     }
 
 
@@ -1335,7 +1578,8 @@ selectAudioFiles() {
 		});
 
 		const gridListViewClassnames = classNames({
-			"list-view": !this.state.showGridView 
+			"list-view": !this.state.showGridView,
+			"masonry-grid-view": this.state.showGridView 
 		});
 
 	    const notifyButtonclassnames = classNames({
@@ -1355,6 +1599,18 @@ selectAudioFiles() {
 	      'upload-mode--open': this.state.uploadDropzoneShow
 	    })
 
+	    if (document.querySelector('.masonry-grid-view') != null) {
+		    this.instance = Bricks({
+				packed: 'data-packed',
+				sizes: [
+				  { columns: 4, gutter: 15 }
+				],
+				container: '.masonry-grid-view'
+			});
+			setTimeout(() => {
+				this.instance.pack();
+			}, 0)
+	    }
 
 		return (
 			<div>
@@ -1447,16 +1703,23 @@ selectAudioFiles() {
 				if(!this.props.editingLocalProject && !this.props.editingLocalItem) {
 					this.setState({files: filesArray, selected: false})
 					this.state.files.forEach((file, i) => {
-				if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png")) {
+				if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png") && (file.shellType !== "shell")) {
 					file.inputTitle = "untitled" + "_" + file.width + "x" + file.height + "_" + i;
 					file.inputStatus = "Needs Metadata"
 
 					}
-				if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "video/avi" || file.type == "video/mp4")) {
+				if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "video/avi" || file.type == "video/mp4") && (file.shellType !== "shell")) {
 					file.inputTitle = "untitled" + "_" + "15min_" + i;
 					file.inputStatus = "Needs Metadata"
 					}
+				if(file.shellType == "shell") {
+				file.inputTitle = "shell_item" + "_" + i;
+				file.inputStatus = "Needs Metadata"
+
+				}
 				})
+
+				
 					
 				}
 
@@ -1466,17 +1729,23 @@ selectAudioFiles() {
                     	selected: false })
 					
 					this.state.files.forEach((file, i) => {
-					if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png")) {
+					if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "image/jpeg" || file.type == "image/jpg" || file.type == "image/png") && (file.shellType !== "shell")) {
 					file.inputTitle = "untitled" + "_" + file.width + "x" + file.height + "_" + i;
 					file.inputStatus = "Needs Metadata";
 					file.lastEditedBy =  this.props.client.user.name;
 
 					}
-					if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "video/avi" || file.type == "video/mp4")) {
+					if(((!file.test || file.test !== "edited") && file.editedInBulk !== "edited") && (file.type == "video/avi" || file.type == "video/mp4") && (file.shellType !== "shell")) {
 						file.inputTitle = "untitled" + "_" + "15min_" + i;
-						file.inputStatus = "Needs Metadata"
+						file.inputStatus = "Needs Metadata";
 						file.lastEditedBy =  this.props.client.user.name;
 						}
+					if(file.shellType == "shell") {
+					file.inputTitle = "shell_item" + "_" + i;
+					file.inputStatus = "Needs Metadata"
+
+					}
+					
 					
 				})
 				}	

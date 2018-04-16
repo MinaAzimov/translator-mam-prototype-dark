@@ -31,7 +31,7 @@ var _DefaultTranslation = require('./DefaultTranslation');
 
 var _DefaultPreviewTemplate = require('./DefaultPreviewTemplate');
 
-var _reactDropzoneComponent = require('react-dropzone-component');
+var _reactDropzoneComponent = require('../react-dropzone-component');
 
 var _reactDropzoneComponent2 = _interopRequireDefault(_reactDropzoneComponent);
 
